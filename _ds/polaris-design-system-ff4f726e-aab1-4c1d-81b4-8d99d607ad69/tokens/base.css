@@ -1,0 +1,66 @@
+/* ============================================================
+   POLARIS · BASE
+   Minimal element defaults that express the brand canvas.
+   Consumers get the night-sky background, soft-white body text,
+   gold selection, and the display/body font pairing for free.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--text-strong);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+
+p { margin: 0; }
+
+a {
+  color: var(--text-body);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+a:hover { color: var(--text-accent); }
+
+::selection {
+  background: var(--color-gold-a32);
+  color: var(--color-white);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-offset-shadow), var(--ring);
+  border-radius: var(--radius-sm);
+}
+
+img { display: block; max-width: 100%; }
+
+/* Thin, dark-theme scrollbars to match the canvas */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-hairline-2) transparent;
+}
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb {
+  background: var(--color-hairline-2);
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}

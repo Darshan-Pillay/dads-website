@@ -1,0 +1,78 @@
+/* ============================================================
+   POLARIS · TYPOGRAPHY
+   Hanken Grotesk (display / headlines / wordmark) + Inter (body / UI).
+   Character on top, legibility underneath. Two weights do most work
+   (400 / 500); lighter weights (300) for airy hero display. Hanken's
+   rounded terminals give headlines warmth instead of a robotic edge.
+   ============================================================ */
+
+:root {
+  /* Families */
+  --font-display: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body:    'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:    ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Weights */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* ------------------------------------------------------------
+     Type scale — fluid where it helps the single-scroll hero,
+     fixed for UI. Display sizes lean large + airy.
+     ------------------------------------------------------------ */
+  --text-display:   clamp(3rem, 6vw, 5.5rem);   /* 48 → 88px hero */
+  --text-h1:        clamp(2.25rem, 4vw, 3.5rem);/* 36 → 56px */
+  --text-h2:        clamp(1.75rem, 2.6vw, 2.5rem); /* 28 → 40px */
+  --text-h3:        1.5rem;    /* 24px */
+  --text-h4:        1.1875rem; /* 19px */
+  --text-lead:      1.25rem;   /* 20px — intro paragraphs */
+  --text-body-lg:   1.0625rem; /* 17px */
+  --text-body:      0.9375rem; /* 15px — default body */
+  --text-sm:        0.875rem;  /* 14px — UI labels */
+  --text-caption:   0.75rem;   /* 12px — captions, meta */
+  --text-overline:  0.6875rem; /* 11px — eyebrow / section labels */
+
+  /* Line height */
+  --leading-display: 1.05;
+  --leading-heading: 1.15;
+  --leading-snug:    1.35;
+  --leading-body:    1.6;
+  --leading-relaxed: 1.75;
+
+  /* Letter spacing — display runs airy; overlines run wide */
+  --tracking-tighter: -0.03em;
+  --tracking-tight:   -0.015em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.04em;
+  --tracking-wider:   0.12em;  /* eyebrows / overlines */
+  --tracking-widest:  0.22em;  /* spaced section labels */
+}
+
+/* ------------------------------------------------------------
+   Optional utility classes — handy in specimen cards & kits.
+   Components should reference the tokens directly.
+   ------------------------------------------------------------ */
+.t-overline {
+  font-family: var(--font-display);
+  font-size: var(--text-overline);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-accent);
+}
+.t-display {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-strong);
+}
+.t-h1 { font-family: var(--font-display); font-size: var(--text-h1); font-weight: var(--weight-regular); line-height: var(--leading-heading); letter-spacing: var(--tracking-tight); color: var(--text-strong); }
+.t-h2 { font-family: var(--font-display); font-size: var(--text-h2); font-weight: var(--weight-regular); line-height: var(--leading-heading); letter-spacing: var(--tracking-tight); color: var(--text-strong); }
+.t-h3 { font-family: var(--font-display); font-size: var(--text-h3); font-weight: var(--weight-medium); line-height: var(--leading-snug); color: var(--text-strong); }
+.t-body { font-family: var(--font-body); font-size: var(--text-body); font-weight: var(--weight-regular); line-height: var(--leading-body); color: var(--text-body); }
+.t-lead { font-family: var(--font-body); font-size: var(--text-lead); font-weight: var(--weight-regular); line-height: var(--leading-relaxed); color: var(--text-secondary); }

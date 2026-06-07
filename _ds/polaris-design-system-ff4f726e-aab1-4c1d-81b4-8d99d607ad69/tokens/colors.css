@@ -1,0 +1,80 @@
+/* ============================================================
+   POLARIS · COLORS
+   "Near-black canvas, white for content, gold as a rare spotlight."
+   ≈ 70% obsidian / 25% white-grey / 5% gold.
+   Neutrals carry a faint blue-violet cast — night sky, not muddy black.
+   ============================================================ */
+
+:root {
+  /* --- Neutrals (canvas + text) --- */
+  --color-ink:        #07070B; /* deepest black — footer, overlays, scrims */
+  --color-obsidian:   #0B0B12; /* primary page background */
+  --color-surface:    #14141C; /* cards, raised panels, sections */
+  --color-surface-2:  #1B1B25; /* nested surfaces, hover fills, inputs */
+  --color-hairline:   #262631; /* borders, dividers, input outlines */
+  --color-hairline-2: #34343F; /* stronger borders, hovered outlines */
+  --color-mist:       #6E6E7B; /* hints, placeholders, disabled (large text only) */
+  --color-slate:      #9B9BA8; /* secondary text, captions, labels */
+  --color-snow:       #F4F4F7; /* primary body text (soft white) */
+  --color-white:      #FFFFFF; /* headlines, wordmark, max emphasis */
+
+  /* --- Accent · Star Gold (the 5% spotlight) --- */
+  --color-gold:       #C6A15B; /* primary accent — mark, primary button, key icon */
+  --color-gold-light: #DCBD82; /* hover, focus rings, highlights */
+  --color-gold-deep:  #9C7C3E; /* pressed/active, gold on light, subtle borders */
+  --color-on-gold:    #0B0B12; /* text/icons on a gold fill — never white */
+
+  /* Gold tints for soft fills / glows (use sparingly) */
+  --color-gold-a08:   rgba(198, 161, 91, 0.08);
+  --color-gold-a16:   rgba(198, 161, 91, 0.16);
+  --color-gold-a32:   rgba(198, 161, 91, 0.32);
+
+  /* --- Functional (UI only, used sparingly) --- */
+  --color-success:    #4FB58B;
+  --color-warning:    #E8A23C;
+  --color-error:      #E2615A;
+  --color-info:       #5E9BD6;
+
+  --color-success-bg: rgba(79, 181, 139, 0.12);
+  --color-warning-bg: rgba(232, 162, 60, 0.12);
+  --color-error-bg:   rgba(226, 97, 90, 0.12);
+  --color-info-bg:    rgba(94, 155, 214, 0.12);
+
+  /* --- White transparencies (overlays on dark) --- */
+  --color-white-a04:  rgba(255, 255, 255, 0.04);
+  --color-white-a08:  rgba(255, 255, 255, 0.08);
+  --color-white-a12:  rgba(255, 255, 255, 0.12);
+
+  /* ============================================================
+     SEMANTIC ALIASES — prefer these in components
+     ============================================================ */
+
+  /* Surfaces */
+  --bg-page:          var(--color-obsidian);
+  --bg-deep:          var(--color-ink);
+  --surface-card:     var(--color-surface);
+  --surface-raised:   var(--color-surface-2);
+  --surface-hover:    var(--color-white-a04);
+  --surface-overlay:  rgba(7, 7, 11, 0.72); /* modal scrim */
+
+  /* Text */
+  --text-strong:      var(--color-white);
+  --text-body:        var(--color-snow);
+  --text-secondary:   var(--color-slate);
+  --text-muted:       var(--color-mist);
+  --text-on-gold:     var(--color-on-gold);
+  --text-accent:      var(--color-gold);
+
+  /* Borders */
+  --border-subtle:    var(--color-hairline);
+  --border-strong:    var(--color-hairline-2);
+  --border-accent:    var(--color-gold-deep);
+
+  /* Interactive accent */
+  --accent:           var(--color-gold);
+  --accent-hover:     var(--color-gold-light);
+  --accent-press:     var(--color-gold-deep);
+
+  /* Focus */
+  --focus-ring:       var(--color-gold-light);
+}

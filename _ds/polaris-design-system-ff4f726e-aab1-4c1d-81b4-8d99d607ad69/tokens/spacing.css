@@ -1,0 +1,31 @@
+/* ============================================================
+   POLARIS · SPACING & LAYOUT
+   8px base rhythm. Generous negative space is part of the identity —
+   sections breathe; type is never crowded.
+   ============================================================ */
+
+:root {
+  /* Spacing scale (8px base, with 2/4 micro steps) */
+  --space-0:   0;
+  --space-1:   0.25rem;  /* 4px */
+  --space-2:   0.5rem;   /* 8px */
+  --space-3:   0.75rem;  /* 12px */
+  --space-4:   1rem;     /* 16px */
+  --space-5:   1.5rem;   /* 24px */
+  --space-6:   2rem;     /* 32px */
+  --space-7:   3rem;     /* 48px */
+  --space-8:   4rem;     /* 64px */
+  --space-9:   6rem;     /* 96px */
+  --space-10:  8rem;     /* 128px */
+  --space-11:  12rem;    /* 192px — major section breaks */
+
+  /* Section padding (vertical rhythm for the single-scroll site) */
+  --section-py:   clamp(4rem, 10vw, 10rem); /* @kind spacing */
+  --section-px:   clamp(1.25rem, 5vw, 6rem); /* @kind spacing */
+
+  /* Content widths */
+  --container-max:  1200px;  /* primary content column */
+  --container-wide: 1440px;  /* full-bleed wrappers */
+  --measure:        68ch;    /* readable prose line length */
+  --measure-narrow: 46ch;    /* hero / lead copy */
+}
