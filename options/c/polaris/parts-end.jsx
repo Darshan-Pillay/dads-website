@@ -69,9 +69,28 @@ function Contact({ onSubmit }) {
 
 function Footer() {
   const cols = [
-    { h: 'Stack audit', items: ['Cost-Optimised', 'Best-in-Breed', 'Fully Portable'] },
-    { h: 'Polyglots in', items: ['Cloud', 'SAP / Oracle / Microsoft', 'AI & Data', 'Open standards (K8s, Terraform, GraphQL)'] },
-    { h: 'Company', items: ['Who we are', 'The conflict', 'Contact'] },
+    { h: 'Stack audit', items: [
+      { label: 'The three paths',  href: 'pages/stack-audit.html' },
+      { label: 'Cost-Optimised',   href: 'pages/stack-audit.html#cost-optimised' },
+      { label: 'Best-in-Breed',    href: 'pages/stack-audit.html#best-in-breed' },
+      { label: 'Fully Portable',   href: 'pages/stack-audit.html#fully-portable' },
+    ]},
+    { h: 'Polyglots in', items: [
+      { label: 'Cloud',                          href: 'services/cloud.html' },
+      { label: 'SAP',                            href: 'services/sap.html' },
+      { label: 'Oracle',                         href: 'services/oracle.html' },
+      { label: 'Microsoft',                      href: 'services/microsoft.html' },
+      { label: 'AI & Data',                      href: 'services/ai.html' },
+      { label: 'Open standards (K8s, Terraform)', href: 'pages/principles.html' },
+    ]},
+    { h: 'Company', items: [
+      { label: 'Who we are',  href: 'pages/about.html' },
+      { label: 'The conflict', href: 'pages/the-conflict.html' },
+      { label: 'Case studies', href: 'pages/case-studies.html' },
+      { label: 'Insights',     href: 'pages/insights.html' },
+      { label: 'Contact',      href: 'pages/contact.html' },
+      { label: 'LinkedIn',     href: 'https://www.linkedin.com/', target: '_blank', rel: 'noopener' },
+    ]},
   ];
   return (
     <footer className="site-footer">
@@ -84,7 +103,15 @@ function Footer() {
           {cols.map((c) => (
             <div key={c.h} className="site-footer__col">
               <h4>{c.h}</h4>
-              <ul>{c.items.map((it) => <li key={it}><a href="#contact">{it}</a></li>)}</ul>
+              <ul>
+                {c.items.map((it) => (
+                  <li key={it.label}>
+                    <a href={it.href} {...(it.target ? { target: it.target, rel: it.rel } : {})}>
+                      {it.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>

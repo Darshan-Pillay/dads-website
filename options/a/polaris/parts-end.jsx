@@ -69,9 +69,24 @@ function Contact({ onSubmit }) {
 
 function Footer() {
   const cols = [
-    { h: 'Services', items: ['SAP', 'Microsoft', 'Oracle', 'AI & Data', 'Cloud'] },
-    { h: 'Company', items: ['About', 'Our approach', 'Consultants', 'Case studies'] },
-    { h: 'Connect', items: ['Contact', 'LinkedIn', 'Insights'] },
+    { h: 'Services', items: [
+      { label: 'SAP',        href: 'services/sap.html' },
+      { label: 'Microsoft',  href: 'services/microsoft.html' },
+      { label: 'Oracle',     href: 'services/oracle.html' },
+      { label: 'AI & Data',  href: 'services/ai.html' },
+      { label: 'Cloud',      href: 'services/cloud.html' },
+    ]},
+    { h: 'Company', items: [
+      { label: 'About',        href: 'pages/about.html' },
+      { label: 'Our approach', href: 'pages/approach.html' },
+      { label: 'Consultants',  href: 'pages/consultants.html' },
+      { label: 'Case studies', href: 'pages/case-studies.html' },
+    ]},
+    { h: 'Connect', items: [
+      { label: 'Contact',  href: 'pages/contact.html' },
+      { label: 'Insights', href: 'pages/insights.html' },
+      { label: 'LinkedIn', href: 'https://www.linkedin.com/', target: '_blank', rel: 'noopener' },
+    ]},
   ];
   return (
     <footer className="site-footer">
@@ -84,7 +99,15 @@ function Footer() {
           {cols.map((c) => (
             <div key={c.h} className="site-footer__col">
               <h4>{c.h}</h4>
-              <ul>{c.items.map((it) => <li key={it}><a href="#contact">{it}</a></li>)}</ul>
+              <ul>
+                {c.items.map((it) => (
+                  <li key={it.label}>
+                    <a href={it.href} {...(it.target ? { target: it.target, rel: it.rel } : {})}>
+                      {it.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
