@@ -233,6 +233,34 @@
 .domain__name { font-family: var(--font-display); font-size: var(--text-h4); font-weight: 500; color: var(--color-white); margin: 0 0 var(--space-1); }
 .domain__out { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-slate); margin: 0; }
 
+/* clickable domain — full card is a link to the service page */
+.domain--link {
+  display: flex; flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+.domain__cta {
+  margin-top: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--color-hairline);
+  font-family: var(--font-body); font-size: var(--text-sm); font-weight: 500;
+  color: var(--color-gold); display: inline-flex; align-items: center; gap: 6px;
+  transition: gap var(--dur-fast) var(--ease-out);
+}
+.domain--link:hover .domain__cta { gap: 10px; color: var(--color-gold-light); }
+.domain__cta .pl-ic, .domain__cta svg { transition: transform var(--dur-fast) var(--ease-out); }
+.domain--link:hover .domain__cta .pl-ic, .domain--link:hover .domain__cta svg { transform: translateX(3px); }
+
+/* index list — name becomes a link */
+.idxlist__name { color: inherit; }
+.idxlist__name:hover { color: var(--color-gold); }
+
+/* tag layout — make tags into links */
+.domains a.pl-tag {
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.domains a.pl-tag:hover { background: var(--color-gold-a16); border-color: var(--color-gold); transform: translateY(-1px); }
+
 /* What we do — editorial index list (variation) */
 .idxlist { list-style: none; margin: 0; padding: 0; }
 .idxlist li {

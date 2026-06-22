@@ -1,19 +1,19 @@
 /* Polaris landing — middle: What we do · Why independent · How we work */
 
 const DOMAINS = [
-  { name: 'SAP', out: 'S/4HANA, Finance, Supply Chain, SuccessFactors' },
-  { name: 'Microsoft', out: 'Azure, M365, Dynamics, Power Platform' },
-  { name: 'Oracle', out: 'OCI, ERP, HCM, performance & migrations' },
-  { name: 'IBM', out: 'Cloud, automation, integration, security' },
-  { name: 'AI', out: 'Strategy, ML, generative AI, governance' },
-  { name: 'Cloud', out: 'Hybrid, multi-cloud, secure migration' },
-  { name: 'Big Data & Analytics', out: 'Data platforms, BI, real-time insight' },
-  { name: 'Blockchain', out: 'Smart contracts, traceability, digital ID' },
-  { name: 'Mobile', out: 'Native iOS, Android, cross-platform' },
+  { slug: 'sap',        name: 'SAP',                  out: 'S/4HANA, Finance, Supply Chain, SuccessFactors' },
+  { slug: 'microsoft',  name: 'Microsoft',            out: 'Azure, M365, Dynamics, Power Platform' },
+  { slug: 'oracle',     name: 'Oracle',               out: 'OCI, ERP, HCM, performance & migrations' },
+  { slug: 'ibm',        name: 'IBM',                  out: 'Cloud, automation, integration, security' },
+  { slug: 'ai',         name: 'AI',                   out: 'Strategy, ML, generative AI, governance' },
+  { slug: 'cloud',      name: 'Cloud',                out: 'Hybrid, multi-cloud, secure migration' },
+  { slug: 'data',       name: 'Big Data & Analytics', out: 'Data platforms, BI, real-time insight' },
+  { slug: 'blockchain', name: 'Blockchain',           out: 'Smart contracts, traceability, digital ID' },
+  { slug: 'mobile',     name: 'Mobile',               out: 'Native iOS, Android, cross-platform' },
 ];
 
 function WhatWeDo({ t }) {
-  const { Tag } = window.PolarisDesignSystem_ff4f72;
+  const Icon = window.Icon;
   const layout = t.whatWeDo; // 'grid' | 'index' | 'tags'
   return (
     <section className="section section--alt" id="what-we-do">
@@ -32,10 +32,11 @@ function WhatWeDo({ t }) {
         {layout === 'grid' && (
           <div className="domain-grid">
             {DOMAINS.map((d, i) => (
-              <div className="domain reveal" key={d.name} style={{ '--d': (i * 50) + 'ms' }}>
+              <a className="domain domain--link reveal" key={d.name} href={`services/${d.slug}.html`} style={{ '--d': (i * 50) + 'ms' }}>
                 <h3 className="domain__name">{d.name}</h3>
                 <p className="domain__out">{d.out}</p>
-              </div>
+                <span className="domain__cta">Explore {d.name} <Icon name="arrow-right" size={14} /></span>
+              </a>
             ))}
           </div>
         )}
@@ -45,7 +46,7 @@ function WhatWeDo({ t }) {
             {DOMAINS.map((d, i) => (
               <li key={d.name}>
                 <span className="n">{String(i + 1).padStart(2, '0')}</span>
-                <span>{d.name}</span>
+                <a className="idxlist__name" href={`services/${d.slug}.html`}>{d.name}</a>
                 <span className="o">{d.out}</span>
               </li>
             ))}
@@ -54,7 +55,9 @@ function WhatWeDo({ t }) {
 
         {layout === 'tags' && (
           <div className="domains reveal">
-            {DOMAINS.map((d) => (<Tag key={d.name}>{d.name}</Tag>))}
+            {DOMAINS.map((d) => (
+              <a className="pl-tag" key={d.name} href={`services/${d.slug}.html`}>{d.name}</a>
+            ))}
           </div>
         )}
       </div>

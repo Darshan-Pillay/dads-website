@@ -32,7 +32,7 @@ function App() {
     TweakRadio, TweakToggle, TweakColor, TweakButton,
   } = window;
   const { Dialog, Button } = window.PolarisDesignSystem_ff4f72;
-  const { Nav, Hero, Shift, WhoWeAre, WhatWeDo, Principles, Industries, WhyIndependent, HowWeWork, Proof, Closing, Contact, Footer } = window;
+  const { Nav, Hero, Shift, WhoWeAre, WhatWeDo, FeatureBand, Vision, Approach, ServicesFull, Principles, Industries, SoftwareFactory, WhyIndependent, HowWeWork, Proof, Closing, Contact, Footer } = window;
 
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [sent, setSent] = React.useState(false);
@@ -86,11 +86,15 @@ function App() {
       <Nav />
       <main>
         <Hero t={t} />
+        <FeatureBand />
         <Shift />
         <WhoWeAre />
-        <WhatWeDo t={t} />
-        <Principles />
+        <Vision />
+        <Approach />
+        <ServicesFull />
         <Industries />
+        <Principles />
+        <SoftwareFactory />
         <WhyIndependent t={t} />
         <HowWeWork />
         {t.showProof && <Proof />}

@@ -1,19 +1,19 @@
 /* Polaris landing — middle: What we do · Why independent · How we work */
 
 const DOMAINS = [
-  { name: 'SAP', out: 'Without the SAP-only blinkers' },
-  { name: 'Microsoft', out: 'Beyond the licensing margin' },
-  { name: 'Oracle', out: 'No partner referral fee' },
-  { name: 'IBM', out: 'Modernise on your terms' },
-  { name: 'AI', out: 'Real value, not vendor hype' },
-  { name: 'Cloud', out: 'Multi-cloud, or no cloud' },
-  { name: 'Big Data', out: 'Best DB for the workload' },
-  { name: 'Blockchain', out: 'Only when it earns its place' },
-  { name: 'Mobile', out: 'Native or cross-platform — your call' },
+  { slug: 'sap',        name: 'SAP',        out: 'Without the SAP-only blinkers' },
+  { slug: 'microsoft',  name: 'Microsoft',  out: 'Beyond the licensing margin' },
+  { slug: 'oracle',     name: 'Oracle',     out: 'No partner referral fee' },
+  { slug: 'ibm',        name: 'IBM',        out: 'Modernise on your terms' },
+  { slug: 'ai',         name: 'AI',         out: 'Real value, not vendor hype' },
+  { slug: 'cloud',      name: 'Cloud',      out: 'Multi-cloud, or no cloud' },
+  { slug: 'data',       name: 'Big Data',   out: 'Best DB for the workload' },
+  { slug: 'blockchain', name: 'Blockchain', out: 'Only when it earns its place' },
+  { slug: 'mobile',     name: 'Mobile',     out: 'Native or cross-platform — your call' },
 ];
 
 function WhatWeDo({ t }) {
-  const { Tag } = window.PolarisDesignSystem_ff4f72;
+  const Icon = window.Icon;
   const layout = t.whatWeDo; // 'grid' | 'index' | 'tags'
   return (
     <section className="section section--alt" id="what-we-do">
@@ -33,10 +33,11 @@ function WhatWeDo({ t }) {
         {layout === 'grid' && (
           <div className="domain-grid">
             {DOMAINS.map((d, i) => (
-              <div className="domain reveal" key={d.name} style={{ '--d': (i * 50) + 'ms' }}>
+              <a className="domain domain--link reveal" key={d.name} href={`services/${d.slug}.html`} style={{ '--d': (i * 50) + 'ms' }}>
                 <h3 className="domain__name">{d.name}</h3>
                 <p className="domain__out">{d.out}</p>
-              </div>
+                <span className="domain__cta">See the unbiased read <Icon name="arrow-right" size={14} /></span>
+              </a>
             ))}
           </div>
         )}
@@ -46,7 +47,7 @@ function WhatWeDo({ t }) {
             {DOMAINS.map((d, i) => (
               <li key={d.name}>
                 <span className="n">{String(i + 1).padStart(2, '0')}</span>
-                <span>{d.name}</span>
+                <a className="idxlist__name" href={`services/${d.slug}.html`}>{d.name}</a>
                 <span className="o">{d.out}</span>
               </li>
             ))}
@@ -55,7 +56,9 @@ function WhatWeDo({ t }) {
 
         {layout === 'tags' && (
           <div className="domains reveal">
-            {DOMAINS.map((d) => (<Tag key={d.name}>{d.name}</Tag>))}
+            {DOMAINS.map((d) => (
+              <a className="pl-tag" key={d.name} href={`services/${d.slug}.html`}>{d.name}</a>
+            ))}
           </div>
         )}
       </div>

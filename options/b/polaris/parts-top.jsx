@@ -9,7 +9,7 @@ function Nav({ onNav }) {
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-  const links = ['Who we are', 'What we do', 'Principles', 'Industries', 'How we work'];
+  const links = ['Who we are', 'Vision', 'Approach', 'What we do', 'Industries', 'Principles'];
   return (
     <header className={`site-nav ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="site-nav__inner">
