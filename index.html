@@ -6,24 +6,34 @@
 <title>Softfinity Consulting — Independent advice. Trusted expertise. Proven outcomes.</title>
 <link rel="icon" href="/assets/favicon-32.png">
 
-<!-- Fonts: preconnect, then fetch CSS + woff2 in parallel with the rest
-     of the page (don't chain them through an @import inside the DS CSS). -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<!-- Fonts: load the Google Fonts CSS off the critical path so it can't block
+     first paint. We preload it as a style (so the browser still fetches early
+     and at high priority), then attach it via media="print" + onload swap
+     so render isn't held up waiting for the request to come back. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap"></noscript>
 
 <!-- LCP imagery comes from images.unsplash.com — open the connection early. -->
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 
-<!-- Polaris design system: tokens + base + component styles -->
-<link rel="stylesheet" href="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/tokens/fonts.css">
-<link rel="stylesheet" href="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/tokens/colors.css">
-<link rel="stylesheet" href="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/tokens/typography.css">
-<link rel="stylesheet" href="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/tokens/spacing.css">
-<link rel="stylesheet" href="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/tokens/effects.css">
-<link rel="stylesheet" href="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/tokens/base.css">
+<!-- Polaris design system: tokens (concatenated into one file to cut six
+     critical-path requests) + component styles. Individual token files
+     still exist alongside for reference; only tokens.all.css is fetched. -->
+<link rel="stylesheet" href="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/tokens/tokens.all.css">
 <link rel="stylesheet" href="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/styles.css">
+
+<!-- The DS bundle exposes window.PolarisDesignSystem_ff4f72 (used by every
+     ds.tsx wrapper). It MUST execute before src/main.tsx. Defer scripts run
+     in parse order, so it lives in <head> here to enter the defer queue
+     before Vite's prod build injects its module entry near the end of
+     <head>. main.tsx also waits for the 'load' event as a safety net in
+     case the order ever changes. Icons are bundled via lucide-react; no
+     external CDN script is needed. -->
+<script defer src="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/_ds_bundle.js"></script>
 
 <style>
   html { scroll-behavior: smooth; }
@@ -33,12 +43,6 @@
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div id="root"></div>
-
-<!-- All three execute after HTML parsing in source order (defer + module
-     are both deferred), so window.lucide and window.PolarisDesignSystem_ff4f72
-     are set before main.tsx mounts React — without blocking the parser. -->
-<script defer src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
-<script defer src="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/_ds_bundle.js"></script>
 <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

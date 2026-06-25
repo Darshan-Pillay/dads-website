@@ -18,20 +18,23 @@ export default function Hero({ t }: { t: Tweaks }) {
           ))}
         </div>
       )}
+      {/* No .reveal on hero content: it's above the fold on every load, so
+          scroll-reveal does nothing useful — it just delays the LCP element
+          (hero__lead) by the reveal transition + delay (was ~860ms). */}
       <div className="hero__inner">
-        <span className={`hero__star ${treatment === 'orbit' ? 'hero__star--orbit' : ''} reveal`} aria-hidden="true">
+        <span className={`hero__star ${treatment === 'orbit' ? 'hero__star--orbit' : ''}`} aria-hidden="true">
           <img src="assets/softfinity-mark-gold.svg" alt="" width="136" height="136" />
         </span>
-        <div className="hero__wordmark reveal" style={{ '--d': '40ms' }}>Softfinity<span className="gold">.</span></div>
-        <h1 className="hero__title reveal" style={{ '--d': '90ms' }}>
+        <div className="hero__wordmark">Softfinity<span className="gold">.</span></div>
+        <h1 className="hero__title">
           Technology-agnostic consulting.<br />Business-focused<span className="gold"> outcomes.</span>
         </h1>
-        <p className="hero__lead reveal" style={{ '--d': '160ms' }}>
+        <p className="hero__lead">
           We help organisations achieve their strategic objectives by providing highly experienced
           consultants who work alongside client teams to deliver measurable business outcomes —
           independent of any vendor, platform, or product.
         </p>
-        <div className="hero__actions reveal" style={{ '--d': '240ms' }}>
+        <div className="hero__actions">
           <Button variant="primary" size="lg" as="a" href="#contact"
             iconRight={<Icon name="chevron-down" size={18} />}>
             Connect with a specialist

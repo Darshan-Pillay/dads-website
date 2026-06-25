@@ -1,9 +1,10 @@
 // Bridge to the Polaris design system bundle.
 //
-// The DS lives in public/_ds/ and is loaded synchronously via a plain
-// <script> tag in index.html, so by the time Vite's React entry runs,
-// window.PolarisDesignSystem_ff4f72 is already populated. Components
-// import from here instead of touching `window` directly.
+// The DS lives in public/_ds/ and is loaded via a defer'd <script> tag in
+// index.html. main.tsx waits for the window 'load' event before mounting
+// React, so window.PolarisDesignSystem_ff4f72 is guaranteed to be populated
+// by the time these wrappers render. Components import from here instead of
+// touching `window` directly.
 //
 // The DS itself is untyped (it predates this project), so each wrapper
 // accepts a permissive props bag.

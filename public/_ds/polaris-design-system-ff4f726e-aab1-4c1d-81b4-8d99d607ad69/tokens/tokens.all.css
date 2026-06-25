@@ -1,0 +1,314 @@
+/* Polaris webfonts — Hanken Grotesk (display) + Inter (body)
+   Both are open-source Google Fonts. Loaded via a <link> tag in each HTML
+   file (with preconnect to fonts.googleapis.com + fonts.gstatic.com) so the
+   browser can fetch CSS and fonts in parallel, rather than chaining the
+   fetch from inside this stylesheet via @import. To self-host, drop the
+   .woff2 files in assets/fonts/ and add @font-face rules here. */
+/* ============================================================
+   POLARIS · COLORS
+   "Near-black canvas, white for content, gold as a rare spotlight."
+   ≈ 70% obsidian / 25% white-grey / 5% gold.
+   Neutrals carry a faint blue-violet cast — night sky, not muddy black.
+   ============================================================ */
+
+:root {
+  /* --- Neutrals (canvas + text) --- */
+  --color-ink:        #07070B; /* deepest black — footer, overlays, scrims */
+  --color-obsidian:   #0B0B12; /* primary page background */
+  --color-surface:    #14141C; /* cards, raised panels, sections */
+  --color-surface-2:  #1B1B25; /* nested surfaces, hover fills, inputs */
+  --color-hairline:   #262631; /* borders, dividers, input outlines */
+  --color-hairline-2: #34343F; /* stronger borders, hovered outlines */
+  --color-mist:       #87879A; /* low-emphasis small text: footer, captions, modal notes. Bumped from #6E6E7B (4.0:1) to clear WCAG AA (~5.5:1 on obsidian). */
+  --color-slate:      #9B9BA8; /* secondary text, captions, labels */
+  --color-snow:       #F4F4F7; /* primary body text (soft white) */
+  --color-white:      #FFFFFF; /* headlines, wordmark, max emphasis */
+
+  /* --- Accent · Star Gold (the 5% spotlight) --- */
+  --color-gold:       #C6A15B; /* primary accent — mark, primary button, key icon */
+  --color-gold-light: #DCBD82; /* hover, focus rings, highlights */
+  --color-gold-deep:  #9C7C3E; /* pressed/active, gold on light, subtle borders */
+  --color-on-gold:    #0B0B12; /* text/icons on a gold fill — never white */
+
+  /* Gold tints for soft fills / glows (use sparingly) */
+  --color-gold-a08:   rgba(198, 161, 91, 0.08);
+  --color-gold-a16:   rgba(198, 161, 91, 0.16);
+  --color-gold-a32:   rgba(198, 161, 91, 0.32);
+
+  /* --- Functional (UI only, used sparingly) --- */
+  --color-success:    #4FB58B;
+  --color-warning:    #E8A23C;
+  --color-error:      #E2615A;
+  --color-info:       #5E9BD6;
+
+  --color-success-bg: rgba(79, 181, 139, 0.12);
+  --color-warning-bg: rgba(232, 162, 60, 0.12);
+  --color-error-bg:   rgba(226, 97, 90, 0.12);
+  --color-info-bg:    rgba(94, 155, 214, 0.12);
+
+  /* --- White transparencies (overlays on dark) --- */
+  --color-white-a04:  rgba(255, 255, 255, 0.04);
+  --color-white-a08:  rgba(255, 255, 255, 0.08);
+  --color-white-a12:  rgba(255, 255, 255, 0.12);
+
+  /* ============================================================
+     SEMANTIC ALIASES — prefer these in components
+     ============================================================ */
+
+  /* Surfaces */
+  --bg-page:          var(--color-obsidian);
+  --bg-deep:          var(--color-ink);
+  --surface-card:     var(--color-surface);
+  --surface-raised:   var(--color-surface-2);
+  --surface-hover:    var(--color-white-a04);
+  --surface-overlay:  rgba(7, 7, 11, 0.72); /* modal scrim */
+
+  /* Text */
+  --text-strong:      var(--color-white);
+  --text-body:        var(--color-snow);
+  --text-secondary:   var(--color-slate);
+  --text-muted:       var(--color-mist);
+  --text-on-gold:     var(--color-on-gold);
+  --text-accent:      var(--color-gold);
+
+  /* Borders */
+  --border-subtle:    var(--color-hairline);
+  --border-strong:    var(--color-hairline-2);
+  --border-accent:    var(--color-gold-deep);
+
+  /* Interactive accent */
+  --accent:           var(--color-gold);
+  --accent-hover:     var(--color-gold-light);
+  --accent-press:     var(--color-gold-deep);
+
+  /* Focus */
+  --focus-ring:       var(--color-gold-light);
+}
+/* ============================================================
+   POLARIS · TYPOGRAPHY
+   Hanken Grotesk (display / headlines / wordmark) + Inter (body / UI).
+   Character on top, legibility underneath. Two weights do most work
+   (400 / 500); lighter weights (300) for airy hero display. Hanken's
+   rounded terminals give headlines warmth instead of a robotic edge.
+   ============================================================ */
+
+:root {
+  /* Families */
+  --font-display: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-body:    'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:    ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Weights */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* ------------------------------------------------------------
+     Type scale — fluid where it helps the single-scroll hero,
+     fixed for UI. Display sizes lean large + airy.
+     ------------------------------------------------------------ */
+  --text-display:   clamp(3rem, 6vw, 5.5rem);   /* 48 → 88px hero */
+  --text-h1:        clamp(2.25rem, 4vw, 3.5rem);/* 36 → 56px */
+  --text-h2:        clamp(1.75rem, 2.6vw, 2.5rem); /* 28 → 40px */
+  --text-h3:        1.5rem;    /* 24px */
+  --text-h4:        1.1875rem; /* 19px */
+  --text-lead:      1.25rem;   /* 20px — intro paragraphs */
+  --text-body-lg:   1.0625rem; /* 17px */
+  --text-body:      0.9375rem; /* 15px — default body */
+  --text-sm:        0.875rem;  /* 14px — UI labels */
+  --text-caption:   0.75rem;   /* 12px — captions, meta */
+  --text-overline:  0.6875rem; /* 11px — eyebrow / section labels */
+
+  /* Line height */
+  --leading-display: 1.05;
+  --leading-heading: 1.15;
+  --leading-snug:    1.35;
+  --leading-body:    1.6;
+  --leading-relaxed: 1.75;
+
+  /* Letter spacing — display runs airy; overlines run wide */
+  --tracking-tighter: -0.03em;
+  --tracking-tight:   -0.015em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.04em;
+  --tracking-wider:   0.12em;  /* eyebrows / overlines */
+  --tracking-widest:  0.22em;  /* spaced section labels */
+}
+
+/* ------------------------------------------------------------
+   Optional utility classes — handy in specimen cards & kits.
+   Components should reference the tokens directly.
+   ------------------------------------------------------------ */
+.t-overline {
+  font-family: var(--font-display);
+  font-size: var(--text-overline);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-accent);
+}
+.t-display {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-strong);
+}
+.t-h1 { font-family: var(--font-display); font-size: var(--text-h1); font-weight: var(--weight-regular); line-height: var(--leading-heading); letter-spacing: var(--tracking-tight); color: var(--text-strong); }
+.t-h2 { font-family: var(--font-display); font-size: var(--text-h2); font-weight: var(--weight-regular); line-height: var(--leading-heading); letter-spacing: var(--tracking-tight); color: var(--text-strong); }
+.t-h3 { font-family: var(--font-display); font-size: var(--text-h3); font-weight: var(--weight-medium); line-height: var(--leading-snug); color: var(--text-strong); }
+.t-body { font-family: var(--font-body); font-size: var(--text-body); font-weight: var(--weight-regular); line-height: var(--leading-body); color: var(--text-body); }
+.t-lead { font-family: var(--font-body); font-size: var(--text-lead); font-weight: var(--weight-regular); line-height: var(--leading-relaxed); color: var(--text-secondary); }
+/* ============================================================
+   POLARIS · SPACING & LAYOUT
+   8px base rhythm. Generous negative space is part of the identity —
+   sections breathe; type is never crowded.
+   ============================================================ */
+
+:root {
+  /* Spacing scale (8px base, with 2/4 micro steps) */
+  --space-0:   0;
+  --space-1:   0.25rem;  /* 4px */
+  --space-2:   0.5rem;   /* 8px */
+  --space-3:   0.75rem;  /* 12px */
+  --space-4:   1rem;     /* 16px */
+  --space-5:   1.5rem;   /* 24px */
+  --space-6:   2rem;     /* 32px */
+  --space-7:   3rem;     /* 48px */
+  --space-8:   4rem;     /* 64px */
+  --space-9:   6rem;     /* 96px */
+  --space-10:  8rem;     /* 128px */
+  --space-11:  12rem;    /* 192px — major section breaks */
+
+  /* Section padding (vertical rhythm for the single-scroll site) */
+  --section-py:   clamp(4rem, 10vw, 10rem); /* @kind spacing */
+  --section-px:   clamp(1.25rem, 5vw, 6rem); /* @kind spacing */
+
+  /* Content widths */
+  --container-max:  1200px;  /* primary content column */
+  --container-wide: 1440px;  /* full-bleed wrappers */
+  --measure:        68ch;    /* readable prose line length */
+  --measure-narrow: 46ch;    /* hero / lead copy */
+}
+/* ============================================================
+   POLARIS · EFFECTS — radii, shadows, glows, motion, blur
+   On a dark canvas, depth comes from hairline borders + subtle
+   raised fills + soft black shadows — not heavy drop shadows.
+   Gold "glow" is the one expressive effect, used rarely.
+   ============================================================ */
+
+:root {
+  /* Corner radii */
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-pill: 999px;
+  --radius-circle: 50%;
+
+  /* Shadows — soft, near-black; depth is quiet on the night canvas */
+  --shadow-xs:  0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md:  0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg:  0 18px 48px rgba(0, 0, 0, 0.55);
+  --shadow-xl:  0 32px 80px rgba(0, 0, 0, 0.65);
+
+  /* Inner hairline highlight — gives raised surfaces a crisp top edge */
+  --shadow-inset-top: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  /* Gold glow — the rare expressive flourish (hero star, key CTA focus) */
+  --glow-gold-sm: 0 0 0 1px rgba(198, 161, 91, 0.28);
+  --glow-gold-md: 0 0 24px rgba(198, 161, 91, 0.22);
+  --glow-gold-lg: 0 0 64px rgba(198, 161, 91, 0.30);
+
+  /* Focus ring — gold, offset, for keyboard a11y */
+  --ring-width: 2px;
+  --ring-offset: 2px;
+  --ring: 0 0 0 var(--ring-width) var(--color-gold-light);
+  --ring-offset-shadow: 0 0 0 var(--ring-offset) var(--color-obsidian);
+
+  /* Motion — calm and expensive. Nothing flashy. */
+  --ease-out:     cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+  --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --ease-emphasized: cubic-bezier(0.2, 0.8, 0.2, 1); /* @kind other */
+  --dur-fast:   140ms; /* @kind other */
+  --dur-base:   240ms; /* @kind other */
+  --dur-slow:   420ms; /* @kind other */
+  --dur-reveal: 700ms; /* @kind other */
+
+  /* Blur — frosted nav / overlays */
+  --blur-sm:  8px;
+  --blur-md:  16px;
+  --blur-lg:  28px;
+}
+/* ============================================================
+   POLARIS · BASE
+   Minimal element defaults that express the brand canvas.
+   Consumers get the night-sky background, soft-white body text,
+   gold selection, and the display/body font pairing for free.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--text-strong);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+
+p { margin: 0; }
+
+a {
+  color: var(--text-body);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+a:hover { color: var(--text-accent); }
+
+::selection {
+  background: var(--color-gold-a32);
+  color: var(--color-white);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-offset-shadow), var(--ring);
+  border-radius: var(--radius-sm);
+}
+
+img { display: block; max-width: 100%; }
+
+/* Thin, dark-theme scrollbars to match the canvas */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-hairline-2) transparent;
+}
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb {
+  background: var(--color-hairline-2);
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}

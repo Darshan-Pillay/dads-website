@@ -4,8 +4,8 @@
 //   bundle (a plain <script> tag in index.html) can resolve it at render time.
 // - PolarisDesignSystem_ff4f72 is the design system bundle's namespace —
 //   src/ds.tsx is the only file that reads it.
-// - lucide is loaded from CDN by index.html and renders icons after each
-//   React commit (see App.tsx).
+// (Icons used to come from a CDN lucide UMD; they're now bundled via
+//  lucide-react in src/icons.tsx, so there's no global to declare.)
 
 import type * as React from 'react';
 
@@ -23,7 +23,6 @@ declare global {
       Select: ComponentLike;
       Dialog: ComponentLike;
     };
-    lucide?: { createIcons: (opts?: { attrs?: Record<string, string> }) => void };
   }
 }
 
