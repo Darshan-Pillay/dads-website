@@ -1,7 +1,9 @@
-import { Button, Input, Select } from '../ds.jsx';
-import { Icon } from '../icons.jsx';
+import { Button, Input, Select } from '../ds.tsx';
+import { Icon } from '../icons.tsx';
 
-export default function Contact({ onSubmit }) {
+type ContactProps = { onSubmit?: (data: FormData) => void };
+
+export default function Contact({ onSubmit }: ContactProps) {
   return (
     <section className="section section--center" id="contact">
       <div className="container">
@@ -12,7 +14,7 @@ export default function Contact({ onSubmit }) {
         </h2>
         {/* When the backend lands (see docs/adr/0003), wire onSubmit to POST to /api/contact. */}
         <form className="contact__card contact__form reveal" style={{ '--d': '140ms' }}
-          name="contact" onSubmit={(e) => { e.preventDefault(); onSubmit?.(new FormData(e.target)); }}>
+          name="contact" onSubmit={(e) => { e.preventDefault(); onSubmit?.(new FormData(e.currentTarget)); }}>
           <div className="contact__row">
             <Input label="Name" name="name" placeholder="Jordan Maré" autoComplete="name" required />
             <Input label="Work email" name="email" type="email" placeholder="you@company.com" autoComplete="email" required />

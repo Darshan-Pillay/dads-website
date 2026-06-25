@@ -1,4 +1,4 @@
-import { Icon } from '../icons.jsx';
+import { Icon } from '../icons.tsx';
 
 export default function Shift() {
   const tiles = [

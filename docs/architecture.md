@@ -12,7 +12,7 @@ static HTML subpages (`/pages/*`, `/services/*`). The homepage is interactive
 
 | Layer       | Choice                          | Why                                                                |
 |-------------|---------------------------------|--------------------------------------------------------------------|
-| Language    | JavaScript (JSX)                | Lower learning curve than TypeScript. See [ADR-0002](adr/0002-defer-typescript.md). |
+| Language    | TypeScript (TSX), strict        | Catches prop/shape errors at build, ready for shared client/server types. See [ADR-0004](adr/0004-adopt-typescript.md). |
 | UI          | React 18                        | Reusable components, large ecosystem.                              |
 | Build       | Vite 5                          | Fast dev server, simple `npm run build`. See [ADR-0001](adr/0001-frontend-vite-react.md). |
 | Styling     | CSS files + design system tokens | Design system already exists under `public/_ds/`. No CSS-in-JS yet. |
@@ -24,13 +24,16 @@ static HTML subpages (`/pages/*`, `/services/*`). The homepage is interactive
 ```
 .
 ├── index.html             ← Vite entry, references /src/main.jsx
-├── package.json           ← npm deps and scripts (dev / build / preview)
+├── package.json           ← npm deps and scripts (dev / build / preview / typecheck)
+├── tsconfig.json          ← strict TypeScript configuration
 ├── vite.config.js         ← build configuration
 ├── src/                   ← all React source
-│   ├── main.jsx           ← mounts <App /> into #root
-│   ├── App.jsx            ← layout shell, scroll-reveal, hash-scroll fix
-│   ├── ds.jsx             ← bridge to the design system globals
-│   ├── icons.jsx          ← <Icon> wrapper around Lucide
+│   ├── main.tsx           ← mounts <App /> into #root
+│   ├── App.tsx            ← layout shell, scroll-reveal, hash-scroll fix
+│   ├── ds.tsx             ← bridge to the design system globals
+│   ├── icons.tsx          ← <Icon> wrapper around Lucide
+│   ├── types.ts           ← shared types (e.g. Tweaks)
+│   ├── globals.d.ts       ← window globals, CSS custom property typing
 │   ├── sections/          ← one file per page section (Hero, Nav, Contact, …)
 │   └── styles/site.css    ← page-level styles
 ├── public/                ← copied to the deploy root, untouched

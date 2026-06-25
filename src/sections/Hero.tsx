@@ -1,8 +1,9 @@
-import { Button } from '../ds.jsx';
-import { Icon } from '../icons.jsx';
+import { Button } from '../ds.tsx';
+import { Icon } from '../icons.tsx';
+import type { Tweaks } from '../types.ts';
 
-export default function Hero({ t }) {
-  const treatment = t.heroStar; // 'glow' | 'orbit' | 'constellation'
+export default function Hero({ t }: { t: Tweaks }) {
+  const treatment = t.heroStar;
   const dots = [
     { top: '20%', left: '30%', d: '0s' }, { top: '32%', left: '72%', d: '1.2s' },
     { top: '64%', left: '22%', d: '0.6s' }, { top: '70%', left: '78%', d: '1.8s' },
@@ -32,7 +33,7 @@ export default function Hero({ t }) {
         </p>
         <div className="hero__actions reveal" style={{ '--d': '240ms' }}>
           <Button variant="primary" size="lg" as="a" href="#contact"
-            iconRight={<Icon name="arrow-right" size={18} />}>
+            iconRight={<Icon name="chevron-down" size={18} />}>
             Connect with a specialist
           </Button>
           <Button variant="ghost" size="lg" as="a" href="#principles">Our philosophy</Button>

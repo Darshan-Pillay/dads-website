@@ -1,5 +1,5 @@
-import { Card } from '../ds.jsx';
-import { Icon } from '../icons.jsx';
+import { Card } from '../ds.tsx';
+import { Icon } from '../icons.tsx';
 
 export default function WhoWeAre() {
   const points = [

@@ -1,7 +1,11 @@
 import React from 'react';
-import { Button } from '../ds.jsx';
+import type { MouseEvent } from 'react';
+import { Button } from '../ds.tsx';
+import { Icon } from '../icons.tsx';
 
-export default function Nav({ onNav }) {
+type NavProps = { onNav?: (e: MouseEvent<HTMLAnchorElement>) => void };
+
+export default function Nav({ onNav }: NavProps) {
   const [scrolled, setScrolled] = React.useState(false);
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -22,7 +26,8 @@ export default function Nav({ onNav }) {
           ))}
         </nav>
         <div className="site-nav__cta">
-          <Button variant="primary" size="sm" as="a" href="#contact" onClick={onNav}>
+          <Button variant="primary" size="sm" as="a" href="#contact" onClick={onNav}
+            iconRight={<Icon name="chevron-down" size={16} />}>
             Connect with a specialist
           </Button>
         </div>

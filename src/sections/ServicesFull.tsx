@@ -1,5 +1,5 @@
-import { Card } from '../ds.jsx';
-import { Icon } from '../icons.jsx';
+import { Card } from '../ds.tsx';
+import { Icon } from '../icons.tsx';
 
 const SERVICES = [
   { slug: 'sap',        icon: 'box',          tag: 'SAP',         title: 'SAP Consulting Services',         lead: 'Transform and optimise enterprise operations across the SAP ecosystem.',         items: ['SAP S/4HANA','SAP ECC','SAP Finance','SAP Supply Chain','SAP SuccessFactors','SAP Analytics','SAP Integration','Migrations & Upgrades','SAP Cloud Solutions'] },

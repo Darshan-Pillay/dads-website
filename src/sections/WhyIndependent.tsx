@@ -1,6 +1,7 @@
-import { Icon } from '../icons.jsx';
+import { Icon } from '../icons.tsx';
+import type { Tweaks } from '../types.ts';
 
-export default function WhyIndependent({ t }) {
+export default function WhyIndependent({ t }: { t: Tweaks }) {
   const style = t.ledger;
   const them = ['Aligned to one vendor or platform', 'Bias toward their partner stack', 'Badges, kickbacks, vendor lock-in', 'Roadmaps that serve the seller'];
   const us = ['Unbiased recommendations', 'Best-of-breed solutions', 'Reduced technology risk', 'Business-centric decision making'];

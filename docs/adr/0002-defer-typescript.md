@@ -1,6 +1,6 @@
 # ADR 0002 — Defer TypeScript adoption
 
-- **Status:** Accepted
+- **Status:** Superseded by [ADR-0004](0004-adopt-typescript.md) (2026-06-25, same day)
 - **Date:** 2026-06-25
 
 ## Context

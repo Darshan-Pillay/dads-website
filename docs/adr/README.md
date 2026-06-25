@@ -16,5 +16,7 @@ you, or that future readers might be tempted to undo without context.
 ## Index
 
 - [0001 — Use Vite + React for the frontend](0001-frontend-vite-react.md)
-- [0002 — Defer TypeScript adoption](0002-defer-typescript.md)
+- [0002 — Defer TypeScript adoption](0002-defer-typescript.md) *(superseded by 0004)*
 - [0003 — Use Vercel Functions for future backend (DB, payments)](0003-future-backend-vercel-functions.md)
+- [0004 — Adopt TypeScript](0004-adopt-typescript.md)
+- [0005 — Accessibility baseline](0005-accessibility-baseline.md)

@@ -1,26 +1,28 @@
 import { useEffect, useRef, useState } from 'react';
-import { Button, Dialog } from './ds.jsx';
-import Nav from './sections/Nav.jsx';
-import Hero from './sections/Hero.jsx';
-import FeatureBand from './sections/FeatureBand.jsx';
-import Shift from './sections/Shift.jsx';
-import WhoWeAre from './sections/WhoWeAre.jsx';
-import Vision from './sections/Vision.jsx';
-import Approach from './sections/Approach.jsx';
-import ServicesFull from './sections/ServicesFull.jsx';
-import Industries from './sections/Industries.jsx';
-import Principles from './sections/Principles.jsx';
-import SoftwareFactory from './sections/SoftwareFactory.jsx';
-import WhyIndependent from './sections/WhyIndependent.jsx';
-import HowWeWork from './sections/HowWeWork.jsx';
-import Proof from './sections/Proof.jsx';
-import Closing from './sections/Closing.jsx';
-import Contact from './sections/Contact.jsx';
-import Footer from './sections/Footer.jsx';
+import type { CSSProperties, MouseEvent } from 'react';
+import { Button, Dialog } from './ds.tsx';
+import Nav from './sections/Nav.tsx';
+import Hero from './sections/Hero.tsx';
+import FeatureBand from './sections/FeatureBand.tsx';
+import Shift from './sections/Shift.tsx';
+import WhoWeAre from './sections/WhoWeAre.tsx';
+import Vision from './sections/Vision.tsx';
+import Approach from './sections/Approach.tsx';
+import ServicesFull from './sections/ServicesFull.tsx';
+import Industries from './sections/Industries.tsx';
+import Principles from './sections/Principles.tsx';
+import SoftwareFactory from './sections/SoftwareFactory.tsx';
+import WhyIndependent from './sections/WhyIndependent.tsx';
+import HowWeWork from './sections/HowWeWork.tsx';
+import Proof from './sections/Proof.tsx';
+import Closing from './sections/Closing.tsx';
+import Contact from './sections/Contact.tsx';
+import Footer from './sections/Footer.tsx';
+import type { Tweaks } from './types.ts';
 
 // Layout/visual settings, formerly driven by the in-page Tweaks panel.
 // See docs/architecture.md for why the panel was removed from production.
-const TWEAKS = {
+const TWEAKS: Tweaks = {
   heroStar: 'glow',
   glow: 16,
   starfield: 55,
@@ -33,14 +35,14 @@ const TWEAKS = {
   showProof: true,
 };
 
-const DENSITY_PY = {
+const DENSITY_PY: Record<Tweaks['density'], string> = {
   airy: 'clamp(5rem, 11vw, 11rem)',
   regular: 'clamp(4rem, 9vw, 8rem)',
   tight: 'clamp(3rem, 6vw, 5.5rem)',
 };
 
-function hexToRgb(hex) {
-  const h = String(hex).replace('#', '');
+function hexToRgb(hex: string): [number, number, number] {
+  const h = hex.replace('#', '');
   const x = h.length === 3 ? h.replace(/./g, (c) => c + c) : h;
   const n = parseInt(x, 16);
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
@@ -48,11 +50,11 @@ function hexToRgb(hex) {
 
 export default function App() {
   const [sent, setSent] = useState(false);
-  const rootRef = useRef(null);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
   // Re-render Lucide icons after every React render.
   useEffect(() => {
-    if (window.lucide) window.lucide.createIcons({ attrs: { 'stroke-width': 1.5 } });
+    window.lucide?.createIcons({ attrs: { 'stroke-width': '1.5' } });
   });
 
   // Scroll-reveal observer.
@@ -60,7 +62,7 @@ export default function App() {
     const scope = rootRef.current;
     if (!scope) return;
     scope.classList.add('reveal-on');
-    const els = scope.querySelectorAll('.reveal:not(.is-visible)');
+    const els = scope.querySelectorAll<HTMLElement>('.reveal:not(.is-visible)');
     if (!('IntersectionObserver' in window)) {
       els.forEach((el) => el.classList.add('is-visible'));
       return;
@@ -85,7 +87,7 @@ export default function App() {
     });
   }, []);
 
-  const onNav = (e) => {
+  const onNav = (e: MouseEvent<HTMLAnchorElement>) => {
     const href = e.currentTarget.getAttribute('href');
     if (!href || !href.startsWith('#')) return;
     const el = document.getElementById(href.slice(1));
@@ -98,23 +100,23 @@ export default function App() {
   const [a, aLight, aDeep] = TWEAKS.accent;
   const [r, g, b] = hexToRgb(a);
   const rgb = `${r}, ${g}, ${b}`;
-  const styleVars = {
-    '--hero-glow': TWEAKS.glow / 100,
-    '--field-opacity': TWEAKS.starfield / 100,
-    '--heading-scale': TWEAKS.headingScale / 100,
-    '--section-py': DENSITY_PY[TWEAKS.density],
-    '--color-gold': a,
-    '--color-gold-light': aLight,
-    '--color-gold-deep': aDeep,
-    '--color-gold-a08': `rgba(${rgb}, 0.08)`,
-    '--color-gold-a16': `rgba(${rgb}, 0.16)`,
-    '--color-gold-a32': `rgba(${rgb}, 0.32)`,
+  const styleVars: CSSProperties = {
+    ['--hero-glow' as string]: TWEAKS.glow / 100,
+    ['--field-opacity' as string]: TWEAKS.starfield / 100,
+    ['--heading-scale' as string]: TWEAKS.headingScale / 100,
+    ['--section-py' as string]: DENSITY_PY[TWEAKS.density],
+    ['--color-gold' as string]: a,
+    ['--color-gold-light' as string]: aLight,
+    ['--color-gold-deep' as string]: aDeep,
+    ['--color-gold-a08' as string]: `rgba(${rgb}, 0.08)`,
+    ['--color-gold-a16' as string]: `rgba(${rgb}, 0.16)`,
+    ['--color-gold-a32' as string]: `rgba(${rgb}, 0.32)`,
   };
 
   return (
     <div className={`pl-site bands-${TWEAKS.bands}`} ref={rootRef} style={styleVars}>
       <Nav onNav={onNav} />
-      <main>
+      <main id="main-content">
         <Hero t={TWEAKS} />
         <FeatureBand />
         <Shift />

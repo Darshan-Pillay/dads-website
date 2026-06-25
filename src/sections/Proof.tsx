@@ -1,4 +1,4 @@
-import { Icon } from '../icons.jsx';
+import { Icon } from '../icons.tsx';
 
 export default function Proof() {
   // PLACEHOLDER metrics — swap for real case data when available.

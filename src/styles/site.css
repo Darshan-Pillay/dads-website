@@ -5,6 +5,21 @@
    tweak-driven custom properties on .pl-site.
    ============================================================ */
 
+/* Skip-to-content link — invisible until focused, lets keyboard
+   users jump past the nav directly into <main>. */
+.skip-link {
+  position: absolute; top: -200px; left: 16px; z-index: 9999;
+  padding: 12px 18px;
+  background: var(--color-gold); color: var(--color-on-gold);
+  font-family: var(--font-display); font-size: 14px; font-weight: 500;
+  border-radius: var(--radius-md); text-decoration: none;
+  transition: top 200ms var(--ease-out);
+}
+.skip-link:focus, .skip-link:focus-visible {
+  top: 16px; outline: none;
+  box-shadow: 0 0 0 3px var(--color-gold-a32);
+}
+
 .pl-site {
   /* tweak-driven knobs (overridden inline from JS) */
   --hero-glow: 0.16;        /* gold glow strength behind the star */
@@ -229,7 +244,6 @@
   background: var(--color-surface); box-shadow: var(--shadow-inset-top);
   transition: border-color var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
 }
-.domain:hover { border-color: var(--color-gold); transform: translateY(-2px); }
 .domain__name { font-family: var(--font-display); font-size: var(--text-h4); font-weight: 500; color: var(--color-white); margin: 0 0 var(--space-1); }
 .domain__out { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-slate); margin: 0; }
 
@@ -242,7 +256,6 @@
   transition: color var(--dur-fast) var(--ease-out);
 }
 .idxlist li:last-child { border-bottom: 1px solid var(--color-hairline); }
-.idxlist li:hover { color: var(--color-gold); }
 .idxlist .n { font-size: var(--text-body); color: var(--color-mist); letter-spacing: var(--tracking-wide); }
 .idxlist .o { font-family: var(--font-body); font-size: var(--text-body); font-weight: 400; color: var(--color-slate); }
 
@@ -350,8 +363,65 @@
 @media (max-width: 560px) { .contact__row { grid-template-columns: 1fr; } }
 .contact__note { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-slate); margin: var(--space-5) auto 0; }
 
+/* Visible hover + focus states on the contact form fields. The design
+   system's defaults use a very dark border on hover which reads as no
+   change at all on the obsidian surface. */
+.contact__form .pl-field__wrap,
+.contact__form .pl-select__el {
+  transition: border-color 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
+}
+.contact__form .pl-field__wrap:hover,
+.contact__form .pl-select__el:hover {
+  border-color: var(--color-gold-deep);
+}
+.contact__form .pl-field__wrap:focus-within,
+.contact__form .pl-select__el:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px var(--color-gold-a16);
+  outline: none;
+}
+/* Suppress the design system's global :focus-visible ring on the inner
+   <input> — the wrapper above is already handling the focus indicator,
+   and a second inner ring reads as a black rectangle glitch. */
+.contact__form .pl-field__wrap input:focus,
+.contact__form .pl-field__wrap input:focus-visible,
+.contact__form .pl-field__wrap textarea:focus,
+.contact__form .pl-field__wrap textarea:focus-visible {
+  box-shadow: none;
+  outline: none;
+}
+
 /* contact star above */
 .contact__star { width: 48px; height: 48px; filter: drop-shadow(0 0 20px rgba(198,161,91,0.5)); margin: 0 auto var(--space-5); animation: twinkle 5.5s var(--ease-in-out) infinite; }
+
+/* Primary button hover override — the DS lightens the background to cream
+   on hover, which washes the obsidian text. Keep the gold background solid
+   and express hover through a brighter halo + small lift, matching the
+   "Star Gold spotlight" brand language. */
+.pl-site .pl-btn--primary:hover {
+  background: var(--color-gold);
+  color: var(--color-on-gold); /* defensive — keep text obsidian regardless of state */
+  box-shadow:
+    var(--shadow-inset-top),
+    0 0 0 1px var(--color-gold-light),
+    0 0 32px rgba(198, 161, 91, 0.45);
+  transform: translateY(-1px);
+}
+.pl-site .pl-btn--primary:active {
+  background: var(--color-gold);
+  color: var(--color-on-gold);
+  transform: translateY(1px);
+}
+
+/* Text selection on gold surfaces. The DS default (white text on a 32% gold
+   wash over an already-gold button) collapses to ~2:1 contrast — the
+   selected text becomes invisible. Override to a dark wash + gold-light
+   text so selection is clearly visible AND readable. */
+.pl-site .pl-btn--primary::selection,
+.pl-site .pl-btn--primary *::selection {
+  background: var(--color-on-gold);
+  color: var(--color-gold-light);
+}
 
 /* ---------- footer ---------- */
 .site-footer { background: var(--color-ink); border-top: 1px solid var(--color-hairline); padding: var(--space-8) 0 var(--space-6); }
@@ -404,7 +474,6 @@
   text-align: left;
   transition: border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
 }
-.industry:hover { border-color: var(--color-gold); transform: translateY(-1px); }
 .industry__icon {
   display: inline-flex; align-items: center; justify-content: center;
   width: 36px; height: 36px; border-radius: var(--radius-md);
@@ -479,9 +548,7 @@
   align-items: start; padding: var(--space-5);
   border: 1px solid var(--color-hairline); border-radius: var(--radius-lg);
   background: var(--color-surface); box-shadow: var(--shadow-inset-top);
-  transition: border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
 }
-.phase:hover { border-color: var(--color-gold-deep); transform: translateY(-1px); }
 .phase__num {
   font-family: var(--font-display); font-size: 28px; font-weight: 300; line-height: 1;
   color: var(--color-gold); letter-spacing: -0.02em;
@@ -540,27 +607,74 @@
 .principles__figure {
   margin: 0; border-radius: var(--radius-xl); overflow: hidden;
   border: 1px solid var(--color-hairline); box-shadow: var(--shadow-lg);
-  background: var(--color-surface);
+  background:
+    radial-gradient(120% 80% at 50% 30%, rgba(198,161,91,0.06), transparent 70%),
+    var(--color-surface);
   position: sticky; top: 90px;
 }
-.principles__figure img { width: 100%; height: auto; display: block; background: var(--color-white); padding: var(--space-4); }
+.principles__figure svg {
+  width: 100%; height: auto; display: block;
+  aspect-ratio: 400 / 540;
+}
 .principles__figure figcaption {
   padding: var(--space-3) var(--space-5);
   font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-mist);
   border-top: 1px solid var(--color-hairline);
 }
 .concept-list { display: grid; gap: var(--space-4); }
+
+/* Footnote reference inside a concept card body. Small numeric superscript
+   that links down to the matching footnote at the bottom of the column.
+   scroll-margin-top centres the jump target ~⅓ down the viewport instead
+   of pinning it to the very top edge. */
+.fn-ref {
+  color: var(--color-gold);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--color-gold-deep);
+  transition: color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+  scroll-margin-top: 35vh;
+}
+.fn-ref:hover { color: var(--color-gold-light); border-bottom-color: var(--color-gold); }
+.fn-ref sup {
+  font-size: 0.7em;
+  margin-left: 2px;
+  font-variant-numeric: lining-nums;
+}
+
+/* Footnote list — numbered glossary at the bottom of the cards column. */
 .principles__supporting {
   display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5);
-  max-width: 1100px; margin: var(--space-8) auto 0;
-  padding-top: var(--space-6); border-top: 1px solid var(--color-hairline);
+  margin: var(--space-5) 0 0;
+  padding: var(--space-5) 0 0;
+  border-top: 1px solid var(--color-hairline);
+  list-style: none;
 }
-@media (max-width: 760px) { .principles__supporting { grid-template-columns: 1fr; } }
+@media (max-width: 720px) { .principles__supporting { grid-template-columns: 1fr; } }
+.supporting { scroll-margin-top: 35vh; }
 .supporting__term {
-  font-family: var(--font-display); font-size: var(--text-h4); font-weight: 500;
+  display: flex; align-items: baseline; gap: 6px;
+  font-family: var(--font-display); font-size: var(--text-body-lg); font-weight: 500;
   color: var(--color-gold); margin: 0 0 var(--space-2); letter-spacing: -0.01em;
 }
-.supporting__body { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-slate); margin: 0; line-height: 1.55; }
+.supporting__num {
+  font-family: var(--font-display); font-size: 0.65em;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--color-gold-deep);
+  vertical-align: super;
+  margin-right: 2px;
+}
+.supporting__back {
+  margin-left: 4px;
+  color: var(--color-gold-deep);
+  text-decoration: none;
+  font-size: 0.85em;
+  transition: color 160ms var(--ease-out);
+}
+.supporting__back:hover { color: var(--color-gold); }
+.supporting__body {
+  font-family: var(--font-body); font-size: var(--text-sm);
+  color: var(--color-slate); margin: 0; line-height: 1.55;
+}
 
 /* ---------- Software Factory ---------- */
 .sf__grid {
@@ -599,7 +713,6 @@
   text-align: left;
   transition: border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
 }
-.industry:hover { border-color: var(--color-gold); transform: translateY(-1px); }
 .industry__icon {
   display: inline-flex; align-items: center; justify-content: center;
   width: 36px; height: 36px; border-radius: var(--radius-md);
@@ -621,17 +734,24 @@
 }
 .closing__lead em { color: var(--color-gold); font-style: normal; font-weight: 500; }
 
-/* ---------- scrollbar (red thumb for visibility on the dark canvas) ---------- */
-html { scrollbar-color: #d22929 transparent; }
+/* ---------- scrollbar (gold thumb — clearly visible on the dark canvas, on
+   brand, AAA contrast, and reads well for the most common forms of
+   colour-blindness because yellow/gold is high-luminance). ---------- */
+html { scrollbar-color: var(--color-gold) transparent; }
+html::-webkit-scrollbar { width: 12px; height: 12px; }
 html::-webkit-scrollbar-thumb {
-  background: #d22929;
-  border: 2px solid transparent;
+  background: var(--color-gold);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  border-radius: var(--radius-pill);
+}
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-light);
   background-clip: padding-box;
 }
-html::-webkit-scrollbar-thumb:hover { background: #ef3a3a; background-clip: padding-box; }
 
 /* ---------- reveal animation (opt-in via .reveal-on) ---------- */
-.reveal-on .reveal { opacity: 0; transform: translateY(18px); transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out); transition-delay: var(--d, 0ms); }
+.reveal-on .reveal { opacity: 0; transform: translateY(10px); transition: opacity 700ms var(--ease-in-out), transform 700ms var(--ease-in-out); transition-delay: var(--d, 0ms); }
 .reveal-on .reveal.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .reveal-on .reveal { opacity: 1 !important; transform: none !important; }

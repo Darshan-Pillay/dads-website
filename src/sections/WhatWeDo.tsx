@@ -1,4 +1,5 @@
-import { Tag } from '../ds.jsx';
+import { Tag } from '../ds.tsx';
+import type { Tweaks } from '../types.ts';
 
 const DOMAINS = [
   { name: 'SAP', out: 'S/4HANA · Finance · Supply Chain · SuccessFactors · Analytics · Migration' },
@@ -12,7 +13,7 @@ const DOMAINS = [
   { name: 'Mobile Development', out: 'Native iOS · Native Android · Cross-platform · Security · UX/UI' },
 ];
 
-export default function WhatWeDo({ t }) {
+export default function WhatWeDo({ t }: { t: Tweaks }) {
   const layout = t.whatWeDo;
   return (
     <section className="section section--alt" id="what-we-do">

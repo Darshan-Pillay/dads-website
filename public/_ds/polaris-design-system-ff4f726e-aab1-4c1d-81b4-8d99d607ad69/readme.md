@@ -115,17 +115,27 @@ fades (gentle opacity + 18px rise). The hero star twinkles slowly; the scroll
 chevron bobs. Nothing flashy; everything honours `prefers-reduced-motion`.
 
 **Hover / press states.**
-- *Primary (gold):* hover → Gold Light + soft gold glow; press → Gold Deep +
-  1px nudge down.
+- *Primary (gold):* hover → background stays gold (so text contrast stays
+  high), 1px Gold Light ring + bright gold halo + 1px lift; press → 1px
+  nudge down, background unchanged. (Revised from an earlier "lighten the
+  background" pattern that read as a fade rather than an activation — see
+  `docs/adr/0005-accessibility-baseline.md`.)
 - *Secondary (outline):* hover → border warms to gold + faint gold wash;
   press → 1px nudge.
 - *Ghost:* hover → white text on a 4% white wash.
-- *Cards (interactive):* hover → gold border + 2px lift + medium shadow.
+- *Cards (interactive only):* hover → gold border + 2px lift + medium
+  shadow. Static content cards do not get a hover affordance.
 - *Inputs:* focus → gold border + 3px gold-tint ring.
 
 **Transparency & blur.** Used sparingly: the nav frosts (blur 16px over a 72%
 ink) once you scroll; the modal scrim is a 72% ink with an 8px blur. Gold
 tints (`--color-gold-a08/16/32`) provide soft fills and focus rings.
+
+**Text selection.** The global `::selection` (gold-a32 wash + white text) reads
+fine on dark surfaces (~10 : 1 over obsidian) but collapses to ~2 : 1 when
+applied over a gold button — the selected text becomes invisible. Override
+selection on gold-filled surfaces to obsidian wash + gold-light text. See
+`docs/adr/0005-accessibility-baseline.md`.
 
 **Focus.** Keyboard focus is a 2px Gold Light ring with a 2px obsidian offset
 — visible, on-brand, accessible.

@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App.jsx';
+import App from './App.tsx';
 import './styles/site.css';
 
 // The Polaris design system bundle (public/_ds/_ds_bundle.js) references
@@ -8,4 +8,6 @@ import './styles/site.css';
 // Expose React on window so those components resolve it at render time.
 window.React = React;
 
-createRoot(document.getElementById('root')).render(<App />);
+const root = document.getElementById('root');
+if (!root) throw new Error('Missing #root element in index.html');
+createRoot(root).render(<App />);

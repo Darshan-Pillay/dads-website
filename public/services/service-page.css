@@ -1,5 +1,19 @@
-/* Service detail page — shared styles. Uses the design-system tokens loaded
-   alongside the polaris/site.css on each page. */
+/* Service detail page — shared styles. Loaded by every public/ subpage
+   (services + pages). Defines the container/eyebrow helpers that the
+   homepage gets from src/styles/site.css. */
+
+/* ---------- layout helpers (parity with the homepage) ---------- */
+.container { width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--section-px); }
+.container-narrow { width: 100%; max-width: 860px; margin: 0 auto; padding: 0 var(--section-px); }
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--text-overline);
+  font-weight: 500;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin: 0 0 var(--space-4);
+}
 
 .sp-body {
   background: var(--color-obsidian);
@@ -74,6 +88,15 @@
   aspect-ratio: 21 / 9; background: var(--color-surface);
 }
 .sp-hero__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sp-hero__media--constellation {
+  aspect-ratio: auto;
+  display: grid; place-items: center;
+  background:
+    radial-gradient(60% 50% at 50% 45%, rgba(198,161,91,0.07), transparent 70%),
+    var(--color-surface);
+  padding: clamp(28px, 5vw, 56px);
+}
+.sp-hero__media--constellation svg { width: 100%; max-width: 420px; height: auto; aspect-ratio: 400 / 540; display: block; }
 
 /* ---------- generic section ---------- */
 .sp-section { padding: clamp(56px, 8vw, 100px) 0; }
@@ -221,3 +244,86 @@
 }
 .sp-footer a { color: var(--color-mist); }
 .sp-footer a:hover { color: var(--color-gold); }
+
+/* ---------- "Connect with a specialist" modal (driven by /contact-modal.js) ----------
+   Both open and close are CSS transitions on a single state class so the modal
+   eases in and out — matching the 700ms ease-in-out reveal used on the homepage. */
+.sp-modal {
+  position: fixed; inset: 0; z-index: 1000;
+  display: grid; place-items: center;
+  padding: var(--space-4);
+  opacity: 0; pointer-events: none;
+  will-change: opacity;
+  transition: opacity 900ms var(--ease-emphasized);
+}
+.sp-modal.is-open { opacity: 1; pointer-events: auto; }
+.sp-modal__scrim {
+  position: absolute; inset: 0;
+  background: rgba(7, 7, 11, 0.78);
+  /* No backdrop-filter: blur is expensive to animate and causes paint
+     stutter on the scrim. Plain opacity reads as a clean dim. */
+}
+.sp-modal__card {
+  position: relative;
+  width: 100%; max-width: 560px;
+  max-height: calc(100vh - 2 * var(--space-4));
+  overflow-y: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-xl);
+  padding: clamp(28px, 5vw, 44px);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(14px);
+  will-change: transform;
+  transition: transform 900ms var(--ease-emphasized);
+}
+.sp-modal.is-open .sp-modal__card { transform: none; }
+.sp-modal__close {
+  position: absolute; top: 12px; right: 12px;
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  background: transparent; border: 0; color: var(--color-slate);
+  font-size: 24px; line-height: 1; cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+.sp-modal__close:hover { color: var(--color-white); background: var(--color-white-a08); }
+.sp-modal__title {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  line-height: var(--leading-heading);
+  color: var(--color-white);
+  margin: 0 0 var(--space-5);
+  text-wrap: pretty;
+}
+.sp-modal__form { display: grid; gap: var(--space-4); }
+.sp-modal__row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+@media (max-width: 520px) { .sp-modal__row { grid-template-columns: 1fr; } }
+.sp-modal__field { display: grid; gap: 6px; font-size: var(--text-sm); color: var(--color-slate); }
+.sp-modal__field > span { font-family: var(--font-body); }
+.sp-modal__field > input,
+.sp-modal__field > select {
+  font: inherit;
+  background: var(--color-ink);
+  color: var(--color-white);
+  border: 1px solid var(--color-hairline-2);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
+}
+.sp-modal__field > input::placeholder { color: var(--color-mist); }
+.sp-modal__field > input:focus,
+.sp-modal__field > select:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px var(--color-gold-a16);
+}
+.sp-modal__submit {
+  width: 100%; justify-content: center;
+  margin-top: var(--space-2);
+}
+.sp-modal__note {
+  margin: var(--space-4) 0 0;
+  font-family: var(--font-body); font-size: var(--text-sm);
+  color: var(--color-mist); text-align: center;
+}
+body.sp-modal-open { overflow: hidden; }
