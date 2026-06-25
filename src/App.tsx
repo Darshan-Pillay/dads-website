@@ -52,10 +52,11 @@ export default function App() {
   const [sent, setSent] = useState(false);
   const rootRef = useRef<HTMLDivElement | null>(null);
 
-  // Re-render Lucide icons after every React render.
+  // Replace [data-lucide] placeholders with SVGs once on mount. Subsequent
+  // re-renders would walk the entire DOM for no benefit (icons are static).
   useEffect(() => {
     window.lucide?.createIcons({ attrs: { 'stroke-width': '1.5' } });
-  });
+  }, []);
 
   // Scroll-reveal observer.
   useEffect(() => {

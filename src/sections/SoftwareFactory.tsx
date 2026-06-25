@@ -14,7 +14,7 @@ export default function SoftwareFactory() {
           <img
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80"
             alt="A modern, well-lit collaborative workspace"
-            loading="lazy"
+            loading="lazy" decoding="async" width="1200" height="800"
           />
         </figure>
         <div className="sf__copy">

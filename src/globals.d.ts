@@ -19,6 +19,7 @@ declare global {
       Card: ComponentLike;
       Tag: ComponentLike;
       Input: ComponentLike;
+      Textarea: ComponentLike;
       Select: ComponentLike;
       Dialog: ComponentLike;
     };

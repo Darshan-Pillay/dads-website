@@ -6,6 +6,10 @@
 <title>Softfinity Consulting — Independent advice. Trusted expertise. Proven outcomes.</title>
 <link rel="icon" href="/assets/favicon-32.png">
 
+<!-- LCP imagery comes from images.unsplash.com — open the connection early. -->
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link rel="dns-prefetch" href="https://images.unsplash.com">
+
 <!-- Polaris design system: tokens + base + component styles -->
 <link rel="stylesheet" href="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/tokens/fonts.css">
 <link rel="stylesheet" href="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/tokens/colors.css">
@@ -24,11 +28,11 @@
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div id="root"></div>
 
-<!-- Synchronous globals: must be set before main.jsx mounts React. -->
-<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
-<script src="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/_ds_bundle.js"></script>
-
-<!-- Vite entry — React + TSX are bundled by `npm run build`. -->
+<!-- All three execute after HTML parsing in source order (defer + module
+     are both deferred), so window.lucide and window.PolarisDesignSystem_ff4f72
+     are set before main.tsx mounts React — without blocking the parser. -->
+<script defer src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script defer src="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/_ds_bundle.js"></script>
 <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

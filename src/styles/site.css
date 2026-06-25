@@ -390,6 +390,10 @@
   box-shadow: none;
   outline: none;
 }
+/* Lock the message textarea — the live counter + maxLength already
+   communicate the available space. Removing the drag handle keeps the
+   visual rhythm of the form consistent. */
+.contact__form .pl-field__input--area { resize: none; }
 
 /* contact star above */
 .contact__star { width: 48px; height: 48px; filter: drop-shadow(0 0 20px rgba(198,161,91,0.5)); margin: 0 auto var(--space-5); animation: twinkle 5.5s var(--ease-in-out) infinite; }

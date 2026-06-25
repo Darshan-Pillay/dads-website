@@ -37,7 +37,7 @@ export default function Vision() {
           <img
             src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80"
             alt="A cross-functional team collaborating around a laptop"
-            loading="lazy"
+            loading="lazy" decoding="async" width="1200" height="800"
           />
           <figcaption>Cross-functional IP teams — client, Softfinity consultants, and partner resources, working as one.</figcaption>
         </figure>

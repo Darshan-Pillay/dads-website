@@ -50,7 +50,8 @@
             </label>
             <label class="sp-modal__field">
               <span>What's on your mind?</span>
-              <input name="message" type="text" placeholder="A line about where you're headed…">
+              <textarea name="message" rows="5" maxlength="1000" placeholder="A line about where you're headed…"></textarea>
+              <small class="sp-modal__hint">Up to 1000 characters.</small>
             </label>
             <button type="submit" class="sp-cta__btn sp-modal__submit">
               Connect with a specialist
@@ -82,13 +83,23 @@
     const formPane = modal.querySelector('.sp-modal__form-pane');
     const thanksPane = modal.querySelector('.sp-modal__thanks-pane');
     const form = modal.querySelector('form');
+    const textarea = modal.querySelector('textarea[name="message"]');
+    const hint = modal.querySelector('.sp-modal__hint');
+    const MESSAGE_MAX = parseInt(textarea?.getAttribute('maxlength') || '1000', 10);
     let lastTrigger = null;
+
+    function updateHint() {
+      if (hint && textarea) hint.textContent = `${textarea.value.length} / ${MESSAGE_MAX}`;
+    }
+    textarea?.addEventListener('input', updateHint);
+    updateHint();
 
     function open(trigger) {
       lastTrigger = trigger || null;
       formPane.hidden = false;
       thanksPane.hidden = true;
       form.reset();
+      updateHint(); // reset counter to 0 / 1000 after form.reset()
       modal.classList.add('is-open');
       document.body.classList.add('sp-modal-open');
       // Focus the first field on next frame so the open transition can run.
