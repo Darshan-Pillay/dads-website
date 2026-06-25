@@ -3,8 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Softfinity — concept review · 3 directions</title>
-<link rel="icon" href="assets/favicon-32.png">
+<title>Softfinity Consulting — Independent advice. Trusted expertise. Proven outcomes.</title>
+<link rel="icon" href="/assets/favicon-32.png">
+
+<!-- Fonts: load the Google Fonts CSS off the critical path so it can't block
+     first paint. We preload it as a style (so the browser still fetches early
+     and at high priority), then attach it via media="print" + onload swap
+     so render isn't held up waiting for the request to come back. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap"></noscript>
+
+<!-- LCP imagery comes from images.unsplash.com — open the connection early. -->
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link rel="dns-prefetch" href="https://images.unsplash.com">
+
+<!-- Polaris design system: tokens (concatenated into one file to cut six
+     critical-path requests) + component styles. Individual token files
+     still exist alongside for reference; only tokens.all.css is fetched. -->
+<link rel="stylesheet" href="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/tokens/tokens.all.css">
+<link rel="stylesheet" href="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/styles.css">
+
+<!-- The DS bundle exposes window.PolarisDesignSystem_ff4f72 (used by every
+     ds.tsx wrapper). It MUST execute before src/main.tsx. Defer scripts run
+     in parse order, so it lives in <head> here to enter the defer queue
+     before Vite's prod build injects its module entry near the end of
+     <head>. main.tsx also waits for the 'load' event as a safety net in
+     case the order ever changes. Icons are bundled via lucide-react; no
+     external CDN script is needed. -->
+<script defer src="/_ds/polaris-design-system-ff4f726e-aab1-4c1d-81b4-8d99d607ad69/_ds_bundle.js"></script>
+
 <style>
   :root {
     --obsidian: #0B0B12;
@@ -118,105 +148,8 @@
 </style>
 </head>
 <body>
-  <header class="topbar" role="banner">
-    <div class="topbar__brand">
-      <img src="assets/softfinity-horizontal-dark.svg" alt="Softfinity Consulting"/>
-      <span class="meta"><strong>Concept review</strong> · three directions</span>
-    </div>
-
-    <div class="switcher" role="tablist" aria-label="Concept options">
-      <button type="button" role="tab" data-option="a" aria-selected="true">
-        <span class="letter">A</span><span class="text">Heritage</span>
-      </button>
-      <button type="button" role="tab" data-option="b" aria-selected="false">
-        <span class="letter">B</span><span class="text">Corporate</span>
-      </button>
-      <button type="button" role="tab" data-option="c" aria-selected="false">
-        <span class="letter">C</span><span class="text">Philosophy</span>
-      </button>
-    </div>
-
-    <div class="topbar__hint" aria-live="polite">
-      <span id="hint-text">Conservative rebrand — minimal change from the version Dad already approved.</span>
-      &nbsp;·&nbsp;<kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> to switch
-    </div>
-  </header>
-
-  <main class="stage" id="stage">
-    <iframe id="frame" title="Softfinity concept" src="options/a/index.html" allow="autoplay"></iframe>
-  </main>
-
-<script>
-(function () {
-  var OPTIONS = {
-    a: {
-      path: 'options/a/index.html',
-      hint: 'Conservative rebrand — minimal change from the version Dad already approved.'
-    },
-    b: {
-      path: 'options/b/index.html',
-      hint: 'Corporate showcase — adds SIPA / MCIP / IPVF principles, industries, and a closing promise.'
-    },
-    c: {
-      path: 'options/c/index.html',
-      hint: 'Philosophy-led — bold anti-vendor stance, "zero loyalty, zero lock-in, zero compromise".'
-    }
-  };
-
-  var frame = document.getElementById('frame');
-  var stage = document.getElementById('stage');
-  var hint  = document.getElementById('hint-text');
-  var buttons = Array.prototype.slice.call(document.querySelectorAll('.switcher button'));
-
-  function pick(letter, push) {
-    var opt = OPTIONS[letter];
-    if (!opt) return;
-    // mark selected
-    buttons.forEach(function (b) { b.setAttribute('aria-selected', b.dataset.option === letter ? 'true' : 'false'); });
-    hint.textContent = opt.hint;
-    // fade frame out, swap src, fade in
-    frame.classList.remove('is-ready');
-    stage.classList.remove('is-ready');
-    if (frame.getAttribute('src') !== opt.path) {
-      frame.setAttribute('src', opt.path);
-    } else {
-      // same path — just show
-      frame.classList.add('is-ready');
-      stage.classList.add('is-ready');
-    }
-    if (push !== false) {
-      history.replaceState(null, '', '#' + letter);
-    }
-    document.title = 'Softfinity — concept ' + letter.toUpperCase() + ' · review';
-  }
-
-  // wire up buttons
-  buttons.forEach(function (b) {
-    b.addEventListener('click', function () { pick(b.dataset.option, true); });
-  });
-
-  // iframe ready -> fade in
-  frame.addEventListener('load', function () {
-    frame.classList.add('is-ready');
-    stage.classList.add('is-ready');
-  });
-
-  // hash-based deep link (#a / #b / #c)
-  function fromHash() {
-    var h = (location.hash || '').replace('#', '').toLowerCase();
-    if (OPTIONS[h]) pick(h, false);
-  }
-  window.addEventListener('hashchange', fromHash);
-  fromHash();
-
-  // keyboard: 1/2/3 to jump
-  window.addEventListener('keydown', function (e) {
-    if (e.target && /input|textarea|select/i.test(e.target.tagName)) return;
-    if (e.key === '1') pick('a', true);
-    else if (e.key === '2') pick('b', true);
-    else if (e.key === '3') pick('c', true);
-  });
-})();
-</script>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div id="root"></div>
+<script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

@@ -160,7 +160,7 @@ One rule governs everything: **a near-black canvas, white for content, gold as a
 | Obsidian | `#0B0B12` | Primary page background |
 | Surface | `#14141C` | Cards, raised panels, sections |
 | Hairline | `#262631` | Borders, dividers, input outlines |
-| Mist | `#6E6E7B` | Hints, placeholders, disabled (large / non-essential text only) |
+| Mist | `#87879A` | Low-emphasis small text — footer links, captions, modal notes. Clears WCAG AA on obsidian (~5.5:1). |
 | Slate | `#9B9BA8` | Secondary text, captions, labels |
 | Snow | `#F4F4F7` | Primary body text (soft white — less glare than pure white) |
 | White | `#FFFFFF` | Headlines, the wordmark, maximum emphasis |
@@ -289,7 +289,7 @@ Copy-paste source of truth for the brand kit and website build — colours, type
   --color-obsidian:   #0B0B12; /* page background */
   --color-surface:    #14141C; /* cards, panels */
   --color-hairline:   #262631; /* borders, dividers */
-  --color-mist:       #6E6E7B; /* hints, disabled (large text only) */
+  --color-mist:       #87879A; /* low-emphasis small text — clears WCAG AA */
   --color-slate:      #9B9BA8; /* secondary text */
   --color-snow:       #F4F4F7; /* primary body text */
   --color-white:      #FFFFFF; /* headlines, wordmark */
