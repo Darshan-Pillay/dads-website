@@ -9,12 +9,12 @@ function Nav({ onNav }) {
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-  const links = ['The shift', 'Who we are', 'What we do', 'How we work'];
+  const links = ['Who we are', 'Vision', 'Approach', 'What we do', 'Industries', 'Principles'];
   return (
     <header className={`site-nav ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="site-nav__inner">
         <a className="site-nav__brand" href="#top" onClick={onNav}>
-          <img src="assets/polaris-horizontal-dark.png" alt="Polaris" />
+          <img src="assets/softfinity-horizontal-dark.svg" alt="Softfinity Consulting" />
         </a>
         <nav className="site-nav__links">
           {links.map((l) => (
@@ -53,49 +53,50 @@ function Hero({ t }) {
       )}
       <div className="hero__inner">
         <span className={`hero__star ${treatment === 'orbit' ? 'hero__star--orbit' : ''} reveal`} aria-hidden="true">
-          <img src="assets/polaris-mark-gold.png" alt="" />
+          <img src="assets/softfinity-mark-gold.svg" alt="" />
         </span>
-        <div className="hero__wordmark reveal" style={{ '--d': '40ms' }}>Polaris<span className="gold">.</span></div>
+        <div className="hero__wordmark reveal" style={{ '--d': '40ms' }}>Softfinity<span className="gold">.</span></div>
         <h1 className="hero__title reveal" style={{ '--d': '90ms' }}>
-          Your fixed point in a<br />shifting landscape<span className="gold">.</span>
+          Technology-agnostic consulting.<br />Business-focused<span className="gold"> outcomes.</span>
         </h1>
         <p className="hero__lead reveal" style={{ '--d': '160ms' }}>
-          Independent, senior IT consultants who guide growing businesses through digital
-          transformation — and recommend what's right for <em>you</em>, not for a vendor.
+          We help organisations achieve their strategic objectives by providing highly experienced
+          consultants who work alongside client teams to deliver measurable business outcomes —
+          independent of any vendor, platform, or product.
         </p>
         <div className="hero__actions reveal" style={{ '--d': '240ms' }}>
           <Button variant="primary" size="lg" as="a" href="#contact"
             iconRight={<Icon name="arrow-right" size={18} />}>
-            Find your north
+            Connect with a specialist
           </Button>
-          <Button variant="ghost" size="lg" as="a" href="#how-we-work">See how we work</Button>
+          <Button variant="ghost" size="lg" as="a" href="#principles">Our philosophy</Button>
         </div>
       </div>
-      <a className="hero__scroll" href="#the-shift" aria-label="Scroll to begin">
-        <span>the story begins</span>
+      <a className="hero__scroll" href="#who-we-are" aria-label="Scroll to begin">
+        <span>begin</span>
         <Icon name="chevron-down" size={20} />
       </a>
     </section>
   );
 }
 
-/* The Shift — name the visitor's anxiety in their own voice. */
+/* Why agnostic matters — corporate framing of vendor neutrality. */
 function Shift() {
   const Icon = window.Icon;
   const tiles = [
-    { icon: 'box', t: 'Vendors push their own stack' },
-    { icon: 'receipt', t: 'Big consultancies bill big fees' },
-    { icon: 'user-search', t: 'Specialist talent is scarce' },
+    { icon: 'shield-check', t: 'Unbiased recommendations, driven by your business goals' },
+    { icon: 'layers', t: 'Best-of-breed selection from across the entire market' },
+    { icon: 'compass', t: 'Reduced risk and vendor lock-in, greater long-term flexibility' },
   ];
   return (
     <section className="section section--center" id="the-shift">
       <div className="container">
-        <p className="eyebrow reveal">The shift</p>
+        <p className="eyebrow reveal">Why technology-agnostic matters</p>
         <h2 className="section__statement reveal" style={{ '--d': '60ms' }}>
-          AI is everywhere. The landscape won't sit still.
+          The freedom to choose what's best for your business.
         </h2>
         <p className="fp-quote reveal" style={{ '--d': '120ms' }}>
-          "I can't tell hype from substance — and choosing wrong is expensive."
+          Many consulting firms are aligned to specific vendors. We're not.
         </p>
         <div className="anx">
           {tiles.map((x, i) => (
@@ -115,9 +116,9 @@ function WhoWeAre() {
   const { Card } = window.PolarisDesignSystem_ff4f72;
   const Icon = window.Icon;
   const points = [
-    { icon: 'shield-check', title: 'No agenda', body: 'No badges, no affiliations, no kickbacks. We recommend what works best for you.' },
-    { icon: 'compass', title: 'Always pointing north', body: "We don't just diagnose — we hand you a clear, prioritised plan you can act on." },
-    { icon: 'users', title: 'Inside your team', body: 'Senior consultants who work shoulder-to-shoulder with your people, not over the top.' },
+    { icon: 'shield-check', title: 'Independent', body: 'We recommend and implement solutions based solely on what serves your business — never tied to any single vendor, platform, or product.' },
+    { icon: 'users', title: 'Collaborative', body: 'Our consultants integrate seamlessly with your internal teams, transferring knowledge to ensure long-term sustainability.' },
+    { icon: 'compass', title: 'Outcome-led', body: 'Our goal is not to implement technology, but to help organisations realise measurable, lasting business value.' },
   ];
   return (
     <section className="section section--center" id="who-we-are">
@@ -125,11 +126,13 @@ function WhoWeAre() {
         <div className="section__head">
           <p className="eyebrow reveal">Who we are</p>
           <h2 className="section__title reveal" style={{ '--d': '60ms' }}>
-            The honest underdog. Small, senior, conflict-free.
+            Independent advice. Trusted expertise. Proven outcomes.
           </h2>
           <p className="section__lead reveal" style={{ '--d': '120ms' }}>
-            We're the small fish that takes on the giants — senior, independent thinking
-            without the agenda or the markup. We don't sell badges. We sell judgement.
+            Softfinity Consulting is a business and technology consulting and systems
+            integration firm. Through our Translucent Engagement Model, we deliver value-driven
+            solutions across Transportation &amp; Logistics, Telecommunications &amp; Media,
+            Financial Services, Government, Energy, and beyond.
           </p>
         </div>
         <div className="grid-3">

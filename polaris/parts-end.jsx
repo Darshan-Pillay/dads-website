@@ -40,10 +40,10 @@ function Contact({ onSubmit }) {
   return (
     <section className="section section--center" id="contact">
       <div className="container">
-        <img className="contact__star reveal" src="assets/polaris-mark-gold.png" alt="" aria-hidden="true" />
-        <p className="eyebrow reveal" style={{ '--d': '40ms' }}>Find your north</p>
-        <h2 className="section__title reveal" style={{ '--d': '80ms', maxWidth: '20ch', marginInline: 'auto' }}>
-          Tell us where you're stuck. We'll point the way.
+        <img className="contact__star reveal" src="assets/softfinity-mark-gold.svg" alt="" aria-hidden="true" />
+        <p className="eyebrow reveal" style={{ '--d': '40ms' }}>Connect with a specialist</p>
+        <h2 className="section__title reveal" style={{ '--d': '80ms', maxWidth: '26ch', marginInline: 'auto' }}>
+          Tell us about your transformation. We'll bring the experience.
         </h2>
         {/* Backend wiring: replace onSubmit handler / add `action` + `method`.
             Fields use real name="" attributes so a POST works as-is. */}
@@ -53,8 +53,8 @@ function Contact({ onSubmit }) {
             <Input label="Name" name="name" placeholder="Jordan Maré" autoComplete="name" required />
             <Input label="Work email" name="email" type="email" placeholder="you@company.com" autoComplete="email" required />
           </div>
-          <Select label="What do you need help with?" name="domain" placeholder="Choose a domain"
-            options={['AI & Data', 'Cloud', 'SAP', 'Oracle', 'Microsoft', 'Enterprise Architecture', 'Not sure yet']} />
+          <Select label="What do you need help with?" name="domain" placeholder="Choose a technology area"
+            options={['SAP', 'Microsoft', 'Oracle', 'IBM', 'AI', 'Cloud Computing', 'Big Data & Analytics', 'Blockchain', 'Mobile Development', 'Not sure yet']} />
           <Input label="What's on your mind?" name="message" placeholder="A line about where you're headed…" />
           <Button variant="primary" size="lg" block type="submit"
             iconRight={<Icon name="arrow-right" size={18} />}>
@@ -69,29 +69,59 @@ function Contact({ onSubmit }) {
 
 function Footer() {
   const cols = [
-    { h: 'Services', items: ['AI & Data', 'Cloud', 'SAP', 'Oracle', 'Enterprise Architecture'] },
-    { h: 'Company', items: ['About', 'Our approach', 'Consultants', 'Case studies'] },
-    { h: 'Connect', items: ['Contact', 'LinkedIn', 'Insights'] },
+    { h: 'Services', items: [
+      { label: 'SAP',        href: 'services/sap.html' },
+      { label: 'Microsoft',  href: 'services/microsoft.html' },
+      { label: 'Oracle',     href: 'services/oracle.html' },
+      { label: 'IBM',        href: 'services/ibm.html' },
+      { label: 'AI',         href: 'services/ai.html' },
+      { label: 'Cloud',      href: 'services/cloud.html' },
+      { label: 'Big Data',   href: 'services/data.html' },
+      { label: 'Blockchain', href: 'services/blockchain.html' },
+      { label: 'Mobile',     href: 'services/mobile.html' },
+    ]},
+    { h: 'Company', items: [
+      { label: 'Who we are',   href: 'pages/about.html' },
+      { label: 'Our approach', href: 'pages/approach.html' },
+      { label: 'Principles',   href: 'pages/principles.html' },
+      { label: 'Industries',   href: 'pages/industries.html' },
+      { label: 'Consultants',  href: 'pages/consultants.html' },
+      { label: 'Case studies', href: 'pages/case-studies.html' },
+    ]},
+    { h: 'Connect', items: [
+      { label: 'Contact',  href: 'pages/contact.html' },
+      { label: 'Insights', href: 'pages/insights.html' },
+      { label: 'Email',    href: 'mailto:hello@softfinity.com' },
+      { label: 'LinkedIn', href: 'https://www.linkedin.com/', target: '_blank', rel: 'noopener' },
+    ]},
   ];
   return (
     <footer className="site-footer">
       <div className="container site-footer__inner">
         <div className="site-footer__brand">
-          <img src="assets/polaris-horizontal-dark.png" alt="Polaris" />
-          <p>Your fixed point in a shifting landscape.</p>
+          <img src="assets/softfinity-horizontal-dark.svg" alt="Softfinity Consulting" />
+          <p>Independent advice. Trusted expertise. Proven outcomes.</p>
         </div>
         <div className="site-footer__cols">
           {cols.map((c) => (
             <div key={c.h} className="site-footer__col">
               <h4>{c.h}</h4>
-              <ul>{c.items.map((it) => <li key={it}><a href="#contact">{it}</a></li>)}</ul>
+              <ul>
+                {c.items.map((it) => (
+                  <li key={it.label}>
+                    <a href={it.href} {...(it.target ? { target: it.target, rel: it.rel } : {})}>
+                      {it.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
       </div>
       <div className="container site-footer__base">
-        <span>© 2026 Polaris. Independent IT consultancy.</span>
-        <span>Independent expertise. Real solutions. No agenda.</span>
+        <span>© 2026 Softfinity Consulting (Pty) Ltd. Business &amp; technology consulting and systems integration.</span>
+        <span>Technology-agnostic. Business-focused.</span>
       </div>
     </footer>
   );

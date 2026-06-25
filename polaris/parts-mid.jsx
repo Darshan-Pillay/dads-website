@@ -1,15 +1,15 @@
 /* Polaris landing — middle: What we do · Why independent · How we work */
 
 const DOMAINS = [
-  { name: 'AI', out: 'From hype to a roadmap' },
-  { name: 'Big Data', out: 'Decisions you can trust' },
-  { name: 'Cloud', out: 'Right-sized, not oversold' },
-  { name: 'SAP', out: 'Migrations without drama' },
-  { name: 'Microsoft', out: 'Tools that fit the team' },
-  { name: 'Oracle', out: 'Untangle the estate' },
-  { name: 'IBM', out: 'Modernise with care' },
-  { name: 'Enterprise Architecture', out: 'A plan that holds' },
-  { name: 'Software Development', out: 'Built for outcomes' },
+  { name: 'SAP', out: 'S/4HANA · Finance · Supply Chain · SuccessFactors · Analytics · Migration' },
+  { name: 'Microsoft', out: 'Azure · M365 · Dynamics 365 · Power Platform · SharePoint · Security' },
+  { name: 'Oracle', out: 'OCI · ERP · HCM · Database · Analytics · Integration · Migrations' },
+  { name: 'IBM', out: 'Cloud · Integration · Automation · Data platforms · Security · Middleware' },
+  { name: 'Artificial Intelligence', out: 'Strategy · ML · Generative AI · NLP · Governance · Integration' },
+  { name: 'Cloud Computing', out: 'Strategy · Migration · Hybrid · Multi-cloud · Security · Operations' },
+  { name: 'Big Data & Analytics', out: 'Strategy · Architecture · Warehousing · Lakes · BI · Governance' },
+  { name: 'Blockchain', out: 'Strategy · Distributed ledger · Smart contracts · Tokenisation · Identity' },
+  { name: 'Mobile Development', out: 'Native iOS · Native Android · Cross-platform · Security · UX/UI' },
 ];
 
 function WhatWeDo({ t }) {
@@ -21,10 +21,12 @@ function WhatWeDo({ t }) {
         <div className="section__head">
           <p className="eyebrow reveal">What we do</p>
           <h2 className="section__title reveal" style={{ '--d': '60ms' }}>
-            One team across the whole stack.
+            Deep expertise across leading enterprise platforms and emerging technologies.
           </h2>
           <p className="section__lead reveal" style={{ '--d': '120ms' }}>
-            Nine domains, framed as outcomes — never vendor names. One agenda: yours.
+            Whether you're modernising core systems, adopting cloud, leveraging data and AI,
+            or undertaking large-scale digital transformation — our consultants bring the
+            expertise, objectivity, and practical experience needed to deliver results.
           </p>
         </div>
 
@@ -65,8 +67,8 @@ function WhyIndependent({ t }) {
   const Icon = window.Icon;
   const style = t.ledger; // 'two-col' | 'three-way' | 'stacked'
 
-  const them = ['Steer you to partners that pay them', 'Sell their roadmap, not yours', 'Badges, kickbacks, lock-in', 'Giant invoices'];
-  const us = ['No badges, no affiliations', 'Your roadmap, your outcomes', 'Honest advice you can trust', 'Senior calibre, no markup'];
+  const them = ['Aligned to one vendor or platform', 'Bias toward their partner stack', 'Badges, kickbacks, vendor lock-in', 'Roadmaps that serve the seller'];
+  const us = ['Unbiased recommendations', 'Best-of-breed solutions', 'Reduced technology risk', 'Business-centric decision making'];
 
   return (
     <section className="section section--center" id="why-independent">
@@ -87,7 +89,7 @@ function WhyIndependent({ t }) {
               </ul>
             </div>
             <div className="ledger__col ledger__col--us">
-              <p className="ledger__label">Polaris</p>
+              <p className="ledger__label">Softfinity</p>
               <ul className="ledger__list">
                 {us.map((x) => <li key={x}><Icon name="check" size={18} /> {x}</li>)}
               </ul>
@@ -106,14 +108,14 @@ function WhyIndependent({ t }) {
               <p>Sell their stack, their badges, their lock-in — not your outcome.</p>
             </div>
             <div className="ledger__col ledger__col--us">
-              <p className="ledger__label">Polaris</p>
+              <p className="ledger__label">Softfinity</p>
               <p>No agenda. Senior, independent judgement, priced like a partner.</p>
             </div>
           </div>
         )}
 
         <blockquote className="pull-quote reveal" style={{ '--d': '200ms' }}>
-          When the landscape keeps shifting, we're the point that doesn't move.
+          Technology decisions should be driven by business outcomes — not vendor preferences.
         </blockquote>
       </div>
     </section>
@@ -123,9 +125,9 @@ function WhyIndependent({ t }) {
 function HowWeWork() {
   const Icon = window.Icon;
   const steps = [
-    { n: '01', icon: 'search', title: 'Find your north', body: 'We plug into your team and map the real picture — honestly, fast.' },
-    { n: '02', icon: 'navigation', title: 'Chart the course', body: 'A clear, prioritised plan: what to do, in what order, and why.' },
-    { n: '03', icon: 'handshake', title: 'Steer together', body: 'Senior hands alongside yours until the outcome is real.' },
+    { n: '01', icon: 'search', title: 'Strategy & Assessment', body: 'Roadmap development, technology assessment and selection — grounded in your business goals.' },
+    { n: '02', icon: 'navigation', title: 'Architecture & Design', body: 'Solution architecture, system integration, data migration and modernisation, change management.' },
+    { n: '03', icon: 'handshake', title: 'Delivery & Enablement', body: 'Programme and project delivery, knowledge transfer, skills enablement, managed transformation support.' },
   ];
   return (
     <section className="section" id="how-we-work">
@@ -133,8 +135,12 @@ function HowWeWork() {
         <div className="section__head">
           <p className="eyebrow reveal">How we work</p>
           <h2 className="section__title reveal" style={{ '--d': '60ms' }}>
-            Senior consultants inside your team — not above it.
+            Working together to deliver results.
           </h2>
+          <p className="section__lead reveal" style={{ '--d': '120ms' }}>
+            We partner with clients throughout the entire transformation journey — combining
+            our consultants, our IP, and your team into one cross-functional delivery unit.
+          </p>
         </div>
         <div className="steps">
           {steps.map((s, i) => (
