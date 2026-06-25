@@ -1,8 +1,6 @@
 /* Polaris webfonts — Hanken Grotesk (display) + Inter (body)
-   Both are open-source Google Fonts. Hanken Grotesk is a humanist
-   grotesque with rounded terminals and open curves — warmer and more
-   alive than a squared geometric, while still premium and confident.
-   Loaded from the Google Fonts CDN. To self-host, drop the .woff2
-   files in assets/fonts/ and replace these @font-face src URLs. */
-
-@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+   Both are open-source Google Fonts. Loaded via a <link> tag in each HTML
+   file (with preconnect to fonts.googleapis.com + fonts.gstatic.com) so the
+   browser can fetch CSS and fonts in parallel, rather than chaining the
+   fetch from inside this stylesheet via @import. To self-host, drop the
+   .woff2 files in assets/fonts/ and add @font-face rules here. */

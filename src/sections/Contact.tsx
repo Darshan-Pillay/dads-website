@@ -13,7 +13,7 @@ export default function Contact({ onSubmit }: ContactProps) {
   return (
     <section className="section section--center" id="contact">
       <div className="container">
-        <img className="contact__star reveal" src="assets/softfinity-mark-gold.svg" alt="" aria-hidden="true" />
+        <img className="contact__star reveal" src="assets/softfinity-mark-gold.svg" alt="" aria-hidden="true" width="136" height="136" />
         <p className="eyebrow reveal" style={{ '--d': '40ms' }}>Connect with a specialist</p>
         <h2 className="section__title reveal" style={{ '--d': '80ms', maxWidth: '26ch', marginInline: 'auto' }}>
           Tell us about your transformation. We'll bring the experience.

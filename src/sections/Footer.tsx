@@ -30,7 +30,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="container site-footer__inner">
         <div className="site-footer__brand">
-          <img src="assets/softfinity-horizontal-dark.svg" alt="Softfinity Consulting" />
+          <img src="assets/softfinity-horizontal-dark.svg" alt="Softfinity Consulting" width="780" height="200" />
           <p>Independent advice. Trusted expertise. Proven outcomes.</p>
         </div>
         <div className="site-footer__cols">

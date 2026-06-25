@@ -130,7 +130,7 @@ SERVICES = [
             "customers. Our consultants help businesses identify, design, and implement AI "
             "solutions that deliver measurable results."
         ),
-        "image": "../assets/ai-humans.png",
+        "image": "../assets/ai-humans.jpg",
         "areas_title": "AI services",
         "areas": [
             "AI Strategy Development", "Machine Learning Solutions", "Predictive Analytics",

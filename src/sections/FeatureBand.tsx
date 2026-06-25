@@ -2,7 +2,7 @@ export default function FeatureBand() {
   return (
     <section className="feature-band" aria-label="Intelligence working with people">
       <div className="feature-band__media">
-        <img src="assets/ai-humans.png" alt="" loading="lazy" />
+        <img src="assets/ai-humans.jpg" alt="" loading="lazy" decoding="async" width="1604" height="839" />
         <div className="feature-band__scrim" />
       </div>
       <div className="feature-band__caption container reveal">

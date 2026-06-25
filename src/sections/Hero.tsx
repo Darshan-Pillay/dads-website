@@ -20,7 +20,7 @@ export default function Hero({ t }: { t: Tweaks }) {
       )}
       <div className="hero__inner">
         <span className={`hero__star ${treatment === 'orbit' ? 'hero__star--orbit' : ''} reveal`} aria-hidden="true">
-          <img src="assets/softfinity-mark-gold.svg" alt="" />
+          <img src="assets/softfinity-mark-gold.svg" alt="" width="136" height="136" />
         </span>
         <div className="hero__wordmark reveal" style={{ '--d': '40ms' }}>Softfinity<span className="gold">.</span></div>
         <h1 className="hero__title reveal" style={{ '--d': '90ms' }}>

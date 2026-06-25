@@ -18,7 +18,7 @@ export default function Nav({ onNav }: NavProps) {
     <header className={`site-nav ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="site-nav__inner">
         <a className="site-nav__brand" href="#top" onClick={onNav}>
-          <img src="assets/softfinity-horizontal-dark.svg" alt="Softfinity Consulting" />
+          <img src="assets/softfinity-horizontal-dark.svg" alt="Softfinity Consulting" width="780" height="200" />
         </a>
         <nav className="site-nav__links">
           {links.map((l) => (

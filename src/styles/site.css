@@ -363,21 +363,20 @@
 @media (max-width: 560px) { .contact__row { grid-template-columns: 1fr; } }
 .contact__note { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-slate); margin: var(--space-5) auto 0; }
 
-/* Visible hover + focus states on the contact form fields. The design
-   system's defaults use a very dark border on hover which reads as no
-   change at all on the obsidian surface. */
+/* Visible hover + focus states on the contact form fields. Using box-shadow
+   instead of border-color transitions so the animation is GPU-composited
+   (border-color triggers paint on each frame). */
 .contact__form .pl-field__wrap,
 .contact__form .pl-select__el {
-  transition: border-color 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
+  transition: box-shadow 180ms var(--ease-out);
 }
 .contact__form .pl-field__wrap:hover,
 .contact__form .pl-select__el:hover {
-  border-color: var(--color-gold-deep);
+  box-shadow: inset 0 0 0 1px var(--color-gold-deep);
 }
 .contact__form .pl-field__wrap:focus-within,
 .contact__form .pl-select__el:focus {
-  border-color: var(--color-gold);
-  box-shadow: 0 0 0 3px var(--color-gold-a16);
+  box-shadow: inset 0 0 0 1px var(--color-gold), 0 0 0 3px var(--color-gold-a16);
   outline: none;
 }
 /* Suppress the design system's global :focus-visible ring on the inner
