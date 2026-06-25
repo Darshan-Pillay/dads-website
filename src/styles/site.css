@@ -621,6 +621,15 @@
 }
 .closing__lead em { color: var(--color-gold); font-style: normal; font-weight: 500; }
 
+/* ---------- scrollbar (red thumb for visibility on the dark canvas) ---------- */
+html { scrollbar-color: #d22929 transparent; }
+html::-webkit-scrollbar-thumb {
+  background: #d22929;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+html::-webkit-scrollbar-thumb:hover { background: #ef3a3a; background-clip: padding-box; }
+
 /* ---------- reveal animation (opt-in via .reveal-on) ---------- */
 .reveal-on .reveal { opacity: 0; transform: translateY(18px); transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out); transition-delay: var(--d, 0ms); }
 .reveal-on .reveal.is-visible { opacity: 1; transform: none; }

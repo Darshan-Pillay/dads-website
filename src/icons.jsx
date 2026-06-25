@@ -1,5 +1,4 @@
-/* Icon — thin-line Lucide wrapper (brand: thin-line minimal icons in white/gold). */
-function Icon({ name, size = 20, className = '', style = {}, ...props }) {
+export function Icon({ name, size = 20, className = '', style = {}, ...props }) {
   return (
     <i
       data-lucide={name}
@@ -9,4 +8,3 @@ function Icon({ name, size = 20, className = '', style = {}, ...props }) {
     />
   );
 }
-Object.assign(window, { Icon });
