@@ -4,6 +4,27 @@ import { contactSchema } from '../src/lib/contactSchema';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+async function sendWithRetry(
+  params: Parameters<typeof resend.emails.send>[0]
+): Promise<{ ok: boolean; errorName?: string }> {
+  const delays = [0, 1000, 2000]; // immediate → +1 s → +2 s
+  for (let attempt = 0; attempt < delays.length; attempt++) {
+    if (delays[attempt] > 0) {
+      await new Promise<void>((r) => setTimeout(r, delays[attempt]));
+    }
+    const { error } = await resend.emails.send(params);
+    if (!error) return { ok: true };
+    // Don't retry 4xx — invalid input won't improve on retry
+    if (error.statusCode && error.statusCode >= 400 && error.statusCode < 500) {
+      return { ok: false, errorName: error.name };
+    }
+    if (attempt < delays.length - 1) {
+      console.error(`contact: attempt_${attempt + 1}_failed`, error.name);
+    }
+  }
+  return { ok: false, errorName: 'max_retries_exceeded' };
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ ok: false });
@@ -33,7 +54,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     `Reply directly to this email to respond to ${name}.`,
   ].join('\n');
 
-  const { error } = await resend.emails.send({
+  console.log('contact: received');
+
+  const { ok, errorName } = await sendWithRetry({
     from: `Softfinity Contact <hello@send.${rootDomain}>`,
     to: toEmail,
     replyTo: email,
@@ -41,8 +64,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     text: bodyText,
   });
 
-  if (error) {
-    console.error('contact: send_failed', error.name);
+  if (!ok) {
+    console.error('contact: send_failed', errorName);
     return res.status(500).json({
       ok: false,
       error: 'Failed to send. Please try again or email us directly.',

@@ -103,7 +103,10 @@ export default function Contact({ onSuccess }: ContactProps) {
           {status === 'error' && (
             <p className="contact__error" role="alert">
               {errorMsg}{' '}
-              <a href={CONTACT_MAILTO} className="contact__error-link">Email us directly</a>.
+              <a href={CONTACT_MAILTO} className="contact__error-link">
+                Email us directly
+              </a>{' '}
+              and we'll get back to you.
             </p>
           )}
         </form>
