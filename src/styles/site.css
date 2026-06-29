@@ -397,6 +397,77 @@
 /* contact star above */
 .contact__star { width: 48px; height: 48px; filter: drop-shadow(0 0 20px rgba(198,161,91,0.5)); margin: 0 auto var(--space-5); animation: twinkle 5.5s var(--ease-in-out) infinite; }
 
+/* Loading state — gold-gradient sweep on the submit button */
+.contact__btn-wrap { width: 100%; }
+@keyframes contact-sweep {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+.contact__btn-wrap--loading .pl-btn--primary {
+  background: linear-gradient(
+    90deg,
+    var(--color-gold) 0%,
+    var(--color-gold-light) 50%,
+    var(--color-gold) 100%
+  );
+  background-size: 200% 100%;
+  animation: contact-sweep 1.6s ease-in-out infinite;
+  pointer-events: none;
+  cursor: default;
+}
+/* Keep hover/active overrides from applying during loading */
+.contact__btn-wrap--loading .pl-btn--primary:hover,
+.contact__btn-wrap--loading .pl-btn--primary:active {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Inline success card */
+@keyframes contact-success-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+.contact__success-card {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center; padding: var(--space-10) var(--space-6);
+  animation: contact-success-in 300ms var(--ease-in-out) forwards;
+  min-height: 320px;
+}
+.contact__success-mark {
+  width: 64px; height: 64px;
+  filter: drop-shadow(0 0 20px rgba(198,161,91,0.55));
+  animation: twinkle 5.5s var(--ease-in-out) infinite;
+  margin-bottom: var(--space-5);
+}
+.contact__success-title {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: var(--text-h3); line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-tight); color: var(--color-white);
+  margin: 0 0 var(--space-3);
+}
+.contact__success-body {
+  font-family: var(--font-body); font-size: var(--text-body-lg);
+  color: var(--color-slate); margin: 0;
+}
+
+/* Inline error message */
+.contact__error {
+  font-family: var(--font-body); font-size: var(--text-body);
+  color: var(--color-error, #e07070); margin: 0;
+  line-height: 1.5;
+}
+.contact__error-link { color: inherit; font-weight: 500; }
+.contact__error-link:hover { color: var(--color-gold); }
+
+/* Privacy note */
+.contact__privacy {
+  font-family: var(--font-body); font-size: var(--text-caption);
+  color: var(--color-mist); margin: 0; text-align: center;
+  line-height: 1.5;
+}
+.contact__privacy-link { color: var(--color-slate); }
+.contact__privacy-link:hover { color: var(--color-gold); }
+
 /* Primary button hover override — the DS lightens the background to cream
    on hover, which washes the obsidian text. Keep the gold background solid
    and express hover through a brighter halo + small lift, matching the

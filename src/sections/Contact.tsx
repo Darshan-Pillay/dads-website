@@ -4,13 +4,12 @@ import { Button, Input, Select, Textarea } from '../ds.tsx';
 import { Icon } from '../icons.tsx';
 import { contactSchema } from '../lib/contactSchema.ts';
 
-type ContactProps = { onSuccess?: () => void };
-type Status = 'idle' | 'submitting' | 'error';
+type Status = 'idle' | 'submitting' | 'success' | 'error';
 
 const MESSAGE_MAX = 1000;
 const CONTACT_MAILTO = 'mailto:hello@softfinity.com';
 
-export default function Contact({ onSuccess }: ContactProps) {
+export default function Contact() {
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<Status>('idle');
   const [errorMsg, setErrorMsg] = useState('');
@@ -42,8 +41,7 @@ export default function Contact({ onSuccess }: ContactProps) {
       });
 
       if (res.ok) {
-        setStatus('idle');
-        onSuccess?.();
+        setStatus('success');
       } else {
         const data = await res.json().catch(() => ({})) as { error?: string };
         setStatus('error');
@@ -54,6 +52,30 @@ export default function Contact({ onSuccess }: ContactProps) {
       setErrorMsg('Unable to reach the server. Please check your connection.');
     }
   };
+
+  // Inline success — replaces form card, same section wrapper
+  if (status === 'success') {
+    return (
+      <section className="section section--center" id="contact">
+        <div className="container">
+          <div className="contact__card contact__success-card">
+            <img
+              src="assets/softfinity-mark-gold.svg"
+              alt=""
+              aria-hidden="true"
+              width="64"
+              height="64"
+              className="contact__success-mark"
+            />
+            <h2 className="contact__success-title">Thanks. We've got your message.</h2>
+            <p className="contact__success-body">
+              A senior consultant will reach out within one business day.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   const submitting = status === 'submitting';
 
@@ -102,13 +124,16 @@ export default function Contact({ onSuccess }: ContactProps) {
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
             helper={`${message.length} / ${MESSAGE_MAX}`}
           />
-          <Button
-            variant="primary" size="lg" block type="submit"
-            disabled={submitting}
-            iconRight={!submitting ? <Icon name="arrow-right" size={18} /> : undefined}
-          >
-            {submitting ? 'Sending…' : 'Connect with a specialist'}
-          </Button>
+          <div className={submitting ? 'contact__btn-wrap contact__btn-wrap--loading' : 'contact__btn-wrap'}>
+            <Button
+              variant="primary" size="lg" block type="submit"
+              disabled={submitting}
+              aria-busy={submitting}
+              iconRight={!submitting ? <Icon name="arrow-right" size={18} /> : undefined}
+            >
+              {submitting ? 'Sending…' : 'Connect with a specialist'}
+            </Button>
+          </div>
           {status === 'error' && (
             <p className="contact__error" role="alert">
               {errorMsg}{' '}
@@ -118,6 +143,11 @@ export default function Contact({ onSuccess }: ContactProps) {
               and we'll get back to you.
             </p>
           )}
+          <p className="contact__privacy">
+            We'll use your details only to reply to this enquiry. See our{' '}
+            <a href="/privacy" className="contact__privacy-link">privacy notice</a>{' '}
+            for the full story.
+          </p>
         </form>
         <p className="contact__note reveal" style={{ '--d': '200ms' } as React.CSSProperties}>No pitch. No agenda. Just honest direction.</p>
       </div>
