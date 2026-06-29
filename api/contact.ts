@@ -4,6 +4,21 @@ import { contactSchema } from '../src/lib/contactSchema';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Allowed origins per environment. Origin is client-controlled so this is a
+// low-cost filter against lazy bots only — not a security boundary.
+function isAllowedOrigin(origin: string | undefined): boolean {
+  switch (process.env.VERCEL_ENV) {
+    case 'production':
+      return origin === 'https://softfinity.com' || origin === 'https://www.softfinity.com';
+    case 'preview':
+      return typeof origin === 'string' && /^https:\/\/softfinity-site-[^.]+\.vercel\.app$/.test(origin);
+    case 'development':
+      return origin === 'http://localhost:5173';
+    default:
+      return false;
+  }
+}
+
 async function sendWithRetry(
   params: Parameters<typeof resend.emails.send>[0]
 ): Promise<{ ok: boolean; errorName?: string }> {
@@ -30,7 +45,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ ok: false });
   }
 
+  // Spam check 1: origin allowlist (lazy-bot filter)
+  const origin = req.headers['origin'] as string | undefined;
+  if (!isAllowedOrigin(origin)) {
+    return res.status(403).json({ ok: false });
+  }
+
   const body = req.body as Record<string, unknown>;
+
+  // Spam check 2: honeypot — silent 200 if bot filled the hidden field
+  if (body.website && String(body.website).trim() !== '') {
+    console.log('contact: honeypot_triggered');
+    return res.status(200).json({ ok: true });
+  }
+
+  // Spam check 3: time gate — silent 200 if submitted in under 2 s
+  const submitTime = parseInt(String(body._t ?? '0'), 10);
+  if (Date.now() - submitTime < 2000) {
+    console.log('contact: time_check_failed');
+    return res.status(200).json({ ok: true });
+  }
 
   const result = contactSchema.safeParse(body);
   if (!result.success) {

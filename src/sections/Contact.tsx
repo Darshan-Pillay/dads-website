@@ -72,6 +72,15 @@ export default function Contact({ onSuccess }: ContactProps) {
           onSubmit={handleSubmit}
           noValidate
         >
+          {/* Honeypot — invisible to humans, filled by dumb scrapers */}
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
+            aria-hidden="true"
+          />
           <div className="contact__row">
             <Input label="Name" name="name" placeholder="Jordan Maré" autoComplete="name" required />
             <Input label="Work email" name="email" type="email" placeholder="you@company.com" autoComplete="email" required />
