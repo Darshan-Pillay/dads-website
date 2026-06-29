@@ -41,17 +41,17 @@ async function sendWithRetry(
 }
 
 // Posts submission data to Discord as a durable secondary record.
-// Gated on DISCORD_WEBHOOK_URL — if unset, returns resolved without error.
-// Supports both ADR-0006 option C (failure-only, called by the error path)
-// and option E (always-on, called on the happy path alongside Resend).
+// Returns true only when a webhook URL is configured AND Discord accepted the
+// payload (2xx). Returns false when unconfigured or when the request fails,
+// so the caller can correctly decide whether a lead was actually captured.
 async function notifyDiscord(payload: {
   name: string;
   email: string;
   domain: string | undefined;
   message: string;
-}): Promise<void> {
+}): Promise<boolean> {
   const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
-  if (!webhookUrl) return;
+  if (!webhookUrl) return false;
 
   const lines = [
     `**New enquiry from Softfinity contact form**`,
@@ -61,11 +61,13 @@ async function notifyDiscord(payload: {
     `**Message:**\n${payload.message}`,
   ];
 
-  await fetch(webhookUrl, {
+  const response = await fetch(webhookUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ content: lines.join('\n') }),
   });
+
+  return response.ok;
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -87,9 +89,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).json({ ok: true });
   }
 
-  // Spam check 3: time gate — silent 200 if submitted in under 2 s
-  const submitTime = parseInt(String(body._t ?? '0'), 10);
-  if (Date.now() - submitTime < 2000) {
+  // Spam check 3: time gate — fail closed: missing, non-string, or non-numeric
+  // _t is treated as spam so bots that omit the field can't bypass the check.
+  const tRaw = body._t;
+  const submitTime =
+    typeof tRaw === 'number'
+      ? tRaw
+      : typeof tRaw === 'string'
+        ? parseInt(tRaw, 10)
+        : NaN;
+  if (!Number.isFinite(submitTime) || Date.now() - submitTime < 2000) {
     console.log('contact: time_check_failed');
     return res.status(200).json({ ok: true });
   }
@@ -132,7 +141,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   ]);
 
   const emailOk = emailResult.status === 'fulfilled' && emailResult.value.ok;
-  const discordOk = discordResult.status === 'fulfilled';
+  const discordOk = discordResult.status === 'fulfilled' && discordResult.value;
 
   if (!emailOk) {
     const errorName =

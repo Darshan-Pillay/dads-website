@@ -24,8 +24,16 @@ submission shows a 500 error / the error state in the UI.
    the lead. The user saw a success response. Manually forward the lead from
    Discord to the stakeholder while you fix Resend.
 
-4. If neither log appears: the function may not be deploying. Check the Vercel
-   deployment status.
+4. If neither `send_failed` nor `discord_fallback_ok` appears, check the
+   pre-send rejection logs before assuming a deploy issue:
+   - `honeypot_triggered` or `time_check_failed` → real submissions are being
+     mistaken for spam; check that the client is sending `_t` correctly.
+   - No function logs at all → the origin allowlist may be rejecting requests
+     (returns 403 with no further logging); verify the `VERCEL_ENV` env var
+     matches your environment and the request origin is in the allowlist.
+
+5. If no logs appear at all for any request: the function may not be deploying.
+   Check the Vercel deployment status.
 
 ---
 
@@ -84,8 +92,10 @@ If legitimate Resend quota (100/day free tier) is being consumed by spam:
    which checks are catching bots.
 2. If bots are getting past all three checks, consider adding Cloudflare Turnstile
    (see ADR-0007 § "Future enhancements").
-3. Temporarily set an extremely long `RESEND_API_KEY` timeout or switch to a
-   stub key to stop outbound email while the spam wave passes.
+3. To suppress outbound email while you investigate, remove `RESEND_API_KEY`
+   from Vercel env vars and redeploy. Resend calls will fail immediately;
+   Discord will still capture real leads if `DISCORD_WEBHOOK_URL` is set.
+   Restore the key and redeploy when the spam wave passes.
 
 ---
 

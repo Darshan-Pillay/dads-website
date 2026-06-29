@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 import { Button, Input, Select, Textarea } from '../ds.tsx';
 import { Icon } from '../icons.tsx';
-import { contactSchema } from '../lib/contactSchema.ts';
+import { contactSchema, ALLOWED_DOMAINS } from '../lib/contactSchema.ts';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -111,7 +111,7 @@ export default function Contact() {
             label="What do you need help with?"
             name="domain"
             placeholder="Choose a technology area"
-            options={['SAP', 'Microsoft', 'Oracle', 'IBM', 'AI', 'Cloud Computing', 'Big Data & Analytics', 'Blockchain', 'Mobile Development', 'Not sure yet']}
+            options={[...ALLOWED_DOMAINS]}
           />
           <Textarea
             label="What's on your mind?"

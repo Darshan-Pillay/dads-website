@@ -8,17 +8,7 @@ export const ALLOWED_DOMAINS = [
 
 export const contactSchema = z.object({
   name: z.string().trim().min(2, 'Name is too short').max(100, 'Name is too long'),
-  email: z
-    .string()
-    .trim()
-    .max(254, 'Email is too long')
-    .refine(
-      (v) => {
-        const at = v.indexOf('@');
-        return at > 0 && v.indexOf('.', at + 2) > at + 1;
-      },
-      { message: 'Invalid email address' }
-    ),
+  email: z.string().trim().max(254, 'Email is too long').email('Invalid email address'),
   domain: z.preprocess(
     (v) => (v === '' || v === undefined ? undefined : v),
     z.enum(ALLOWED_DOMAINS).optional()
