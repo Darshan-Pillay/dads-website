@@ -126,7 +126,7 @@ export default function App() {
         <HowWeWork />
         {TWEAKS.showProof && <Proof />}
         <Closing />
-        <Contact onSubmit={() => setSent(true)} />
+        <Contact onSuccess={() => setSent(true)} />
       </main>
       <Footer />
 
