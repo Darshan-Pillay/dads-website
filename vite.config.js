@@ -8,4 +8,9 @@ export default defineConfig({
     target: 'es2020',
     sourcemap: true,
   },
+  server: {
+    proxy: {
+      '/api': 'http://localhost:3000',
+    },
+  },
 });

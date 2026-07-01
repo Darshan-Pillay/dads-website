@@ -13,9 +13,8 @@ function isAllowedOrigin(origin: string | undefined): boolean {
     case 'preview':
       return typeof origin === 'string' && /^https:\/\/softfinity-site-[^.]+\.vercel\.app$/.test(origin);
     case 'development':
-      return origin === 'http://localhost:5173';
     default:
-      return false;
+      return typeof origin === 'string' && /^http:\/\/localhost(:\d+)?$/.test(origin);
   }
 }
 
@@ -131,7 +130,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Returns 200 if at least one destination succeeded; 500 only if both failed.
   const [emailResult, discordResult] = await Promise.allSettled([
     sendWithRetry({
-      from: `Softfinity Contact <hello@send.${rootDomain}>`,
+      from: `Softfinity Contact <hello@${rootDomain}>`,
       to: toEmail,
       replyTo: email,
       subject: `New enquiry: ${name} — Softfinity contact form`,
