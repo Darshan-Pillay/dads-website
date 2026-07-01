@@ -34,7 +34,7 @@ Closely related ADRs:
   reply and the lead receives it.
 - **Subject:** `New enquiry: {name} — Softfinity contact form`
 - **Body:** plain text. Roughly:
-  ```
+  ```text
   New enquiry from the Softfinity contact form.
 
   Name:    Jordan Maré
