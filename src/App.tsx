@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import type { CSSProperties, MouseEvent } from 'react';
-import { Button, Dialog } from './ds.tsx';
 import Nav from './sections/Nav.tsx';
 import Hero from './sections/Hero.tsx';
 import FeatureBand from './sections/FeatureBand.tsx';
@@ -49,7 +48,6 @@ function hexToRgb(hex: string): [number, number, number] {
 }
 
 export default function App() {
-  const [sent, setSent] = useState(false);
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   // Scroll-reveal observer.
@@ -126,14 +124,9 @@ export default function App() {
         <HowWeWork />
         {TWEAKS.showProof && <Proof />}
         <Closing />
-        <Contact onSubmit={() => setSent(true)} />
+        <Contact />
       </main>
       <Footer />
-
-      <Dialog open={sent} onClose={() => setSent(false)}
-        title="We've got it."
-        description="A senior consultant will reach out within one business day — with a straight read on what you actually need. (Demo only — the form isn't wired to a backend yet.)"
-        footer={<Button variant="primary" onClick={() => setSent(false)}>Close</Button>} />
     </div>
   );
 }
