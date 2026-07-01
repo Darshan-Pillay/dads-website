@@ -22,7 +22,7 @@ export default function Footer() {
     { h: 'Connect', items: [
       { label: 'Contact',  href: 'pages/contact.html' },
       { label: 'Insights', href: 'pages/insights.html' },
-      { label: 'Email',    href: 'mailto:hello@softfinity.com' },
+      { label: 'Email',    href: 'mailto:christopher.pillay@softfinity.co.za' },
       { label: 'LinkedIn', href: 'https://www.linkedin.com/', target: '_blank', rel: 'noopener' },
     ]},
   ];

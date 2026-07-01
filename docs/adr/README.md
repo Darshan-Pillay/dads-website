@@ -20,3 +20,6 @@ you, or that future readers might be tempted to undo without context.
 - [0003 — Use Vercel Functions for future backend (DB, payments)](0003-future-backend-vercel-functions.md)
 - [0004 — Adopt TypeScript](0004-adopt-typescript.md)
 - [0005 — Accessibility baseline](0005-accessibility-baseline.md)
+- [0006 — Contact form observability & lead capture redundancy](0006-contact-form-observability.md) *(Proposed — pending stakeholder discussion)*
+- [0007 — Contact form spam protection](0007-contact-form-spam-protection.md)
+- [0008 — Contact form implementation plan](0008-contact-form-implementation-plan.md) *(Accepted, with items blocked on stakeholder input)*

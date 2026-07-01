@@ -7,7 +7,7 @@ import { contactSchema, ALLOWED_DOMAINS } from '../lib/contactSchema.ts';
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
 const MESSAGE_MAX = 1000;
-const CONTACT_MAILTO = 'mailto:hello@softfinity.com';
+const CONTACT_MAILTO = 'mailto:christopher.pillay@softfinity.co.za';
 
 export default function Contact() {
   const [message, setMessage] = useState('');

@@ -9,7 +9,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 function isAllowedOrigin(origin: string | undefined): boolean {
   switch (process.env.VERCEL_ENV) {
     case 'production':
-      return origin === 'https://softfinity.com' || origin === 'https://www.softfinity.com';
+      return origin === 'https://softfinity.co.za' || origin === 'https://www.softfinity.co.za';
     case 'preview':
       return typeof origin === 'string' && /^https:\/\/softfinity-site-[^.]+\.vercel\.app$/.test(origin);
     case 'development':
@@ -110,7 +110,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const { name, email, domain, message } = result.data;
   const toEmail = process.env.CONTACT_TO_EMAIL ?? '';
-  const rootDomain = process.env.CONTACT_DOMAIN ?? 'softfinity.com';
+  const rootDomain = process.env.CONTACT_DOMAIN ?? 'softfinity.co.za';
 
   const bodyText = [
     'New enquiry from the Softfinity contact form.',
