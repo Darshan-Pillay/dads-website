@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Routes, Route, useParams } from 'react-router-dom';
 import type { CSSProperties, MouseEvent } from 'react';
 import Nav from './sections/Nav.tsx';
 import Hero from './sections/Hero.tsx';
@@ -18,9 +19,19 @@ import Closing from './sections/Closing.tsx';
 import Contact from './sections/Contact.tsx';
 import Footer from './sections/Footer.tsx';
 import type { Tweaks } from './types.ts';
+import { SERVICES } from './data/services.ts';
+import ServicePage from './pages/services/ServicePage.tsx';
+import AboutPage from './pages/company/AboutPage.tsx';
+import ApproachPage from './pages/company/ApproachPage.tsx';
+import PrinciplesPage from './pages/company/PrinciplesPage.tsx';
+import IndustriesPage from './pages/company/IndustriesPage.tsx';
+import ConsultantsPage from './pages/company/ConsultantsPage.tsx';
+import CaseStudiesPage from './pages/company/CaseStudiesPage.tsx';
+import ContactPage from './pages/company/ContactPage.tsx';
+import StackAuditPage from './pages/company/StackAuditPage.tsx';
+import TheConflictPage from './pages/company/TheConflictPage.tsx';
+import NotFound from './pages/NotFound.tsx';
 
-// Layout/visual settings, formerly driven by the in-page Tweaks panel.
-// See docs/architecture.md for why the panel was removed from production.
 const TWEAKS: Tweaks = {
   heroStar: 'glow',
   glow: 16,
@@ -47,7 +58,7 @@ function hexToRgb(hex: string): [number, number, number] {
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 }
 
-export default function App() {
+function HomeContent() {
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   // Scroll-reveal observer.
@@ -69,8 +80,7 @@ export default function App() {
     return () => io.disconnect();
   }, []);
 
-  // Re-apply the URL hash after first paint so CTAs from subpages
-  // (../index.html#contact) land on the right section.
+  // Re-apply the URL hash after first paint so CTAs from subpages land on the right section.
   useEffect(() => {
     if (!window.location.hash) return;
     const id = window.location.hash.slice(1);
@@ -128,5 +138,31 @@ export default function App() {
       </main>
       <Footer />
     </div>
+  );
+}
+
+function ServicePageRoute() {
+  const { slug } = useParams<{ slug: string }>();
+  const data = SERVICES.find(s => s.slug === slug);
+  if (!data) return <NotFound />;
+  return <ServicePage data={data} />;
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomeContent />} />
+      <Route path="/services/:slug" element={<ServicePageRoute />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/approach" element={<ApproachPage />} />
+      <Route path="/principles" element={<PrinciplesPage />} />
+      <Route path="/industries" element={<IndustriesPage />} />
+      <Route path="/consultants" element={<ConsultantsPage />} />
+      <Route path="/case-studies" element={<CaseStudiesPage />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/stack-audit" element={<StackAuditPage />} />
+      <Route path="/the-conflict" element={<TheConflictPage />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }

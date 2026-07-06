@@ -1,8 +1,7 @@
-/* Service detail page — shared styles. Loaded by every public/ subpage
-   (services + pages). Defines the container/eyebrow helpers that the
-   homepage gets from src/styles/site.css. */
+/* Subpage styles — merged from public/services/service-page.css and public/pages/page.css.
+   Imported globally in main.tsx and used by SubpageLayout + all subpage components. */
 
-/* ---------- layout helpers (parity with the homepage) ---------- */
+/* ---------- layout helpers ---------- */
 .container { width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 var(--section-px); }
 .container-narrow { width: 100%; max-width: 860px; margin: 0 auto; padding: 0 var(--section-px); }
 .eyebrow {
@@ -15,13 +14,13 @@
   margin: 0 0 var(--space-4);
 }
 
+/* ---------- subpage wrapper (replaces body.sp-body on static pages) ---------- */
 .sp-body {
   background: var(--color-obsidian);
   color: var(--color-snow);
   min-height: 100vh;
   position: relative;
 }
-
 .sp-body::before {
   content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.45;
   background:
@@ -33,7 +32,7 @@
 }
 .sp-body > * { position: relative; z-index: 1; }
 
-/* ---------- nav (compact, links back to main) ---------- */
+/* ---------- nav ---------- */
 .sp-nav {
   position: sticky; top: 0; z-index: 100;
   background: rgba(11,11,18,0.78);
@@ -54,7 +53,7 @@
 }
 .sp-nav__back:hover { color: var(--color-white); gap: 10px; }
 
-/* ---------- service hero ---------- */
+/* ---------- hero ---------- */
 .sp-hero { padding: clamp(64px, 10vw, 132px) 0 clamp(40px, 6vw, 80px); }
 .sp-hero__crumb {
   font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-mist);
@@ -115,7 +114,7 @@
 }
 .sp-section__lead em { color: var(--color-snow); font-style: normal; font-weight: 500; }
 
-/* areas of expertise — tag grid */
+/* areas tag grid */
 .sp-areas {
   list-style: none; margin: 0; padding: 0;
   display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3);
@@ -195,6 +194,7 @@
   padding: 14px 28px; border-radius: var(--radius-pill);
   background: var(--color-gold); color: var(--color-obsidian);
   transition: background var(--dur-fast) var(--ease-out), gap var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+  cursor: pointer; border: 0;
 }
 .sp-cta__btn:hover { background: var(--color-gold-light); gap: 14px; transform: translateY(-1px); }
 
@@ -231,7 +231,7 @@
   color: var(--color-snow); margin: 0;
 }
 
-/* footer */
+/* subpage footer */
 .sp-footer {
   padding: var(--space-6) 0; border-top: 1px solid var(--color-hairline);
   background: var(--color-ink);
@@ -245,9 +245,166 @@
 .sp-footer a { color: var(--color-mist); }
 .sp-footer a:hover { color: var(--color-gold); }
 
-/* ---------- "Connect with a specialist" modal (driven by /contact-modal.js) ----------
-   Both open and close are CSS transitions on a single state class so the modal
-   eases in and out — matching the 700ms ease-in-out reveal used on the homepage. */
+/* ---------- company page layouts (from page.css) ---------- */
+
+.pg-prose {
+  font-family: var(--font-body); font-size: var(--text-body-lg);
+  line-height: var(--leading-relaxed); color: var(--color-slate);
+  max-width: 70ch; margin: 0;
+}
+
+/* approach: numbered phase list */
+.pg-phases {
+  list-style: none; margin: 0; padding: 0; counter-reset: ph;
+  display: grid; gap: 0; max-width: 900px;
+}
+.pg-phases li {
+  counter-increment: ph;
+  padding: var(--space-5) 0; border-top: 1px solid var(--color-hairline);
+  display: grid; grid-template-columns: 60px 1fr; gap: var(--space-4);
+}
+.pg-phases li:last-child { border-bottom: 1px solid var(--color-hairline); }
+.pg-phases li::before {
+  content: counter(ph, decimal-leading-zero);
+  font-family: var(--font-display); font-size: 28px; font-weight: 300;
+  color: var(--color-gold); line-height: 1; letter-spacing: -0.02em;
+}
+.pg-phases li h3 {
+  font-family: var(--font-display); font-size: var(--text-h4); font-weight: 500;
+  color: var(--color-white); margin: 0 0 6px;
+}
+.pg-phases li p {
+  font-family: var(--font-body); font-size: var(--text-body); color: var(--color-slate);
+  margin: 0; line-height: 1.55;
+}
+
+/* consultants: profile cards */
+.pg-profile-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4);
+  max-width: 1080px;
+}
+@media (max-width: 980px) { .pg-profile-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .pg-profile-grid { grid-template-columns: 1fr; } }
+.pg-profile {
+  padding: var(--space-5);
+  border: 1px solid var(--color-hairline); border-radius: var(--radius-lg);
+  background: var(--color-surface); box-shadow: var(--shadow-inset-top);
+  transition: border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.pg-profile:hover { border-color: var(--color-gold-deep); transform: translateY(-1px); }
+.pg-profile__role {
+  font-family: var(--font-display); font-size: var(--text-h4); font-weight: 500;
+  color: var(--color-white); display: block; margin-bottom: var(--space-3);
+}
+.pg-profile__body {
+  font-family: var(--font-body); font-size: var(--text-body); color: var(--color-slate);
+  margin: 0; line-height: 1.55;
+}
+
+/* case studies */
+.pg-cases { display: grid; gap: var(--space-5); max-width: 1080px; }
+.pg-case {
+  padding: var(--space-6);
+  border: 1px solid var(--color-hairline); border-radius: var(--radius-xl);
+  background: var(--color-surface); box-shadow: var(--shadow-inset-top);
+}
+.pg-case__tag {
+  font-family: var(--font-display); font-size: 11px; font-weight: 600;
+  letter-spacing: var(--tracking-widest); text-transform: uppercase;
+  color: var(--color-gold); background: var(--color-gold-a08);
+  border: 1px solid var(--color-gold-a32); border-radius: var(--radius-pill);
+  padding: 5px 12px; display: inline-block; margin-bottom: var(--space-3);
+}
+.pg-case__title {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(22px, 2.8vw, 30px); color: var(--color-white);
+  margin: 0 0 var(--space-4); line-height: 1.2;
+}
+.pg-case__dl {
+  display: grid; grid-template-columns: 140px 1fr; gap: var(--space-3) var(--space-5);
+  margin: 0;
+}
+@media (max-width: 620px) { .pg-case__dl { grid-template-columns: 1fr; gap: 4px var(--space-5); } }
+.pg-case__dl dt {
+  font-family: var(--font-display); font-size: var(--text-overline); font-weight: 500;
+  letter-spacing: var(--tracking-widest); text-transform: uppercase;
+  color: var(--color-gold); padding-top: 4px;
+}
+.pg-case__dl dd {
+  font-family: var(--font-body); font-size: var(--text-body); color: var(--color-snow);
+  margin: 0; line-height: 1.55;
+}
+
+/* principles: concept cards */
+.pg-concepts {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5);
+  max-width: 1080px;
+}
+@media (max-width: 820px) { .pg-concepts { grid-template-columns: 1fr; } }
+.pg-concept {
+  padding: var(--space-5);
+  border: 1px solid var(--color-hairline); border-radius: var(--radius-lg);
+  background: var(--color-surface); box-shadow: var(--shadow-inset-top);
+}
+.pg-concept__title {
+  font-family: var(--font-display); font-size: var(--text-h4); font-weight: 500;
+  color: var(--color-gold); margin: 0 0 var(--space-3); letter-spacing: -0.01em;
+}
+.pg-concept__body {
+  font-family: var(--font-body); font-size: var(--text-body); color: var(--color-slate);
+  margin: 0; line-height: 1.55;
+}
+
+/* industries grid */
+.pg-industries {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4);
+  max-width: 1080px;
+}
+@media (max-width: 760px) { .pg-industries { grid-template-columns: 1fr; } }
+.pg-industry {
+  padding: var(--space-5);
+  border: 1px solid var(--color-hairline); border-radius: var(--radius-lg);
+  background: var(--color-surface); box-shadow: var(--shadow-inset-top);
+}
+.pg-industry__title {
+  font-family: var(--font-display); font-size: var(--text-h4); font-weight: 500;
+  color: var(--color-white); margin: 0 0 var(--space-2);
+}
+.pg-industry__body {
+  font-family: var(--font-body); font-size: var(--text-body); color: var(--color-slate);
+  margin: 0; line-height: 1.55;
+}
+
+/* stack-audit paths */
+.pg-paths {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5);
+  max-width: 1180px;
+}
+@media (max-width: 980px) { .pg-paths { grid-template-columns: 1fr; } }
+.pg-path {
+  padding: var(--space-6);
+  border: 1px solid var(--color-hairline); border-radius: var(--radius-xl);
+  background: var(--color-surface); box-shadow: var(--shadow-inset-top);
+  display: flex; flex-direction: column; gap: var(--space-3);
+}
+.pg-path__num {
+  font-family: var(--font-display); font-size: 34px; font-weight: 300; line-height: 1;
+  color: var(--color-gold); letter-spacing: -0.02em; margin-bottom: var(--space-2);
+}
+.pg-path__title {
+  font-family: var(--font-display); font-size: var(--text-h3); font-weight: 400;
+  color: var(--color-white); margin: 0; line-height: 1.15;
+}
+.pg-path__lead {
+  font-family: var(--font-body); font-size: var(--text-body-lg); color: var(--color-snow);
+  margin: 0; line-height: 1.4; font-weight: 500;
+}
+.pg-path__body {
+  font-family: var(--font-body); font-size: var(--text-body); color: var(--color-slate);
+  margin: 0; line-height: 1.55;
+}
+
+/* ---------- contact modal (React version, same classes as vanilla JS modal) ---------- */
 .sp-modal {
   position: fixed; inset: 0; z-index: 1000;
   display: grid; place-items: center;
@@ -260,8 +417,6 @@
 .sp-modal__scrim {
   position: absolute; inset: 0;
   background: rgba(7, 7, 11, 0.78);
-  /* No backdrop-filter: blur is expensive to animate and causes paint
-     stutter on the scrim. Plain opacity reads as a clean dim. */
 }
 .sp-modal__card {
   position: relative;
@@ -295,45 +450,18 @@
   margin: 0 0 var(--space-5);
   text-wrap: pretty;
 }
-.sp-modal__form { display: grid; gap: var(--space-4); }
-.sp-modal__row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
-@media (max-width: 520px) { .sp-modal__row { grid-template-columns: 1fr; } }
-.sp-modal__field { display: grid; gap: 6px; font-size: var(--text-sm); color: var(--color-slate); }
-.sp-modal__field > span { font-family: var(--font-body); }
-.sp-modal__field > input,
-.sp-modal__field > select,
-.sp-modal__field > textarea {
-  font: inherit;
-  background: var(--color-ink);
-  color: var(--color-white);
-  border: 1px solid var(--color-hairline-2);
-  border-radius: var(--radius-md);
-  padding: 10px 12px;
-  transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
-}
-.sp-modal__field > textarea {
-  resize: none; min-height: 96px;
-  font-family: var(--font-body); line-height: 1.5;
-}
-.sp-modal__field > input::placeholder,
-.sp-modal__field > textarea::placeholder { color: var(--color-mist); }
-.sp-modal__field > input:focus,
-.sp-modal__field > select:focus,
-.sp-modal__field > textarea:focus {
-  outline: none;
-  border-color: var(--color-gold);
-  box-shadow: 0 0 0 3px var(--color-gold-a16);
-}
-.sp-modal__hint {
-  font-size: 12px; color: var(--color-mist); font-family: var(--font-body);
-}
-.sp-modal__submit {
-  width: 100%; justify-content: center;
-  margin-top: var(--space-2);
-}
 .sp-modal__note {
   margin: var(--space-4) 0 0;
   font-family: var(--font-body); font-size: var(--text-sm);
   color: var(--color-mist); text-align: center;
 }
 body.sp-modal-open { overflow: hidden; }
+
+/* thanks pane (modal success state) */
+.sp-modal__thanks {
+  display: flex; flex-direction: column; align-items: center;
+  gap: var(--space-4); text-align: center; padding: var(--space-5) 0;
+}
+.sp-modal__thanks-close {
+  margin-top: var(--space-2);
+}

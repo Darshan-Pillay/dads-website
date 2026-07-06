@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Card } from '../ds.tsx';
 import { Icon } from '../icons.tsx';
 
@@ -40,10 +41,10 @@ export default function ServicesFull() {
               <ul className="service__items">
                 {s.items.map((it) => <li key={it}>{it}</li>)}
               </ul>
-              <a className="service__link" href={`services/${s.slug}.html`}>
+              <Link className="service__link" to={`/services/${s.slug}`}>
                 Explore {s.tag} services
                 <Icon name="arrow-right" size={16} />
-              </a>
+              </Link>
             </Card>
           ))}
         </div>

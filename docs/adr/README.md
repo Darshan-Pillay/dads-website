@@ -23,3 +23,4 @@ you, or that future readers might be tempted to undo without context.
 - [0006 — Contact form observability & lead capture redundancy](0006-contact-form-observability.md) *(Proposed — pending stakeholder discussion)*
 - [0007 — Contact form spam protection](0007-contact-form-spam-protection.md)
 - [0008 — Contact form implementation plan](0008-contact-form-implementation-plan.md) *(Accepted, with items blocked on stakeholder input)*
+- [0009 — Migrate static subpages to React Router](0009-react-router-subpages.md)

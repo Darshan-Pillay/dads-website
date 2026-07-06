@@ -499,12 +499,19 @@
 
 /* ---------- footer ---------- */
 .site-footer { background: var(--color-ink); border-top: 1px solid var(--color-hairline); padding: var(--space-8) 0 var(--space-6); }
-.site-footer__inner { display: grid; grid-template-columns: 1.4fr 2fr; gap: var(--space-8); }
+.site-footer__inner { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: var(--space-8); }
 @media (max-width: 760px) { .site-footer__inner { grid-template-columns: 1fr; gap: var(--space-7); } }
-.site-footer__brand img { height: 26px; margin-bottom: var(--space-4); }
+
+.site-footer__brand { display: flex; flex-direction: column; align-items: flex-start; }
+.site-footer__brand img { height: 26px; width: auto; margin-bottom: var(--space-2); }
 .site-footer__brand p { font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-mist); max-width: 240px; margin: 0; }
-.site-footer__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
-.site-footer__col h4 { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 500; color: var(--color-snow); margin: 0 0 var(--space-4); letter-spacing: 0.02em; }
+.site-footer__credentials { font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-slate); line-height: 1.7; margin: var(--space-2) 0 0; }
+.site-footer__cols { display: contents; }
+
+.site-footer__col h4, .site-footer__cta h4 { font-family: var(--font-display); font-size: var(--text-sm); font-weight: 500; color: var(--color-snow); margin: 0 0 var(--space-4); letter-spacing: 0.02em; }
+.site-footer__cta p { font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-mist); margin: 0 0 var(--space-4); line-height: 1.6; }
+.site-footer__cta-link { font-family: var(--font-body); font-size: var(--text-sm); font-weight: 500; color: var(--color-gold); }
+.site-footer__cta-link:hover { color: var(--color-gold-light); }
 .site-footer__col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
 .site-footer__col a { font-family: var(--font-body); font-size: var(--text-sm); color: var(--color-mist); }
 .site-footer__col a:hover { color: var(--color-gold); }

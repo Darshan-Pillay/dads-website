@@ -13,3 +13,23 @@ export type Tweaks = {
   accent: [string, string, string];
   showProof: boolean;
 };
+
+export type Outcome = {
+  num: string;
+  title: string;
+  body: string;
+};
+
+export type ServicePageData = {
+  slug: string;
+  tag: string;
+  pageTitle: string;
+  title: string;
+  lead: string;
+  heroImage: string;
+  areasEyebrow: string;
+  areas: string[];
+  areasLead: string;
+  outcomes: [Outcome, Outcome, Outcome];
+  approachLead: string;
+};

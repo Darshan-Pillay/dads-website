@@ -1,11 +1,11 @@
 import type { CSSProperties, HTMLAttributes } from 'react';
 import {
-  ArrowRight, Box, Briefcase, Check, ChevronDown, Cloud, CloudFog,
+  ArrowRight, BarChart3, Box, Briefcase, Building2, Check, ChevronDown, Cloud, CloudFog,
   Compass, Cpu, Database, DatabaseZap, Eye, Factory, FlaskConical,
-  Gauge, GraduationCap, Handshake, Landmark, Layers, LayoutTemplate,
+  Gauge, GraduationCap, Handshake, Landmark, Layers, Layers3, LayoutTemplate,
   LifeBuoy, Link as LinkIcon, Navigation, RadioTower, Rocket, Route,
   Search, Server, Shield, ShieldCheck, ShoppingBag, Shuffle, Smartphone,
-  Sparkles, SquareStack, Stethoscope, Target, Truck, Users, Workflow,
+  Sparkles, SquareStack, Stethoscope, Target, Truck, Users, Users2, Workflow,
   X, Zap,
   type LucideIcon,
 } from 'lucide-react';
@@ -14,8 +14,10 @@ import {
 // Only the icons listed here ship in the JS chunk.
 const ICONS: Record<string, LucideIcon> = {
   'arrow-right': ArrowRight,
+  'bar-chart-3': BarChart3,
   'box': Box,
   'briefcase': Briefcase,
+  'building-2': Building2,
   'check': Check,
   'chevron-down': ChevronDown,
   'cloud': Cloud,
@@ -32,6 +34,7 @@ const ICONS: Record<string, LucideIcon> = {
   'handshake': Handshake,
   'landmark': Landmark,
   'layers': Layers,
+  'layers-3': Layers3,
   'layout-template': LayoutTemplate,
   'life-buoy': LifeBuoy,
   'link': LinkIcon,
@@ -52,6 +55,7 @@ const ICONS: Record<string, LucideIcon> = {
   'target': Target,
   'truck': Truck,
   'users': Users,
+  'users-2': Users2,
   'workflow': Workflow,
   'x': X,
   'zap': Zap,
