@@ -2,7 +2,7 @@ import { Icon } from '../icons.tsx';
 
 export default function HowWeWork() {
   const steps = [
-    { n: '01', icon: 'search', title: 'Strategy & Assessment', body: 'Roadmap development, technology assessment and selection — grounded in your business goals.' },
+    { n: '01', icon: 'search', title: 'Strategy & Assessment', body: 'Roadmap development, technology assessment and selection, grounded in your business goals.' },
     { n: '02', icon: 'navigation', title: 'Architecture & Design', body: 'Solution architecture, system integration, data migration and modernisation, change management.' },
     { n: '03', icon: 'handshake', title: 'Delivery & Enablement', body: 'Programme and project delivery, knowledge transfer, skills enablement, managed transformation support.' },
   ];
@@ -15,8 +15,8 @@ export default function HowWeWork() {
             Working together to deliver results.
           </h2>
           <p className="section__lead reveal" style={{ '--d': '120ms' }}>
-            We partner with clients throughout the entire transformation journey — combining
-            our consultants, our IP, and your team into one cross-functional delivery unit.
+            We partner with clients through the full project, combining our consultants,
+            our IP, and your team into one cross-functional delivery unit.
           </p>
         </div>
         <div className="steps">

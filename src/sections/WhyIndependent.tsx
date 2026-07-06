@@ -12,7 +12,7 @@ export default function WhyIndependent({ t }: { t: Tweaks }) {
         <div className="section__head">
           <p className="eyebrow reveal">Why independent matters</p>
           <h2 className="section__statement reveal" style={{ '--d': '60ms', maxWidth: '24ch', marginInline: 'auto' }}>
-            We recommend what works best for <span className="gold">you</span> — not for a vendor.
+            We recommend what works best for <span className="gold">you</span>, not for a vendor.
           </h2>
         </div>
 
@@ -41,7 +41,7 @@ export default function WhyIndependent({ t }: { t: Tweaks }) {
             </div>
             <div className="ledger__col ledger__col--them">
               <p className="ledger__label">The vendors</p>
-              <p>Sell their stack, their badges, their lock-in — not your outcome.</p>
+              <p>Sell their stack, their badges, their lock-in. Not your outcome.</p>
             </div>
             <div className="ledger__col ledger__col--us">
               <p className="ledger__label">Softfinity</p>
@@ -51,7 +51,7 @@ export default function WhyIndependent({ t }: { t: Tweaks }) {
         )}
 
         <blockquote className="pull-quote reveal" style={{ '--d': '200ms' }}>
-          Technology decisions should be driven by business outcomes — not vendor preferences.
+          Technology decisions should be driven by business outcomes, not vendor preferences.
         </blockquote>
       </div>
     </section>

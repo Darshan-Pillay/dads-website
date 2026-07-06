@@ -30,9 +30,9 @@ export default function Hero({ t }: { t: Tweaks }) {
           Technology-agnostic consulting.<br />Business-focused<span className="gold"> outcomes.</span>
         </h1>
         <p className="hero__lead">
-          We help organisations achieve their strategic objectives by providing highly experienced
-          consultants who work alongside client teams to deliver measurable business outcomes —
-          independent of any vendor, platform, or product.
+          We work alongside client teams to deliver real business results, independent
+          of any vendor, platform, or product. No agenda. No preferred stack. Just
+          experienced consultants who are accountable to your outcomes.
         </p>
         <div className="hero__actions">
           <Button variant="primary" size="lg" as="a" href="#contact"

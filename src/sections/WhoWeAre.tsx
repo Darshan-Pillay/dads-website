@@ -3,9 +3,9 @@ import { Icon } from '../icons.tsx';
 
 export default function WhoWeAre() {
   const points = [
-    { icon: 'shield-check', title: 'Independent', body: 'We recommend and implement solutions based solely on what serves your business — never tied to any single vendor, platform, or product.' },
-    { icon: 'users', title: 'Collaborative', body: 'Our consultants integrate seamlessly with your internal teams, transferring knowledge to ensure long-term sustainability.' },
-    { icon: 'compass', title: 'Outcome-led', body: 'Our goal is not to implement technology, but to help organisations realise measurable, lasting business value.' },
+    { icon: 'shield-check', title: 'Independent', body: 'We recommend and implement solutions based solely on what serves your business, never tied to any single vendor, platform, or product.' },
+    { icon: 'users', title: 'Collaborative', body: 'Our consultants work directly inside your teams. We transfer knowledge deliberately, so your people own the result when we leave.' },
+    { icon: 'compass', title: 'Outcome-led', body: 'We are not here to implement technology. We are here to help organisations get lasting business value from it.' },
   ];
   return (
     <section className="section section--center" id="who-we-are">

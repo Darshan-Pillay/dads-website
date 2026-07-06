@@ -9,14 +9,13 @@ export default function Closing() {
       <div className="container-narrow closing__inner">
         <p className="eyebrow reveal">Your trusted technology partner</p>
         <h2 className="section__statement reveal" style={{ '--d': '60ms' }}>
-          Whatever your technology landscape,<br />
+          Whatever your technology stack,<br />
           our focus remains the same.
         </h2>
         <p className="closing__lead reveal" style={{ '--d': '140ms' }}>
-          Independent expertise across leading enterprise platforms and emerging technologies.
-          Experienced consultants, deep industry knowledge, and a collaborative delivery model
-          — combined to help organisations navigate complexity, reduce risk, and achieve
-          meaningful business results that create <em>lasting value</em>.
+          Independent consultants with deep platform expertise and real industry experience,
+          working inside your team from strategy through to delivery. No agenda,
+          no vendor bias. Just results that hold up.
         </p>
       </div>
     </section>

@@ -11,7 +11,7 @@ export default function FeatureBand() {
       <div className="feature-band__caption container reveal">
         <p className="eyebrow">A new kind of partnership</p>
         <h2 className="feature-band__title">
-          Where intelligence works <em>with</em> people — not over them.
+          Where intelligence works <em>with</em> people, not over them.
         </h2>
         <p className="feature-band__lead">
           Our consultants embed with your team, blending human judgement with technology

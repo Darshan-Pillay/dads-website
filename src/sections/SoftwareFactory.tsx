@@ -20,12 +20,12 @@ export default function SoftwareFactory() {
         <div className="sf__copy">
           <p className="eyebrow reveal">Software Factory &amp; Solutions Centre</p>
           <h2 className="section__title reveal" style={{ '--d': '60ms' }}>
-            The innovation engine behind every Softfinity engagement.
+            The build centre behind every Softfinity engagement.
           </h2>
           <p className="sf__lead reveal" style={{ '--d': '120ms' }}>
-            Our dedicated Software Factory and Solutions Centre is where we design, build, and
-            deliver scalable, standards-based enterprise solutions — supporting digital
-            transformation and accelerating time-to-market for our clients.
+            Our Software Factory and Solutions Centre is where we design, build, and test
+            enterprise solutions before they reach your team: standards-based, portable,
+            and built to last.
           </p>
           <ul className="sf__capabilities reveal" style={{ '--d': '180ms' }}>
             {capabilities.map((c) => (
