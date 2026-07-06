@@ -394,6 +394,28 @@
    visual rhythm of the form consistent. */
 .contact__form .pl-field__input--area { resize: none; }
 
+/* Clip inputs to the wrapper's rounded corners and declare dark
+   color-scheme so the browser uses its dark autofill overlay rather
+   than the default yellow/white one. Combined with the inset
+   box-shadow this makes autofill visually match a typed value.
+   Note: browsers intentionally keep some autofill signal as a
+   security feature — this gets as close to invisible as possible. */
+.contact__form .pl-field__wrap { overflow: hidden; }
+.contact__form .pl-field__wrap input { color-scheme: dark; }
+
+.contact__form .pl-field__wrap input:-webkit-autofill,
+.contact__form .pl-field__wrap input:-webkit-autofill:hover,
+.contact__form .pl-field__wrap input:-webkit-autofill:focus,
+.contact__form .pl-field__wrap input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #1B1B25 inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  border-radius: 8px !important;
+  border: none !important;
+  outline: none !important;
+  caret-color: #ffffff;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 /* contact star above */
 .contact__star { width: 48px; height: 48px; filter: drop-shadow(0 0 20px rgba(198,161,91,0.5)); margin: 0 auto var(--space-5); animation: twinkle 5.5s var(--ease-in-out) infinite; }
 
@@ -567,7 +589,7 @@
 /* ---------- Feature band — AI Robots image break after the hero ---------- */
 .feature-band { position: relative; height: clamp(360px, 56vw, 540px); overflow: hidden; }
 .feature-band__media { position: absolute; inset: 0; }
-.feature-band__media img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.feature-band__media img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
 .feature-band__scrim {
   position: absolute; inset: 0;
   background:

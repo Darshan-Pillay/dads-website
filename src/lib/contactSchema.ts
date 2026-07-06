@@ -13,7 +13,7 @@ export const contactSchema = z.object({
     (v) => (v === '' || v === undefined ? undefined : v),
     z.enum(ALLOWED_DOMAINS).optional()
   ),
-  message: z.string().trim().min(10, 'Message must be at least 10 characters').max(1000, 'Message is too long'),
+  message: z.string().trim().min(50, 'Tell us a little more — 50 characters minimum.').max(1000, 'Message is too long'),
 });
 
 export type ContactPayload = z.infer<typeof contactSchema>;

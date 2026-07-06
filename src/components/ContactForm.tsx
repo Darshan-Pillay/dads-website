@@ -4,6 +4,7 @@ import { Button, Input, Select, Textarea } from '../ds.tsx';
 import { contactSchema, ALLOWED_DOMAINS } from '../lib/contactSchema.ts';
 
 type Status = 'idle' | 'submitting' | 'error';
+type FieldErrors = Partial<Record<'name' | 'email' | 'message', string>>;
 
 const MESSAGE_MAX = 1000;
 const CONTACT_MAILTO = 'mailto:christopher.pillay@softfinity.co.za';
@@ -16,8 +17,13 @@ interface ContactFormProps {
 export default function ContactForm({ onSuccess, className }: ContactFormProps) {
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState<Status>('idle');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [apiError, setApiError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const mountTime = useRef(String(Date.now()));
+
+  const clearField = (field: keyof FieldErrors) => {
+    setFieldErrors(prev => (prev[field] ? { ...prev, [field]: undefined } : prev));
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,13 +35,18 @@ export default function ContactForm({ onSuccess, className }: ContactFormProps) 
 
     const result = contactSchema.safeParse(raw);
     if (!result.success) {
-      setStatus('error');
-      setErrorMsg('Please check the fields above and try again.');
+      const flat = result.error.flatten().fieldErrors;
+      setFieldErrors({
+        name:    flat.name?.[0],
+        email:   flat.email?.[0],
+        message: flat.message?.[0],
+      });
       return;
     }
 
+    setFieldErrors({});
     setStatus('submitting');
-    setErrorMsg('');
+    setApiError('');
 
     try {
       const res = await fetch('/api/contact', {
@@ -49,11 +60,11 @@ export default function ContactForm({ onSuccess, className }: ContactFormProps) 
       } else {
         const data = await res.json().catch(() => ({})) as { error?: string };
         setStatus('error');
-        setErrorMsg(data.error ?? 'Something went wrong. Please try again.');
+        setApiError(data.error ?? 'Something went wrong. Please try again.');
       }
     } catch {
       setStatus('error');
-      setErrorMsg('Unable to reach the server. Please check your connection.');
+      setApiError('Unable to reach the server. Please check your connection.');
     }
   };
 
@@ -61,7 +72,7 @@ export default function ContactForm({ onSuccess, className }: ContactFormProps) 
 
   return (
     <form
-      className={className}
+      className={['contact__form', className].filter(Boolean).join(' ')}
       name="contact"
       onSubmit={handleSubmit}
       noValidate
@@ -76,8 +87,16 @@ export default function ContactForm({ onSuccess, className }: ContactFormProps) 
         aria-hidden="true"
       />
       <div className="contact__row">
-        <Input label="Name" name="name" placeholder="Jordan Maré" autoComplete="name" required />
-        <Input label="Work email" name="email" type="email" placeholder="you@company.com" autoComplete="email" required />
+        <Input
+          label="Name" name="name" placeholder="Jordan Maré" autoComplete="name" required
+          error={fieldErrors.name}
+          onChange={() => clearField('name')}
+        />
+        <Input
+          label="Work email" name="email" type="email" placeholder="you@company.com" autoComplete="email" required
+          error={fieldErrors.email}
+          onChange={() => clearField('email')}
+        />
       </div>
       <Select
         label="What do you need help with?"
@@ -93,8 +112,12 @@ export default function ContactForm({ onSuccess, className }: ContactFormProps) 
         placeholder="A line about where you're headed…"
         required
         value={message}
-        onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
-        helper={`${message.length} / ${MESSAGE_MAX}`}
+        error={fieldErrors.message}
+        onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
+          setMessage(e.target.value);
+          clearField('message');
+        }}
+        helper={fieldErrors.message ? undefined : `${message.length} / ${MESSAGE_MAX}`}
       />
       <div className={submitting ? 'contact__btn-wrap contact__btn-wrap--loading' : 'contact__btn-wrap'}>
         <Button
@@ -105,9 +128,9 @@ export default function ContactForm({ onSuccess, className }: ContactFormProps) 
           {submitting ? 'Sending…' : 'Submit'}
         </Button>
       </div>
-      {status === 'error' && (
+      {status === 'error' && apiError && (
         <p className="contact__error" role="alert">
-          {errorMsg}{' '}
+          {apiError}{' '}
           <a href={CONTACT_MAILTO} className="contact__error-link">
             Email us directly
           </a>{' '}

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Routes, Route, useParams } from 'react-router-dom';
+import { Routes, Route, useParams, useLocation } from 'react-router-dom';
 import type { CSSProperties, MouseEvent } from 'react';
 import Nav from './sections/Nav.tsx';
 import Hero from './sections/Hero.tsx';
@@ -141,6 +141,14 @@ function HomeContent() {
   );
 }
 
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) window.scrollTo(0, 0);
+  }, [pathname, hash]);
+  return null;
+}
+
 function ServicePageRoute() {
   const { slug } = useParams<{ slug: string }>();
   const data = SERVICES.find(s => s.slug === slug);
@@ -150,7 +158,9 @@ function ServicePageRoute() {
 
 export default function App() {
   return (
-    <Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
       <Route path="/" element={<HomeContent />} />
       <Route path="/services/:slug" element={<ServicePageRoute />} />
       <Route path="/about" element={<AboutPage />} />
@@ -164,5 +174,6 @@ export default function App() {
       <Route path="/the-conflict" element={<TheConflictPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
+    </>
   );
 }

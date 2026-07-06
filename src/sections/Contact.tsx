@@ -37,7 +37,7 @@ export default function Contact() {
           Tell us about your transformation. We'll bring the experience.
         </h2>
         <ContactForm
-          className="contact__card contact__form reveal"
+          className="contact__card reveal"
           onSuccess={() => setSucceeded(true)}
         />
         <p className="contact__note reveal" style={{ '--d': '200ms' } as React.CSSProperties}>No pitch. No agenda. Just honest direction.</p>
