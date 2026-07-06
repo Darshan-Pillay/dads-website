@@ -17,8 +17,7 @@ export default function WhoWeAre() {
           </h2>
           <p className="section__lead reveal" style={{ '--d': '120ms' }}>
             Softfinity Consulting is a business and technology consulting and systems
-            integration firm. Through our Translucent Engagement Model, we deliver value-driven
-            solutions across Transportation &amp; Logistics, Telecommunications &amp; Media,
+            integration firm. Through our Translucent Engagement Model, we work across Transportation &amp; Logistics, Telecommunications &amp; Media,
             Financial Services, Government, Energy, and beyond.
           </p>
         </div>

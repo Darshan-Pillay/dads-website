@@ -11,9 +11,9 @@ function CtaButton({ label }: { label: string }) {
 const PHASES = [
   { title: 'Strategy & Roadmap Development', body: "We anchor the journey in your business goals — not the latest vendor cycle. Outputs are decision-grade artefacts your board can endorse." },
   { title: 'Technology Assessment & Selection', body: "Objective evaluation of options against your risk, budget, and operations. Bias toward best-of-breed; bias against vendor lock-in." },
-  { title: 'Solution Architecture & Design', body: "Standards-based, componentised architectures that flex as you grow. We design for the next platform shift, not just this one." },
+  { title: 'Solution Architecture & Design', body: "Standards-based, componentised architectures built to change as requirements change. We design for the next platform shift, not just this one." },
   { title: 'Programme & Project Delivery', body: "Senior delivery alongside your team — outcomes measured, not assumed. We don't graduate junior consultants on your dime." },
-  { title: 'System Integration', body: "Unifying the alliance: vendors, services, partners — into one whole. The hardest, least glamorous, most valuable phase." },
+  { title: 'System Integration', body: "Getting vendors, services, and partners to actually work together as one. The hardest, least glamorous, most valuable phase." },
   { title: 'Data Migration & Modernisation', body: "Lifting legacy data into modern platforms safely and without disruption. Migration is data hygiene at scale." },
   { title: 'Change Management', body: "Bringing your people with the work — the most underestimated success factor. Tech adoption is a human problem." },
   { title: 'Knowledge Transfer & Skills Enablement', body: "Measured as a deliverable. Your team owns what we built, together. We leave you stronger than we found you." },
@@ -30,7 +30,7 @@ export default function ApproachPage() {
           <p className="sp-hero__crumb"><Link to="/">Softfinity</Link> &nbsp;/&nbsp; Approach</p>
           <div className="sp-hero__head"><span className="sp-hero__tag">Approach</span></div>
           <h1 className="sp-hero__title">Working together to deliver results.</h1>
-          <p className="sp-hero__lead">We partner with clients throughout the entire engagement, combining our consultants, our IP, and your team into one cross-functional delivery unit. Below is the nine-phase rhythm every Softfinity engagement follows.</p>
+          <p className="sp-hero__lead">We partner with clients throughout the entire engagement, putting our consultants, our IP, and your team into one delivery unit. Below is the nine-phase rhythm every Softfinity engagement follows.</p>
           <div className="sp-hero__media">
             <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80" alt="" loading="lazy" />
           </div>

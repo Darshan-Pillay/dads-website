@@ -3,8 +3,8 @@ export default function FeatureBand() {
     <section className="feature-band" aria-label="Intelligence working with people">
       <div className="feature-band__media">
         <picture>
-          <source srcSet="assets/ai-humans.webp" type="image/webp" />
-          <img src="assets/ai-humans.jpg" alt="" loading="lazy" decoding="async" width="1604" height="839" />
+          <source srcSet="/assets/ai-humans.webp" type="image/webp" />
+          <img src="/assets/ai-humans.jpg" alt="" loading="lazy" decoding="async" width="1604" height="839" />
         </picture>
         <div className="feature-band__scrim" />
       </div>

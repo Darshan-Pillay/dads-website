@@ -41,7 +41,6 @@ export default function SubpageLayout({
         <footer className="sp-footer">
           <div className="sp-footer__inner">
             <span>© 2026 Softfinity Consulting (Pty) Ltd. Technology-agnostic. Business-focused.</span>
-            <Link to="/">← Back to home</Link>
           </div>
         </footer>
       </div>

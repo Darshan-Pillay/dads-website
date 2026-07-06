@@ -13,7 +13,7 @@ export default function Closing() {
           our focus remains the same.
         </h2>
         <p className="closing__lead reveal" style={{ '--d': '140ms' }}>
-          Independent consultants with deep platform expertise and real industry experience,
+          Independent consultants with platform expertise and industry experience,
           working inside your team from strategy through to delivery. No agenda,
           no vendor bias. Just results that hold up.
         </p>

@@ -51,7 +51,7 @@ export default function AboutPage() {
             <p className="eyebrow">Our commitment</p>
             <h2 className="sp-section__title">Consulting that builds capability, not just advice.</h2>
           </div>
-          <p className="pg-prose">We believe consulting must go beyond advice. By embedding knowledge transfer, IP creation, and collaborative execution into every project, we ensure our clients leave with solutions and the capability to run them. Our vision is to help organisations implement flexible, componentised, standards-based enterprise architectures that connect business units, suppliers, customers, and partners without friction.</p>
+          <p className="pg-prose">We believe consulting must go beyond advice. By embedding knowledge transfer, IP creation, and collaborative execution into every project, we ensure our clients leave with solutions and the capability to run them. Our vision is to help organisations implement flexible, standards-based enterprise architectures that connect business units, suppliers, customers, and partners without the usual integration headaches.</p>
         </div>
       </section>
 

@@ -14,7 +14,7 @@ export const SERVICES: ServicePageData[] = [
       'SAP SuccessFactors', 'SAP Analytics', 'SAP Integration',
       'SAP Migration & Upgrades', 'SAP Cloud Solutions',
     ],
-    areasLead: 'We help organisations modernise ERP environments while ensuring business continuity and long-term scalability.',
+    areasLead: 'We help organisations modernise ERP environments without disrupting the operations that run on them.',
     outcomes: [
       { num: '01', title: 'ERP that fits', body: 'Modernise core systems without forcing your business to twist around the platform.' },
       { num: '02', title: 'Lower TCO', body: 'Right-size licensing, modules, and infrastructure. Pay for what you actually use.' },
@@ -35,7 +35,7 @@ export const SERVICES: ServicePageData[] = [
       'Power BI', 'SharePoint', 'Teams', 'Enterprise Security',
       'Application Modernisation',
     ],
-    areasLead: 'We help businesses unlock greater value from their Microsoft investments through practical, scalable solutions.',
+    areasLead: 'We help businesses get more from their Microsoft investment with solutions people actually adopt.',
     outcomes: [
       { num: '01', title: 'Productivity, raised', body: 'Modern collaboration that your people actually adopt — not another tool they ignore.' },
       { num: '02', title: 'Cloud done right', body: 'Azure architectures that scale with you, with cost control built in from day one.' },
@@ -48,7 +48,7 @@ export const SERVICES: ServicePageData[] = [
     tag: 'Oracle',
     pageTitle: 'Oracle Consulting Services — Softfinity Consulting',
     title: 'Oracle Consulting Services',
-    lead: 'Enable enterprise performance and operational excellence with Oracle technologies. Our Oracle specialists support organisations in implementing and optimising solutions that improve financial management, operational efficiency, and business intelligence.',
+    lead: 'Get Oracle running at full capability. Our specialists help organisations implement and optimise Oracle technologies to improve financial management, cut operational drag, and put better data in front of the people who need it.',
     heroImage: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1600&q=80',
     areasEyebrow: 'Areas of expertise',
     areas: [
@@ -56,7 +56,7 @@ export const SERVICES: ServicePageData[] = [
       'Oracle Analytics', 'Oracle Integration', 'Oracle Performance Optimisation',
       'Oracle Migrations',
     ],
-    areasLead: 'Our expertise helps organisations maximise the value of their Oracle investments while supporting future growth.',
+    areasLead: 'We help organisations get more from Oracle without committing to a roadmap that serves the vendor more than the business.',
     outcomes: [
       { num: '01', title: 'Finance, modernised', body: 'Oracle ERP and HCM deployments aligned with how your finance and HR teams actually work.' },
       { num: '02', title: 'Performance you can feel', body: 'Database and infrastructure tuning that turns slow systems into competitive advantage.' },
@@ -76,7 +76,7 @@ export const SERVICES: ServicePageData[] = [
       'IBM Cloud', 'IBM Integration Solutions', 'IBM Automation', 'IBM Data Platforms',
       'IBM Security Solutions', 'IBM Middleware', 'Enterprise Integration',
     ],
-    areasLead: 'We help clients modernise legacy environments and build scalable, future-ready technology platforms.',
+    areasLead: 'We help clients modernise legacy environments and build platforms that hold up over time.',
     outcomes: [
       { num: '01', title: 'Integrate without rip-and-replace', body: 'Make heterogeneous estates speak the same language — without an 18-month re-platform.' },
       { num: '02', title: 'Resilient by design', body: 'Architectures and security postures that absorb shocks instead of cascading them.' },
@@ -97,7 +97,7 @@ export const SERVICES: ServicePageData[] = [
       'Generative AI', 'Intelligent Automation', 'Natural Language Processing',
       'AI Governance', 'AI Integration',
     ],
-    areasLead: 'We help organisations adopt AI responsibly while maximising business impact and competitive advantage.',
+    areasLead: 'We help organisations adopt AI responsibly and turn it into measurable business results.',
     outcomes: [
       { num: '01', title: 'Hype, separated from substance', body: "An honest read on what AI can do for you today — and what it can't, yet." },
       { num: '02', title: 'Production over pilots', body: 'AI that ships into real workflows with monitoring, governance, and ROI tracked.' },
@@ -131,7 +131,7 @@ export const SERVICES: ServicePageData[] = [
     tag: 'Data',
     pageTitle: 'Big Data & Analytics — Softfinity Consulting',
     title: 'Big Data & Analytics',
-    lead: 'Turn data into decisions that move the business. Organisations generate vast amounts of data every day. Our consultants help clients unlock the value of that data through advanced analytics, modern data platforms, and intelligent reporting solutions.',
+    lead: 'Turn data into decisions that move the business. Organisations generate vast amounts of data every day. Our consultants help clients get value from it through better analytics, data platforms built for the actual workload, and reporting that drives decisions rather than debate.',
     heroImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80',
     areasEyebrow: 'Big data services',
     areas: [
@@ -173,7 +173,7 @@ export const SERVICES: ServicePageData[] = [
     tag: 'Mobile',
     pageTitle: 'Mobile Application Development — Softfinity Consulting',
     title: 'Mobile Application Development',
-    lead: 'Build mobile applications people actually use. Customers and employees expect mobile experiences that work without friction. Our specialists design and develop applications that improve engagement, productivity, and customer satisfaction.',
+    lead: 'Build mobile applications people actually use. Customers and employees expect mobile experiences that work properly. Our specialists design and develop applications that help employees do their jobs better and give customers a reason to come back.',
     heroImage: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1600&q=80',
     areasEyebrow: 'Mobile expertise',
     areas: [
@@ -181,7 +181,7 @@ export const SERVICES: ServicePageData[] = [
       'Mobile Security', 'UX/UI Design', 'API Integration',
       'Mobile Modernisation', 'App Maintenance & Support',
     ],
-    areasLead: 'We create mobile solutions that align technology capabilities with business objectives.',
+    areasLead: 'We build mobile solutions that do what the business actually needs.',
     outcomes: [
       { num: '01', title: 'Native or cross-platform — your call', body: 'We help you weigh performance, cost, and team skills — and recommend the right path.' },
       { num: '02', title: 'Secure by default', body: 'Mobile security postures built for regulated industries, not bolted on at launch.' },

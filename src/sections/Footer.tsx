@@ -28,7 +28,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="container site-footer__inner">
         <div className="site-footer__brand">
-          <img src="assets/softfinity-horizontal-dark.svg" alt="Softfinity Consulting" width="780" height="200" />
+          <img src="/assets/softfinity-horizontal-dark.svg" alt="Softfinity Consulting" width="780" height="200" />
           <p className="site-footer__credentials">Est. 1996 · 30 years in practice<br />Independent · Vendor-agnostic</p>
         </div>
         <div className="site-footer__cols">
@@ -45,10 +45,6 @@ export default function Footer() {
             </div>
           ))}
         </div>
-      </div>
-      <div className="container site-footer__base">
-        <span>© 2026 Softfinity Consulting (Pty) Ltd. Business &amp; technology consulting and systems integration.</span>
-        <span>Technology-agnostic. Business-focused.</span>
       </div>
     </footer>
   );

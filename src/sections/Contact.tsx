@@ -11,7 +11,7 @@ export default function Contact() {
         <div className="container">
           <div className="contact__card contact__success-card">
             <img
-              src="assets/softfinity-mark-gold.svg"
+              src="/assets/softfinity-mark-gold.svg"
               alt=""
               aria-hidden="true"
               width="64"
@@ -31,7 +31,7 @@ export default function Contact() {
   return (
     <section className="section section--center" id="contact">
       <div className="container">
-        <img className="contact__star reveal" src="assets/softfinity-mark-gold.svg" alt="" aria-hidden="true" width="136" height="136" />
+        <img className="contact__star reveal" src="/assets/softfinity-mark-gold.svg" alt="" aria-hidden="true" width="136" height="136" />
         <p className="eyebrow reveal" style={{ '--d': '40ms' } as React.CSSProperties}>Connect with a specialist</p>
         <h2 className="section__title reveal" style={{ '--d': '80ms', maxWidth: '26ch', marginInline: 'auto' } as React.CSSProperties}>
           Tell us about your transformation. We'll bring the experience.

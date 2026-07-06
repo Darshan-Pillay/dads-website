@@ -10,7 +10,7 @@ function CtaButton({ label }: { label: string }) {
 
 const PROFILES = [
   { role: 'Lead Enterprise Architect', body: 'Standards-first architecture across SAP, Oracle, Microsoft. 20+ years across financial services, telco, and utilities. Specialises in untangling multi-vendor estates.' },
-  { role: 'Principal AI Consultant', body: "Production ML, generative AI, governance. Brings hard-won judgement on what AI can and can't do today — and what's worth the investment." },
+  { role: 'Principal AI Consultant', body: "Production ML, generative AI, governance. Brings hard-won judgement on what AI can and can't do today — and what's actually worth building." },
   { role: 'Cloud & Platform Engineer', body: 'Multi-cloud architecture, Kubernetes, Terraform. Designs for portability so you can leave any provider in 30 days.' },
   { role: 'Data Platform Lead', body: 'Modern data warehousing, lakehouse, governance, real-time. Picks the right engine for the actual workload — SQL, NoSQL, columnar, graph.' },
   { role: 'Programme Director', body: 'Runs the unglamorous middle of complex programmes. Specialises in change management, knowledge transfer, and managed transformation support.' },

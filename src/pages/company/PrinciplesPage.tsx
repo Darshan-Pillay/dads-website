@@ -45,7 +45,7 @@ export default function PrinciplesPage() {
           <p className="sp-hero__crumb"><Link to="/">Softfinity</Link> &nbsp;/&nbsp; Principles</p>
           <div className="sp-hero__head"><span className="sp-hero__tag">Principles</span></div>
           <h1 className="sp-hero__title">Methodologies that turn knowledge into a deliverable.</h1>
-          <p className="sp-hero__lead">Central to our approach are the concepts of MCIP, IPVF, and SIPA. These principles run through every aspect of our work. They are the operating system behind every engagement, ensuring knowledge and skills transfer is a tangible, measured deliverable rather than an incidental output.</p>
+          <p className="sp-hero__lead">Central to our approach are the concepts of MCIP, IPVF, and SIPA. These principles run through every aspect of our work. They are the operating system behind every engagement, making knowledge and skills transfer a measured deliverable — not an afterthought.</p>
           <div className="sp-hero__media sp-hero__media--constellation">
             <svg viewBox="0 0 400 540" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
               <g fill="var(--color-gold-deep)">

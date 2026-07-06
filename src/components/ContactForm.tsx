@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 import { Button, Input, Select, Textarea } from '../ds.tsx';
-import { Icon } from '../icons.tsx';
 import { contactSchema, ALLOWED_DOMAINS } from '../lib/contactSchema.ts';
 
 type Status = 'idle' | 'submitting' | 'error';
@@ -102,7 +101,6 @@ export default function ContactForm({ onSuccess, className }: ContactFormProps) 
           variant="primary" size="lg" block type="submit"
           disabled={submitting}
           aria-busy={submitting}
-          iconRight={!submitting ? <Icon name="arrow-right" size={18} /> : undefined}
         >
           {submitting ? 'Sending…' : 'Submit'}
         </Button>
