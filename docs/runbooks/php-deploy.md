@@ -53,9 +53,9 @@ Two properties are deliberate (ADR-0010 §9):
    Any hand-edit inside `deploy/` is erased by the next `npm run stage`;
    all changes go in the repo and flow through the build.
 
-### Zip it for cPanel
+### Zip it for the host's file manager
 
-cPanel's File Manager uploads one file far more reliably than 40 — and
+The host's file manager (Plesk on this host) uploads one file far more reliably than 40 — and
 browser drag-and-drop tends to silently skip the hidden `.htaccess`.
 So upload a single zip and extract it server-side:
 
@@ -90,13 +90,13 @@ same URL rewrite in dev, and `.htaccess` is exercised on the real host.
 
 ## 3. First-time host setup (once)
 
-1. In cPanel/FTP, create `api/config.php` on the server by copying
+1. In Plesk File Manager (or FTP), create `api/config.php` on the server by copying
    `config.example.php` and filling in:
    - the **Production** Resend key (never the Development one),
    - the stakeholder's inbox for `CONTACT_TO_EMAIL`,
    - `ALLOWED_ORIGINS` containing only the production `https://` domains
      (remove localhost).
-2. Verify the host runs PHP ≥ 8.1 (cPanel → "Select PHP Version") and has
+2. Verify the host runs PHP ≥ 8.1 (Plesk → Websites & Domains → PHP Settings) and has
    cURL enabled (default nearly everywhere).
 3. Confirm `.htaccess` overrides are allowed by loading a React Router
    deep link (e.g. `/privacy`) directly — a 404 means rewrites are off;
@@ -107,8 +107,8 @@ same URL rewrite in dev, and `.htaccess` is exercised on the real host.
 ## 4. Upload
 
 1. Zip the current web-root contents on the server (or download a copy)
-   — this is your rollback snapshot. In cPanel File Manager: open the web
-   root (usually `public_html/`), Select All → Compress → save as e.g.
+   — this is your rollback snapshot. In Plesk File Manager: open the web
+   root (`httpdocs/` on this host), Select All → Archive → Add to archive as e.g.
    `backup-YYYY-MM-DD.zip`, then move it *out* of the web root so it isn't
    publicly downloadable.
 2. Upload `softfinity-deploy.zip` (§1) into the web root, right-click →
@@ -135,7 +135,7 @@ rollback — no config or database state to unwind.
 
 ## 6. Where the logs are
 
-`error_log()` output lands in the host's PHP error log — in cPanel,
+`error_log()` output lands in the host's PHP error log — in Plesk (Logs / the `logs/` folder),
 usually "Errors" or a `error_log` file next to `contact.php`. The event
 markers are the same as the Node version (`contact: sent`,
 `contact: send_failed`, `contact: honeypot_triggered`, …), so the triage
