@@ -24,3 +24,4 @@ you, or that future readers might be tempted to undo without context.
 - [0007 — Contact form spam protection](0007-contact-form-spam-protection.md)
 - [0008 — Contact form implementation plan](0008-contact-form-implementation-plan.md) *(Accepted, with items blocked on stakeholder input)*
 - [0009 — Migrate static subpages to React Router](0009-react-router-subpages.md)
+- [0010 — Migrate deployment target to PHP-only shared hosting](0010-php-hosting-migration.md)

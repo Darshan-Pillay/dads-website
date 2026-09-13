@@ -1,0 +1,23 @@
+# Replaces vercel.json on PHP hosting (ADR-0010 §4).
+# Lives in public/ so Vite copies it into dist/ — the build output stays a
+# single self-contained upload.
+
+RewriteEngine On
+
+# Clean API URL: the frontend contract is POST /api/contact (never .php)
+RewriteRule ^api/contact$ api/contact.php [L]
+
+# Clean URLs for static pages: /privacy serves privacy.html if it exists
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# SPA fallback: React Router paths (not real files, not API) serve index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteRule ^ index.html [L]
+
+# Defense-in-depth: never serve the secrets file over HTTP
+<Files "config.php">
+  Require all denied
+</Files>

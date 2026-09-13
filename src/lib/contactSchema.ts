@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+// These rules are hand-mirrored in api/contact.php, which can't run Zod
+// (ADR-0010 §8). If you change a rule or ALLOWED_DOMAINS here, change it there.
 export const ALLOWED_DOMAINS = [
   'SAP', 'Microsoft', 'Oracle', 'IBM', 'AI',
   'Cloud Computing', 'Big Data & Analytics', 'Blockchain',
