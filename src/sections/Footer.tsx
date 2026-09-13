@@ -8,7 +8,6 @@ export default function Footer() {
       { label: 'Principles',   to: '/principles' },
       { label: 'Industries',   to: '/industries' },
       { label: 'Consultants',  to: '/consultants' },
-      { label: 'Case studies', to: '/case-studies' },
     ]},
     { h: 'Software', items: [
       { label: 'SAP',       to: '/services/sap' },

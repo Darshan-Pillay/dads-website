@@ -323,34 +323,6 @@
 }
 .step__n { font-family: var(--font-display); font-size: 30px; font-weight: 300; color: var(--color-hairline-2); }
 
-/* ---------- Proof — metrics + testimonial ---------- */
-.metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); max-width: 920px; margin: 0 auto var(--space-8); }
-@media (max-width: 760px) { .metrics { grid-template-columns: 1fr; } }
-.metric {
-  text-align: left; padding: var(--space-5);
-  border: 1px solid var(--color-hairline); border-radius: var(--radius-lg);
-  background: var(--color-surface); box-shadow: var(--shadow-inset-top);
-}
-.metric__num { font-family: var(--font-display); font-weight: 300; font-size: 46px; line-height: 1; color: var(--color-gold); letter-spacing: -0.02em; }
-.metric__label { font-family: var(--font-display); font-size: var(--text-h4); font-weight: 500; color: var(--color-white); margin: var(--space-4) 0 var(--space-1); }
-.metric__sub { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-slate); margin: 0; }
-.proof-quote {
-  font-family: var(--font-display); font-weight: 300;
-  font-size: calc(var(--text-h2) * var(--heading-scale)); line-height: 1.3;
-  letter-spacing: var(--tracking-tight); color: var(--color-white);
-  max-width: 28ch; margin: 0 auto var(--space-3); text-wrap: balance;
-}
-.proof-quote em { color: var(--color-gold); font-style: italic; }
-.proof-cite { font-family: var(--font-body); font-size: var(--text-body); color: var(--color-slate); margin: 0; }
-.placeholder-pill {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--font-body); font-size: 11px; font-weight: 500;
-  letter-spacing: var(--tracking-wide); text-transform: uppercase;
-  color: var(--color-warning); background: var(--color-warning-bg);
-  border: 1px solid rgba(232,162,60,0.3); border-radius: var(--radius-pill);
-  padding: 4px 10px; margin-bottom: var(--space-5);
-}
-
 /* ---------- Contact ---------- */
 .contact__card {
   background: var(--color-surface); border: 1px solid var(--color-hairline);

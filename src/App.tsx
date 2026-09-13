@@ -14,7 +14,6 @@ import Principles from './sections/Principles.tsx';
 import SoftwareFactory from './sections/SoftwareFactory.tsx';
 import WhyIndependent from './sections/WhyIndependent.tsx';
 import HowWeWork from './sections/HowWeWork.tsx';
-import Proof from './sections/Proof.tsx';
 import Closing from './sections/Closing.tsx';
 import Contact from './sections/Contact.tsx';
 import Footer from './sections/Footer.tsx';
@@ -26,7 +25,6 @@ import ApproachPage from './pages/company/ApproachPage.tsx';
 import PrinciplesPage from './pages/company/PrinciplesPage.tsx';
 import IndustriesPage from './pages/company/IndustriesPage.tsx';
 import ConsultantsPage from './pages/company/ConsultantsPage.tsx';
-import CaseStudiesPage from './pages/company/CaseStudiesPage.tsx';
 import ContactPage from './pages/company/ContactPage.tsx';
 import StackAuditPage from './pages/company/StackAuditPage.tsx';
 import TheConflictPage from './pages/company/TheConflictPage.tsx';
@@ -42,7 +40,6 @@ const TWEAKS: Tweaks = {
   density: 'airy',
   headingScale: 100,
   accent: ['#C6A15B', '#DCBD82', '#9C7C3E'],
-  showProof: true,
 };
 
 const DENSITY_PY: Record<Tweaks['density'], string> = {
@@ -132,7 +129,6 @@ function HomeContent() {
         <SoftwareFactory />
         <WhyIndependent t={TWEAKS} />
         <HowWeWork />
-        {TWEAKS.showProof && <Proof />}
         <Closing />
         <Contact />
       </main>
@@ -168,7 +164,6 @@ export default function App() {
       <Route path="/principles" element={<PrinciplesPage />} />
       <Route path="/industries" element={<IndustriesPage />} />
       <Route path="/consultants" element={<ConsultantsPage />} />
-      <Route path="/case-studies" element={<CaseStudiesPage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/stack-audit" element={<StackAuditPage />} />
       <Route path="/the-conflict" element={<TheConflictPage />} />

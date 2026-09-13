@@ -301,40 +301,6 @@
   margin: 0; line-height: 1.55;
 }
 
-/* case studies */
-.pg-cases { display: grid; gap: var(--space-5); max-width: 1080px; }
-.pg-case {
-  padding: var(--space-6);
-  border: 1px solid var(--color-hairline); border-radius: var(--radius-xl);
-  background: var(--color-surface); box-shadow: var(--shadow-inset-top);
-}
-.pg-case__tag {
-  font-family: var(--font-display); font-size: 11px; font-weight: 600;
-  letter-spacing: var(--tracking-widest); text-transform: uppercase;
-  color: var(--color-gold); background: var(--color-gold-a08);
-  border: 1px solid var(--color-gold-a32); border-radius: var(--radius-pill);
-  padding: 5px 12px; display: inline-block; margin-bottom: var(--space-3);
-}
-.pg-case__title {
-  font-family: var(--font-display); font-weight: 400;
-  font-size: clamp(22px, 2.8vw, 30px); color: var(--color-white);
-  margin: 0 0 var(--space-4); line-height: 1.2;
-}
-.pg-case__dl {
-  display: grid; grid-template-columns: 140px 1fr; gap: var(--space-3) var(--space-5);
-  margin: 0;
-}
-@media (max-width: 620px) { .pg-case__dl { grid-template-columns: 1fr; gap: 4px var(--space-5); } }
-.pg-case__dl dt {
-  font-family: var(--font-display); font-size: var(--text-overline); font-weight: 500;
-  letter-spacing: var(--tracking-widest); text-transform: uppercase;
-  color: var(--color-gold); padding-top: 4px;
-}
-.pg-case__dl dd {
-  font-family: var(--font-body); font-size: var(--text-body); color: var(--color-snow);
-  margin: 0; line-height: 1.55;
-}
-
 /* principles: concept cards */
 .pg-concepts {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5);

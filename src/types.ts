@@ -11,7 +11,6 @@ export type Tweaks = {
   density: 'airy' | 'regular' | 'tight';
   headingScale: number;
   accent: [string, string, string];
-  showProof: boolean;
 };
 
 export type Outcome = {
