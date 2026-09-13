@@ -19,6 +19,7 @@ everything the host needs:
 ```
 deploy/
   index.html, assets/, …     ← the Vite build (dist/)
+  _ds/                       ← Polaris design-system bundle (index.html links it — required)
   .htaccess                  ← copied from public/ by the build
   api/
     contact.php              ← the backend
@@ -27,6 +28,49 @@ deploy/
 
 `deploy/` is gitignored and fully regenerated on every run — never edit it
 by hand.
+
+### Why a deploy folder exists at all
+
+No single existing folder matches what the server should receive:
+
+- **The repo** contains things the host must never get — `src/`,
+  `node_modules/`, docs, and the local `api/config.php` holding the
+  Development Resend key.
+- **`dist/`** is only the frontend; Vite knows nothing about the PHP
+  backend.
+
+`npm run stage` combines the two halves into one unambiguous
+"this is what goes up" folder. On Vercel, `git push` did this invisibly;
+on shared hosting *you* are the deploy pipeline, so the suitcase gets
+packed explicitly.
+
+Two properties are deliberate (ADR-0010 §9):
+
+1. **It never contains `config.php`** — uploading it can therefore never
+   overwrite or leak the server's secrets. The server's config is created
+   once (§3) and survives every deploy untouched.
+2. **It is throwaway build output** — regenerated from scratch each run.
+   Any hand-edit inside `deploy/` is erased by the next `npm run stage`;
+   all changes go in the repo and flow through the build.
+
+### Zip it for cPanel
+
+cPanel's File Manager uploads one file far more reliably than 40 — and
+browser drag-and-drop tends to silently skip the hidden `.htaccess`.
+So upload a single zip and extract it server-side:
+
+```sh
+cd deploy && zip -r ../softfinity-deploy.zip . && cd ..
+```
+
+Zipping from *inside* `deploy/` matters: it puts `index.html` at the top
+level of the archive (not nested under a `deploy/` folder) and includes
+the hidden `.htaccess`. Sanity-check before uploading:
+
+```sh
+unzip -l softfinity-deploy.zip | grep -E 'htaccess|config'
+# expect: .htaccess and api/config.example.php — and NO api/config.php
+```
 
 ---
 
@@ -63,10 +107,16 @@ same URL rewrite in dev, and `.htaccess` is exercised on the real host.
 ## 4. Upload
 
 1. Zip the current web-root contents on the server (or download a copy)
-   — this is your rollback snapshot.
-2. Upload the **contents** of `deploy/` into the web root, overwriting.
-   Do not delete `api/config.php` on the server; the staged folder
+   — this is your rollback snapshot. In cPanel File Manager: open the web
+   root (usually `public_html/`), Select All → Compress → save as e.g.
+   `backup-YYYY-MM-DD.zip`, then move it *out* of the web root so it isn't
+   publicly downloadable.
+2. Upload `softfinity-deploy.zip` (§1) into the web root, right-click →
+   **Extract**, then delete the zip. This overwrites the old files in
+   place. Do not delete `api/config.php` on the server; the staged folder
    deliberately doesn't contain a `config.php`, so overwriting is safe.
+   (File Manager hides dotfiles by default — Settings → "Show Hidden
+   Files" to confirm `.htaccess` landed.)
 3. Smoke-test production:
    - Load the homepage and one deep link (`/privacy`).
    - Submit a real enquiry; confirm it reaches the stakeholder's inbox

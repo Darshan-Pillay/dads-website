@@ -7,3 +7,4 @@ dist/
 .env*
 api/config.php
 deploy/
+softfinity-deploy.zip
