@@ -50,7 +50,7 @@ function PrinciplesConstellation() {
 
 export default function Principles() {
   const concepts: Concept[] = [
-    { icon: 'layers-3', tag: 'MCIP', title: 'Massed Core Intellectual Property', body: 'The undifferentiated mass of intellectual property and information available to execute on any client project — drawn from Softfinity, our partners, our clients, and the market. The core grows with every engagement.' },
+    { icon: 'layers-3', tag: 'MCIP', title: 'Massed Core Intellectual Property', body: 'The undifferentiated mass of intellectual property and information available to execute on any client project, drawn from Softfinity, our partners, our clients, and the market. The core grows with every engagement.' },
     { icon: 'cloud-fog', tag: 'IPVF', title: 'Intellectual Property Vapour Fusion',
       body: (
         <>
@@ -58,7 +58,7 @@ export default function Principles() {
           <a className="fn-ref" id="fn-ref-2" href="#fn-2">
             derived IP<sup>2</sup>
           </a>
-          {' '}and fuse it back into the Massed Core — enriching it further with every project.
+          {' '}and fuse it back into the Massed Core, enriching it further with every project.
         </>
       ) },
     { icon: 'target', tag: 'SIPA', title: 'Singular Intellectual Property Assimilation',
@@ -72,13 +72,13 @@ export default function Principles() {
           {' '}to deliver competitive advantage.
         </>
       ) },
-    { icon: 'eye', tag: 'Translucent', title: 'Translucent Engagement Model', body: 'Non-hierarchical, cross-functional teams composed of client representatives, Softfinity consultants, and partner resources — focused, cross-pollinated, infused with the IP each engagement requires.' },
+    { icon: 'eye', tag: 'Translucent', title: 'Translucent Engagement Model', body: 'Non-hierarchical, cross-functional teams composed of client representatives, Softfinity consultants, and partner resources: focused, cross-pollinated, infused with the IP each engagement requires.' },
   ];
   const supportingTerms: Footnote[] = [
     { id: 'fn-1', term: 'ienrichment', backRef: 'fn-ref-1',
-      body: 'Intellectual Property Enrichment — a methodology in which IP, either as part of an overall solution or embedded in our consultants and partners, is blended into the execution of every client engagement, tailored to its unique needs.' },
+      body: 'Intellectual Property Enrichment: a methodology in which IP, either as part of an overall solution or embedded in our consultants and partners, is blended into the execution of every client engagement, tailored to its unique needs.' },
     { id: 'fn-2', term: 'Nextelligence', backRef: 'fn-ref-2',
-      body: 'The cognitive application of derivative intellectual property — the leap from raw knowledge to actionable, contextual insight that compounds across engagements.' },
+      body: 'The cognitive application of derivative intellectual property. The leap from raw knowledge to contextual insight you can act on, compounding across every engagement.' },
   ];
   return (
     <section className="section section--alt" id="principles">
@@ -89,17 +89,17 @@ export default function Principles() {
             Methodologies that turn knowledge into a deliverable.
           </h2>
           <p className="section__lead reveal" style={{ '--d': '120ms' }}>
-            Our consultants embody a unique blend of entrepreneurial spirit and pioneering
-            concepts. MCIP, IPVF, and SIPA aren't slogans — they're the operating system
-            behind every engagement, ensuring knowledge and skills transfer is a tangible,
-            measured deliverable.
+            Our consultants bring an entrepreneurial mindset and a set of proprietary
+            concepts built over three decades of work. MCIP, IPVF, and SIPA aren't
+            slogans. They're the operating system behind every engagement, making
+            knowledge and skills transfer a concrete, tracked deliverable.
           </p>
         </div>
 
         <div className="principles__grid">
           <figure className="principles__figure reveal" style={{ '--d': '180ms' }}>
             <PrinciplesConstellation />
-            <figcaption>An unrivalled set of principles and concepts — refined across three decades of engagements.</figcaption>
+            <figcaption>Principles and concepts refined across three decades of client engagements.</figcaption>
           </figure>
           <div className="concept-list">
             {concepts.map((c, i) => (

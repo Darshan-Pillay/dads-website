@@ -1,7 +1,9 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
 import './styles/site.css';
+import './styles/subpage.css';
 
 // The Polaris design system bundle (public/_ds/_ds_bundle.js) references
 // React as a bare global identifier inside its component definitions.
@@ -23,4 +25,8 @@ function whenDsReady(): Promise<void> {
   return new Promise((resolve) => window.addEventListener('load', () => resolve(), { once: true }));
 }
 
-whenDsReady().then(() => createRoot(root).render(<App />));
+whenDsReady().then(() => createRoot(root).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+));

@@ -23,16 +23,16 @@ export default function Hero({ t }: { t: Tweaks }) {
           (hero__lead) by the reveal transition + delay (was ~860ms). */}
       <div className="hero__inner">
         <span className={`hero__star ${treatment === 'orbit' ? 'hero__star--orbit' : ''}`} aria-hidden="true">
-          <img src="assets/softfinity-mark-gold.svg" alt="" width="136" height="136" />
+          <img src="/assets/softfinity-mark-gold.svg" alt="" width="136" height="136" />
         </span>
         <div className="hero__wordmark">Softfinity<span className="gold">.</span></div>
         <h1 className="hero__title">
           Technology-agnostic consulting.<br />Business-focused<span className="gold"> outcomes.</span>
         </h1>
         <p className="hero__lead">
-          We help organisations achieve their strategic objectives by providing highly experienced
-          consultants who work alongside client teams to deliver measurable business outcomes —
-          independent of any vendor, platform, or product.
+          We work alongside client teams to deliver real business results, independent
+          of any vendor, platform, or product. No agenda. No preferred stack. Just
+          experienced consultants who are accountable to your outcomes.
         </p>
         <div className="hero__actions">
           <Button variant="primary" size="lg" as="a" href="#contact"

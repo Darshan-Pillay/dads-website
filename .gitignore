@@ -3,3 +3,8 @@ dist/
 .DS_Store
 .vite/
 *.local
+.vercel
+.env*
+api/config.php
+deploy/
+softfinity-deploy.zip

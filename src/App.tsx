@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { Routes, Route, useParams, useLocation } from 'react-router-dom';
 import type { CSSProperties, MouseEvent } from 'react';
-import { Button, Dialog } from './ds.tsx';
 import Nav from './sections/Nav.tsx';
 import Hero from './sections/Hero.tsx';
 import FeatureBand from './sections/FeatureBand.tsx';
@@ -14,14 +14,22 @@ import Principles from './sections/Principles.tsx';
 import SoftwareFactory from './sections/SoftwareFactory.tsx';
 import WhyIndependent from './sections/WhyIndependent.tsx';
 import HowWeWork from './sections/HowWeWork.tsx';
-import Proof from './sections/Proof.tsx';
 import Closing from './sections/Closing.tsx';
 import Contact from './sections/Contact.tsx';
 import Footer from './sections/Footer.tsx';
 import type { Tweaks } from './types.ts';
+import { SERVICES } from './data/services.ts';
+import ServicePage from './pages/services/ServicePage.tsx';
+import AboutPage from './pages/company/AboutPage.tsx';
+import ApproachPage from './pages/company/ApproachPage.tsx';
+import PrinciplesPage from './pages/company/PrinciplesPage.tsx';
+import IndustriesPage from './pages/company/IndustriesPage.tsx';
+import ConsultantsPage from './pages/company/ConsultantsPage.tsx';
+import ContactPage from './pages/company/ContactPage.tsx';
+import StackAuditPage from './pages/company/StackAuditPage.tsx';
+import TheConflictPage from './pages/company/TheConflictPage.tsx';
+import NotFound from './pages/NotFound.tsx';
 
-// Layout/visual settings, formerly driven by the in-page Tweaks panel.
-// See docs/architecture.md for why the panel was removed from production.
 const TWEAKS: Tweaks = {
   heroStar: 'glow',
   glow: 16,
@@ -32,7 +40,6 @@ const TWEAKS: Tweaks = {
   density: 'airy',
   headingScale: 100,
   accent: ['#C6A15B', '#DCBD82', '#9C7C3E'],
-  showProof: true,
 };
 
 const DENSITY_PY: Record<Tweaks['density'], string> = {
@@ -48,8 +55,7 @@ function hexToRgb(hex: string): [number, number, number] {
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 }
 
-export default function App() {
-  const [sent, setSent] = useState(false);
+function HomeContent() {
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   // Scroll-reveal observer.
@@ -71,8 +77,7 @@ export default function App() {
     return () => io.disconnect();
   }, []);
 
-  // Re-apply the URL hash after first paint so CTAs from subpages
-  // (../index.html#contact) land on the right section.
+  // Re-apply the URL hash after first paint so CTAs from subpages land on the right section.
   useEffect(() => {
     if (!window.location.hash) return;
     const id = window.location.hash.slice(1);
@@ -124,16 +129,46 @@ export default function App() {
         <SoftwareFactory />
         <WhyIndependent t={TWEAKS} />
         <HowWeWork />
-        {TWEAKS.showProof && <Proof />}
         <Closing />
-        <Contact onSubmit={() => setSent(true)} />
+        <Contact />
       </main>
       <Footer />
-
-      <Dialog open={sent} onClose={() => setSent(false)}
-        title="We've got it."
-        description="A senior consultant will reach out within one business day — with a straight read on what you actually need. (Demo only — the form isn't wired to a backend yet.)"
-        footer={<Button variant="primary" onClick={() => setSent(false)}>Close</Button>} />
     </div>
+  );
+}
+
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) window.scrollTo(0, 0);
+  }, [pathname, hash]);
+  return null;
+}
+
+function ServicePageRoute() {
+  const { slug } = useParams<{ slug: string }>();
+  const data = SERVICES.find(s => s.slug === slug);
+  if (!data) return <NotFound />;
+  return <ServicePage data={data} />;
+}
+
+export default function App() {
+  return (
+    <>
+      <ScrollToTop />
+      <Routes>
+      <Route path="/" element={<HomeContent />} />
+      <Route path="/services/:slug" element={<ServicePageRoute />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/approach" element={<ApproachPage />} />
+      <Route path="/principles" element={<PrinciplesPage />} />
+      <Route path="/industries" element={<IndustriesPage />} />
+      <Route path="/consultants" element={<ConsultantsPage />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/stack-audit" element={<StackAuditPage />} />
+      <Route path="/the-conflict" element={<TheConflictPage />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+    </>
   );
 }

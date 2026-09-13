@@ -21,12 +21,12 @@ export default function WhatWeDo({ t }: { t: Tweaks }) {
         <div className="section__head">
           <p className="eyebrow reveal">What we do</p>
           <h2 className="section__title reveal" style={{ '--d': '60ms' }}>
-            Deep expertise across leading enterprise platforms and emerging technologies.
+            Hands-on expertise across enterprise platforms and newer technologies.
           </h2>
           <p className="section__lead reveal" style={{ '--d': '120ms' }}>
-            Whether you're modernising core systems, adopting cloud, leveraging data and AI,
-            or undertaking large-scale digital transformation — our consultants bring the
-            expertise, objectivity, and practical experience needed to deliver results.
+            Modernising core systems, moving to cloud, or putting data and AI to work:
+            our consultants bring the knowledge, objectivity, and hands-on experience
+            to get it done.
           </p>
         </div>
 

@@ -1,37 +1,34 @@
+import { Link } from 'react-router-dom';
+
 export default function Footer() {
   const cols = [
-    { h: 'Services', items: [
-      { label: 'SAP',        href: 'services/sap.html' },
-      { label: 'Microsoft',  href: 'services/microsoft.html' },
-      { label: 'Oracle',     href: 'services/oracle.html' },
-      { label: 'IBM',        href: 'services/ibm.html' },
-      { label: 'AI',         href: 'services/ai.html' },
-      { label: 'Cloud',      href: 'services/cloud.html' },
-      { label: 'Big Data',   href: 'services/data.html' },
-      { label: 'Blockchain', href: 'services/blockchain.html' },
-      { label: 'Mobile',     href: 'services/mobile.html' },
-    ]},
     { h: 'Company', items: [
-      { label: 'Who we are',   href: 'pages/about.html' },
-      { label: 'Our approach', href: 'pages/approach.html' },
-      { label: 'Principles',   href: 'pages/principles.html' },
-      { label: 'Industries',   href: 'pages/industries.html' },
-      { label: 'Consultants',  href: 'pages/consultants.html' },
-      { label: 'Case studies', href: 'pages/case-studies.html' },
+      { label: 'Who we are',   to: '/about' },
+      { label: 'Our approach', to: '/approach' },
+      { label: 'Principles',   to: '/principles' },
+      { label: 'Industries',   to: '/industries' },
+      { label: 'Consultants',  to: '/consultants' },
     ]},
-    { h: 'Connect', items: [
-      { label: 'Contact',  href: 'pages/contact.html' },
-      { label: 'Insights', href: 'pages/insights.html' },
-      { label: 'Email',    href: 'mailto:hello@softfinity.com' },
-      { label: 'LinkedIn', href: 'https://www.linkedin.com/', target: '_blank', rel: 'noopener' },
+    { h: 'Software', items: [
+      { label: 'SAP',       to: '/services/sap' },
+      { label: 'Microsoft', to: '/services/microsoft' },
+      { label: 'Oracle',    to: '/services/oracle' },
+      { label: 'IBM',       to: '/services/ibm' },
+    ]},
+    { h: 'Technology', items: [
+      { label: 'AI',         to: '/services/ai' },
+      { label: 'Cloud',      to: '/services/cloud' },
+      { label: 'Big Data',   to: '/services/data' },
+      { label: 'Blockchain', to: '/services/blockchain' },
+      { label: 'Mobile',     to: '/services/mobile' },
     ]},
   ];
   return (
     <footer className="site-footer">
       <div className="container site-footer__inner">
         <div className="site-footer__brand">
-          <img src="assets/softfinity-horizontal-dark.svg" alt="Softfinity Consulting" width="780" height="200" />
-          <p>Independent advice. Trusted expertise. Proven outcomes.</p>
+          <img src="/assets/softfinity-horizontal-dark.svg" alt="Softfinity Consulting" width="780" height="200" />
+          <p className="site-footer__credentials">Est. 1996 · 30 years in practice<br />Independent · Vendor-agnostic</p>
         </div>
         <div className="site-footer__cols">
           {cols.map((c) => (
@@ -40,19 +37,13 @@ export default function Footer() {
               <ul>
                 {c.items.map((it) => (
                   <li key={it.label}>
-                    <a href={it.href} {...(it.target ? { target: it.target, rel: it.rel } : {})}>
-                      {it.label}
-                    </a>
+                    <Link to={it.to}>{it.label}</Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-      </div>
-      <div className="container site-footer__base">
-        <span>© 2026 Softfinity Consulting (Pty) Ltd. Business &amp; technology consulting and systems integration.</span>
-        <span>Technology-agnostic. Business-focused.</span>
       </div>
     </footer>
   );

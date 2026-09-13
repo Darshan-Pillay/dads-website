@@ -23,9 +23,9 @@ export default function Industries() {
             Cross-industry experience. Practical business knowledge.
           </h2>
           <p className="section__lead reveal" style={{ '--d': '120ms' }}>
-            Our consultants combine deep technical expertise with hands-on experience across
-            multiple industries — bringing proven practices, fresh perspectives, and
-            innovative solutions to every engagement.
+            Our consultants bring technical depth and direct industry experience. They've
+            worked in these sectors before, which means fewer surprises and faster time
+            to results for you.
           </p>
         </div>
         <div className="industries-grid reveal" style={{ '--d': '180ms' }}>
